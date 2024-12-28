@@ -1,0 +1,38 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #f5f5f5;
+    color: #333;
+  }
+  
+  /* Header */
+  header {
+    background-color: #ff6b6b;
+    color: white;
+    padding: 1em;
+  }
+  
+  /* Countdown Timer */
+  #countdown {
+    margin: 2em 0;
+  }
+  
+  #timer span {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0 0.5em;
+    color: #ff6b6b;
+  }
+  
+  /* Wedding Details */
+  #details {
+    margin: 2em 0;
+    padding: 1em;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+  }
+  
