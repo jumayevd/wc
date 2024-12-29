@@ -212,7 +212,7 @@
 
         @keyframes flip {
             0% {
-                transform: rotateX(90deg);
+                transform: rotateX(-90deg);
                 opacity: 0;
             }
             50% {
@@ -383,7 +383,7 @@
     </script>
     <script>
         const targetDate = new Date('2027-08-15T00:00:00');
-        const startDate = new Date('2021-01-01T00:00:00');
+        const startDate = new Date('2023-01-01T00:00:00');
 
         function updateCountdown() {
             const now = new Date();
@@ -394,48 +394,32 @@
             const minutes = Math.floor((totalSeconds % 3600) / 60);
             const seconds = totalSeconds % 60;
 
-            // Update days, hours, minutes, seconds with bounce animation
-            const daysElement = document.getElementById('days');
-            const hoursElement = document.getElementById('hours');
-            const minutesElement = document.getElementById('minutes');
-            const secondsElement = document.getElementById('seconds');
-            
-            // Only add bounce animation if the value has changed
-            if (daysElement.textContent !== (days < 10 ? '0' + days : days)) {
-                daysElement.classList.remove('bounce');
-                void daysElement.offsetWidth;  // Trigger reflow for animation
-                daysElement.classList.add('bounce');
-            }
+            // Update days, hours, minutes, seconds with flip animation
+            document.getElementById('days').textContent = days < 10 ? '0' + days : days;
+            document.getElementById('hours').textContent = hours < 10 ? '0' + hours : hours;
+            document.getElementById('minutes').textContent = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById('seconds').textContent = seconds < 10 ? '0' + seconds : seconds;
 
-            if (hoursElement.textContent !== (hours < 10 ? '0' + hours : hours)) {
-                hoursElement.classList.remove('bounce');
-                void hoursElement.offsetWidth;  // Trigger reflow for animation
-                hoursElement.classList.add('bounce');
-            }
+            // Add flip animation for each updated digit
+            document.getElementById('days').classList.add('flip');
+            document.getElementById('hours').classList.add('flip');
+            document.getElementById('minutes').classList.add('flip');
+            document.getElementById('seconds').classList.add('flip');
 
-            if (minutesElement.textContent !== (minutes < 10 ? '0' + minutes : minutes)) {
-                minutesElement.classList.remove('bounce');
-                void minutesElement.offsetWidth;  // Trigger reflow for animation
-                minutesElement.classList.add('bounce');
-            }
-
-            if (secondsElement.textContent !== (seconds < 10 ? '0' + seconds : seconds)) {
-                secondsElement.classList.remove('bounce');
-                void secondsElement.offsetWidth;  // Trigger reflow for animation
-                secondsElement.classList.add('bounce');
-            }
-
-            // Update the text content
-            daysElement.textContent = days < 10 ? '0' + days : days;
-            hoursElement.textContent = hours < 10 ? '0' + hours : hours;
-            minutesElement.textContent = minutes < 10 ? '0' + minutes : minutes;
-            secondsElement.textContent = seconds < 10 ? '0' + seconds : seconds;
+            // Remove animation classes after animation ends
+            setTimeout(() => {
+                document.getElementById('days').classList.remove('flip');
+                document.getElementById('hours').classList.remove('flip');
+                document.getElementById('minutes').classList.remove('flip');
+                document.getElementById('seconds').classList.remove('flip');
+            }, 1000);
 
             // Calculate progress and update the progress bar
             const progressPercentage = ((totalDuration - totalSeconds) / totalDuration) * 100;
             document.getElementById('remaining-progress').style.width = `${progressPercentage}%`;
             document.getElementById('progress-percentage').textContent = `${progressPercentage.toFixed(2)}% completed`;
         }
+
 
         setInterval(updateCountdown, 1000);
 
