@@ -4,56 +4,63 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wedding Countdown</title>
+  <!-- Linking the CSS stylesheet for styling the website -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Main Header Section -->
   <header>
-    <h1>Our Wedding Countdown</h1>
+    <h1>Wedding Countdown</h1>
+    <p id="countdown-description">The big day is approaching! Let’s count down the time together.</p>
   </header>
+
+  <!-- Countdown Timer Section -->
   <main>
     <section id="countdown">
       <h2>Time Remaining:</h2>
+      <!-- Displaying the countdown timer dynamically -->
       <div id="timer">
-        <span id="days">00</span> Days  
-        <span id="hours">00</span> Hours  
-        <span id="minutes">00</span> Minutes  
+        <span id="days">00</span> Days
+        <span id="hours">00</span> Hours
+        <span id="minutes">00</span> Minutes
         <span id="seconds">00</span> Seconds
       </div>
     </section>
-    
-    <section id="progress-bars">
-      <div id="remaining-progress-bar">
-        <label>Remaining Days</label>
-        <div id="remaining-progress"></div>
-      </div>
-      <div id="completed-progress-bar">
-        <label>Completed Days</label>
-        <div id="completed-progress"></div>
-      </div>
-    </section>
-    
+
+    <!-- Wedding Details Section -->
     <section id="details">
       <h2>Wedding Details</h2>
-      <p>We’re excited to celebrate with you! Save the date:</p>
-      <p><strong>Date:</strong> <span id="wedding-date">June 1, 2025</span></p>
+      <p><strong>Wedding Date:</strong> <span id="wedding-date">June 1, 2025</span></p>
       <p><strong>Venue:</strong> Dream Wedding Hall</p>
     </section>
 
-    <section id="share-buttons">
-      <a href="https://twitter.com/share?url=https://marriage-count.vercel.app&text=Countdown%20to%20the%20big%20day!" target="_blank">Share on Twitter</a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=https://marriage-count.vercel.app" target="_blank">Share on Facebook</a>
+    <!-- Progress Bars for Remaining Time and Completed Time -->
+    <section id="progress-bars">
+      <div id="remaining-progress-bar">
+        <div id="remaining-progress"></div>
+      </div>
+      <div id="completed-progress-bar">
+        <div id="completed-progress"></div>
+      </div>
     </section>
 
+    <!-- Social Media Share Buttons -->
+    <section id="share-buttons">
+      <a href="https://twitter.com/share?url=https://marriage-countdown.vercel.app&text=Countdown%20to%20the%20big%20day!" target="_blank">Share on Twitter</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://marriage-countdown.vercel.app" target="_blank">Share on Facebook</a>
+    </section>
+
+    <!-- Milestones Section -->
     <section id="milestones">
       <h3>Milestones</h3>
       <ul>
-        <li>Engagement Party - January 15, 2025</li>
-        <li>Bridal Shower - March 25, 2025</li>
-        <li>Wedding Day - June 1, 2025</li>
+        <li>Engagement: January 1, 2024</li>
+        <li>Wedding Ceremony: June 1, 2025</li>
       </ul>
     </section>
   </main>
 
+  <!-- Link to JavaScript file for dynamic behavior -->
   <script src="script.js"></script>
 </body>
 </html>

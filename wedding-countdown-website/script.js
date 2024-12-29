@@ -1,38 +1,39 @@
-const weddingDate = new Date("2025-06-01T00:00:00"); // Wedding date
-const startDate = new Date("2024-01-01T00:00:00"); // Starting date (New Year)
-const timerElement = document.getElementById("timer");
-const remainingProgressBar = document.getElementById("remaining-progress");
-const completedProgressBar = document.getElementById("completed-progress");
-
+// Function to update the countdown timer
 function updateCountdown() {
-  const now = new Date();
+  // Wedding Date: Set the wedding date here (can be easily modified)
+  const weddingDate = new Date("June 1, 2025 00:00:00").getTime();
+
+  // Current Date
+  const now = new Date().getTime();
+
+  // Time Remaining
   const timeRemaining = weddingDate - now;
-  const timePassed = now - startDate;
 
-  if (timeRemaining <= 0) {
-    timerElement.innerHTML = "The big day has arrived!";
-    remainingProgressBar.style.width = "0%";
-    completedProgressBar.style.width = "100%";
-    return;
-  }
-
-  const daysRemaining = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-  const daysPassed = Math.floor(timePassed / (1000 * 60 * 60 * 24));
-
+  // Calculating days, hours, minutes, and seconds
+  const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
   const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-  timerElement.innerHTML = `${daysRemaining} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`;
+  // Updating the countdown elements on the page
+  document.getElementById("days").textContent = days < 10 ? `0${days}` : days;
+  document.getElementById("hours").textContent = hours < 10 ? `0${hours}` : hours;
+  document.getElementById("minutes").textContent = minutes < 10 ? `0${minutes}` : minutes;
+  document.getElementById("seconds").textContent = seconds < 10 ? `0${seconds}` : seconds;
 
-  // Update remaining progress bar (percentage of remaining days)
-  const totalDays = Math.floor((weddingDate - startDate) / (1000 * 60 * 60 * 24));
-  const remainingPercentage = (daysRemaining / totalDays) * 100;
-  remainingProgressBar.style.width = `${remainingPercentage}%`;
+  // Calculating progress bars (remaining and completed time)
+  const totalTime = weddingDate - new Date("January 1, 2024").getTime();
+  const elapsedTime = now - new Date("January 1, 2024").getTime();
+  const remainingPercentage = (elapsedTime / totalTime) * 100;
+  const completedPercentage = 100 - remainingPercentage;
 
-  // Update completed progress bar (percentage of completed days)
-  const completedPercentage = (daysPassed / totalDays) * 100;
-  completedProgressBar.style.width = `${completedPercentage}%`;
+  // Update progress bars
+  document.getElementById("remaining-progress").style.width = `${remainingPercentage}%`;
+  document.getElementById("completed-progress").style.width = `${completedPercentage}%`;
 }
 
-setInterval(updateCountdown, 1000); // Update countdown every second
+// Updating the countdown every second
+setInterval(updateCountdown, 1000);
+
+// Initialize the countdown on page load
+updateCountdown();
