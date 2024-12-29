@@ -37,3 +37,8 @@ setInterval(updateCountdown, 1000);
 
 // Initial countdown update
 updateCountdown();
+
+document.getElementById("learn-more-text").addEventListener("click", function() {
+  // Toggle the visibility of the full message
+  document.getElementById("full-message").style.display = 'block';
+});
