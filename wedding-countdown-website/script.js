@@ -39,6 +39,6 @@ setInterval(updateCountdown, 1000);
 updateCountdown();
 
 document.getElementById("learn-more-text").addEventListener("click", function() {
-  // Toggle the visibility of the full message
-  document.getElementById("full-message").style.display = 'block';
+  const message = document.getElementById("full-message");
+  message.style.display = message.style.display === "block" ? "none" : "block";
 });

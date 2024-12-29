@@ -34,16 +34,16 @@ body {
 }
 
 #learn-more-text {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 600;
-  color: #FFD700;
+  color: #fff;
   cursor: pointer;
   text-decoration: underline;
   transition: color 0.3s ease;
 }
 
 #learn-more-text:hover {
-  color: #fff;
+  color: #FFD700;
 }
 
 #full-message {
@@ -69,6 +69,24 @@ body {
   color: #FFD700;
   text-transform: uppercase;
   font-weight: 700;
+}
+
+/* Animated Heart (or Flower) Icon */
+#flower-heart {
+  position: relative;
+  margin-top: 20px;
+  font-size: 2.5rem;
+  color: #FFD700;
+  animation: floatingHeart 2s ease-in-out infinite;
+}
+
+#flower-heart::after {
+  content: '❤️';  /* Use heart symbol for now */
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 3.5rem;
+  color: #FFD700;
 }
 
 /* Countdown Timer */
@@ -167,6 +185,19 @@ body {
   }
   100% {
     opacity: 1;
+  }
+}
+
+/* Heart Animation */
+@keyframes floatingHeart {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 
