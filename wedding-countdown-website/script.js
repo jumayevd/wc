@@ -26,3 +26,13 @@ const countdown = setInterval(() => {
     document.getElementById("timer").textContent = "The big day is here!";
   }
 }, 1000);
+
+
+function updateProgressBar() {
+  const totalDuration = eventDate - new Date("2024-01-01T00:00:00"); // Start date
+  const elapsed = Date.now() - new Date("2024-01-01T00:00:00");
+  const percentage = Math.min((elapsed / totalDuration) * 100, 100);
+  document.getElementById("progress").style.width = `${percentage}%`;
+}
+
+setInterval(updateProgressBar, 1000); // Update progress bar every second
