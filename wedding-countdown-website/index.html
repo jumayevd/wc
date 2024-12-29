@@ -142,7 +142,7 @@
             background: rgba(255, 255, 255, 0.3);
             border-radius: 15px;
             overflow: hidden;
-            margin-top: 10px;
+            margin-top: 20px;
         }
 
         #remaining-progress {
@@ -275,6 +275,22 @@
         }
 
         setInterval(updateCountdown, 1000);
+        
+        function updateProgressBar() {
+            const now = new Date();
+            const totalSeconds = Math.floor((targetDate - now) / 1000);
+            const totalDuration = Math.floor((targetDate - startDate) / 1000);
+            const elapsedSeconds = totalDuration - totalSeconds;
+
+            const progressPercentage = (elapsedSeconds / totalDuration) * 100;
+            const progressBar = document.getElementById('remaining-progress');
+            const progressText = document.getElementById('progress-percentage');
+
+            progressBar.style.width = `${progressPercentage}%`;
+            progressText.textContent = `${progressPercentage.toFixed(2)}%`;
+        }
+
+        setInterval(updateProgressBar, 1000);
     </script>
 </body>
 
