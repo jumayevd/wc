@@ -1,82 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wedding Countdown</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Countdown</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee, #d4d7e1);
+            background-size: 400% 400%;
+            animation: gradientBackground 15s ease infinite;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            flex-direction: column;
+            padding: 20px;
+            transition: all 0.5s ease;
+        }
+
+        /* Click to Learn More Section */
+        #click-to-learn-more {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        #learn-more-text {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #FFD700;
+            cursor: pointer;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        #learn-more-text:hover {
+            color: #ff5733;
+        }
+
+        #full-message {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            display: none;
+            animation: fadeIn 3s forwards;
+        }
+
+        #full-message p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #fff;
+            margin-bottom: 15px;
+            text-align: justify;
+            text-indent: 20px;
+        }
+
+        #full-message h2 {
+            font-size: 2rem;
+            color: #FFD700;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        /* Animated Heart Icon */
+        #flower-heart {
+            position: relative;
+            margin-top: 20px;
+            font-size: 2.5rem;
+            color: #FFD700;
+            animation: floatingHeart 2s ease-in-out infinite;
+            cursor: pointer;
+        }
+
+        #flower-heart::after {
+            content: '❤️'; /* Use heart symbol for now */
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 3.5rem;
+            color: #FFD700;
+        }
+
+        /* Countdown Timer */
+        #countdown {
+            margin-top: 40px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        #countdown h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        #timer {
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 30px;
+            gap: 20px;
+        }
+
+        .time-box {
+            background: rgba(255, 255, 255, 0.4);
+            padding: 30px 40px;
+            border-radius: 15px;
+            width: 150px;
+            text-align: center;
+            font-size: 2.5rem;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .time-box span {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        #timer .time-box div {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        #timer .time-box:hover {
+            transform: scale(1.1);
+        }
+
+        /* Progress Bar Container */
+        #progress-bar {
+            margin-top: 40px;
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        /* Title for the Progress Bar */
+        #progress-bar h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        /* Progress Bar Visual */
+        .progress-bar-container {
+            position: relative;
+            width: 100%;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        /* Motion Filling Bar */
+        #remaining-progress {
+            height: 100%;
+            background: linear-gradient(to right, #4caf50, #8bc34a, #cddc39);
+            width: 0%; /* Dynamically updated using JavaScript */
+            transition: width 1s ease;
+        }
+
+        /* Scale Lines and Labels */
+        .scale-labels {
+            position: absolute;
+            top: 40px; /* Below the progress bar */
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .scale-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        /* Percentage Text */
+        #progress-percentage {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        /* Wedding Details Section */
+        #details {
+            margin-top: 50px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #details p {
+            font-size: 1.1rem;
+            margin: 10px 0;
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Heart Animation */
+        @keyframes floatingHeart {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Gradient Background Animation */
+        @keyframes gradientBackground {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <!-- Interactive "Click to Learn More" Section with Animated Heart -->
-  <section id="click-to-learn-more">
-    <div class="message-card">
-      <p id="learn-more-text">Click the Heart to Learn More About Our Journey</p>
-      <div id="flower-heart" class="animated-icon"></div> <!-- Animated Heart Icon -->
-      <div id="full-message" class="hidden">
-        <h2>Assalamu Alaikum Wa Rahmatullahi Wa Barakatuh</h2>
-        <p>
-          This channel serves as a countdown to the blessed day of our nikah. While these days are approximations and the exact timing is known only to Allah, the messages work as gentle reminders of our commitment to make this relationship halal as soon as possible, InshaaAllah.
-        </p>
-        <p>
-          This waiting period tests our patience and strengthens our iman to control our desires for the sake of Allah. This countdown is a small way to remind us that every passing day brings us closer to starting our life together in a way that pleases Him.
-        </p>
-        <p>
-          Our love is a test, but it is also a blessing. With steadfast faith and pure intentions, we pray that Allah grants us the ultimate success: a life together in this world and eternal happiness in Jannah. May He make this journey easy for us and reward us abundantly for striving to do what is right. Ameen...
-        </p>
-      </div>
+    <!-- Heart Button -->
+    <div id="flower-heart">
+        ❤️
     </div>
-  </section>
 
-  <!-- Main Content -->
-  <header>
-    <h1>Our Wedding Countdown</h1>
-  </header>
-  
-  <main>
-    <section id="countdown">
-      <h2>Time Remaining:</h2>
-      <div id="timer">
-        <div class="time-box">
-          <span id="days">00</span>
-          <div>Days</div>
-        </div>
-        <div class="time-box">
-          <span id="hours">00</span>
-          <div>Hours</div>
-        </div>
-        <div class="time-box">
-          <span id="minutes">00</span>
-          <div>Minutes</div>
-        </div>
-        <div class="time-box">
-          <span id="seconds">00</span>
-          <div>Seconds</div>
-        </div>
-      </div>
-    </section>
+    <!-- Hidden Message -->
+    <div id="full-message">
+        <h2>Our Special Message</h2>
+        <p>We are so excited for our wedding day! Stay tuned for more updates.</p>
+    </div>
 
-    <section id="progress-bar">
-      <h3>Progress From 2021 to 2027</h3>
-      <div class="progress-bar-container">
-        <div id="remaining-progress"></div>
+    <!-- Countdown Section -->
+    <div id="countdown">
+        <h2>Wedding Countdown</h2>
+        <div id="timer">
+            <div class="time-box">
+                <span id="days">00</span>
+                <div>Days</div>
+            </div>
+            <div class="time-box">
+                <span id="hours">00</span>
+                <div>Hours</div>
+            </div>
+            <div class="time-box">
+                <span id="minutes">00</span>
+                <div>Minutes</div>
+            </div>
+            <div class="time-box">
+                <span id="seconds">00</span>
+                <div>Seconds</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress Bar Section -->
+    <div id="progress-bar">
+        <h3>Wedding Progress</h3>
+        <div class="progress-bar-container">
+            <div id="remaining-progress"></div>
+        </div>
         <div class="scale-labels">
-          <span class="scale-label">2021</span>
-          <span class="scale-label">2027</span>
+            <div class="scale-label">Start</div>
+            <div class="scale-label">Finish</div>
         </div>
-      </div>
-      <p id="progress-percentage">0% completed</p>
-    </section>
-    
+        <div id="progress-percentage">0%</div>
+    </div>
 
-    <section id="details">
-      <h2>Wedding Details</h2>
-      <p><strong>Estimated Wedding Date:</strong> August 2027</p>
-      <p><strong>Venue:</strong> Dream Wedding Hall</p>
-    </section>
-  </main>
+    <script>
+        // Heart click functionality
+        const flowerHeart = document.getElementById('flower-heart');
+        const fullMessage = document.getElementById('full-message');
 
-  <script src="script.js"></script>
+        flowerHeart.addEventListener('click', () => {
+            if (fullMessage.style.display === "none" || fullMessage.style.display === "") {
+                fullMessage.style.display = "block";
+            } else {
+                fullMessage.style.display = "none";
+            }
+        });
+    </script>
 </body>
+
 </html>
 
 
