@@ -1,37 +1,39 @@
-// Function to update the countdown timer and progress bar
+// Set wedding and meeting dates
+const weddingDate = new Date('September 1, 2027 00:00:00'); // Wedding date
+const meetingDate = new Date('October 1, 2021 00:00:00'); // Meeting date
+
+// Function to update the countdown
 function updateCountdown() {
-  // Set the wedding date (update this to your wedding date)
-  const weddingDate = new Date("June 1, 2025 00:00:00").getTime();
+  const currentDate = new Date();
   
-  // Get the current time
-  const now = new Date().getTime();
+  // Calculate time difference between now and wedding date
+  const timeRemaining = weddingDate - currentDate;
   
-  // Calculate the remaining time in milliseconds
-  const timeRemaining = weddingDate - now;
-
-  // Calculate the days, hours, minutes, and seconds
-  const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
+  // Calculate remaining time (in days, hours, minutes, and seconds)
+  const daysRemaining = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+  const hoursRemaining = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutesRemaining = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+  const secondsRemaining = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+  
   // Update the countdown display
-  document.getElementById("days").textContent = days < 10 ? `0${days}` : days;
-  document.getElementById("hours").textContent = hours < 10 ? `0${hours}` : hours;
-  document.getElementById("minutes").textContent = minutes < 10 ? `0${minutes}` : minutes;
-  document.getElementById("seconds").textContent = seconds < 10 ? `0${seconds}` : seconds;
+  document.getElementById('days').textContent = daysRemaining;
+  document.getElementById('hours').textContent = hoursRemaining;
+  document.getElementById('minutes').textContent = minutesRemaining;
+  document.getElementById('seconds').textContent = secondsRemaining;
 
-  // Calculate the progress bar width (percentage of time passed)
-  const totalTime = weddingDate - new Date("January 1, 2024").getTime();
-  const elapsedTime = now - new Date("January 1, 2024").getTime();
-  const remainingPercentage = (elapsedTime / totalTime) * 100;
+  // Calculate total time between meeting and wedding in milliseconds
+  const totalTime = weddingDate - meetingDate;
 
-  // Update the progress bar width
-  document.getElementById("remaining-progress").style.width = `${remainingPercentage}%`;
+  // Calculate the percentage of time passed
+  const timeElapsed = currentDate - meetingDate;
+  const percentage = (timeElapsed / totalTime) * 100;
+
+  // Update progress bar based on the percentage
+  document.getElementById('remaining-progress').style.width = percentage + '%';
 }
 
-// Update the countdown and progress bar every second
+// Call updateCountdown function every second to keep the countdown updated
 setInterval(updateCountdown, 1000);
 
-// Call the update function initially to display the countdown immediately
+// Initial call to set the countdown immediately
 updateCountdown();

@@ -68,6 +68,12 @@ h1 {
   font-weight: 700;
 }
 
+/* Smaller labels for days, hours, minutes, and seconds */
+#timer .time-box span:last-child {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
 #timer .time-box {
   transition: transform 0.3s ease;
 }
@@ -169,4 +175,3 @@ h1 {
   color: #fff;
   margin-bottom: 20px;
 }
-
