@@ -29,11 +29,11 @@ function updateCountdown() {
   const percentage = (timeElapsed / totalTime) * 100;
 
   // Update progress bar based on the percentage
-  document.getElementById('remaining-progress').style.width = percentage + '%';
+  document.getElementById('remaining-progress').style.width = `${percentage}%`;
 }
 
-// Call updateCountdown function every second to keep the countdown updated
+// Update the countdown every second
 setInterval(updateCountdown, 1000);
 
-// Initial call to set the countdown immediately
+// Initial countdown update
 updateCountdown();
