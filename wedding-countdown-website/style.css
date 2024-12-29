@@ -8,7 +8,7 @@
 /* Body styles */
 body {
   font-family: 'Helvetica', sans-serif;
-  background: linear-gradient(135deg, #6a5acf, #00bcd4);  /* New soft gradient background */
+  background: linear-gradient(135deg, #6a5acf, #00bcd4);  /* Soft gradient background */
   color: #fff;
   display: flex;
   justify-content: center;
@@ -30,9 +30,9 @@ header {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 3.5rem;
   letter-spacing: 2px;
-  color: #fff;
+  color: #FFD700;  /* Gold color for title */
   text-transform: uppercase;
   font-weight: 700;
 }
@@ -50,13 +50,14 @@ h1 {
   display: flex;
   justify-content: space-evenly;
   margin-top: 30px;
+  gap: 20px;  /* Added gap for more space between the time blocks */
 }
 
 .time-box {
   background: rgba(255, 255, 255, 0.3);
   padding: 30px 40px;
   border-radius: 15px;
-  width: 120px;
+  width: 150px;  /* Increased width for better spacing */
   text-align: center;
   font-size: 2.5rem;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
