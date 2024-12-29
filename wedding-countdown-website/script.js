@@ -48,3 +48,35 @@ for (let i = 0; i <= totalMonths; i++) {
   progressBar.appendChild(scaleLine);
   progressBar.appendChild(scaleLabel);
 }
+// Target date: Wedding Date in 2027
+const weddingDate = new Date('2027-12-31T00:00:00'); // Change this to your target wedding date
+
+// Function to update the time remaining
+function updateTimeRemaining() {
+  const now = new Date(); // Current date and time
+  const timeDifference = weddingDate - now; // Difference in milliseconds
+
+  if (timeDifference <= 0) {
+    // If the wedding date has passed
+    document.getElementById("timer").innerHTML = "The big day has arrived! 🎉";
+    return;
+  }
+
+  // Calculate remaining time
+  const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+  // Display the remaining time
+  document.getElementById("days").innerText = days;
+  document.getElementById("hours").innerText = hours;
+  document.getElementById("minutes").innerText = minutes;
+  document.getElementById("seconds").innerText = seconds;
+}
+
+// Call the function initially to set the values
+updateTimeRemaining();
+
+// Update the countdown every second
+setInterval(updateTimeRemaining, 1000);
