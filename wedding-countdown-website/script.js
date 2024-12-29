@@ -36,3 +36,13 @@ function updateProgressBar() {
 }
 
 setInterval(updateProgressBar, 1000); // Update progress bar every second
+
+
+const milestones = [100, 50, 10];
+const milestonesContainer = document.getElementById("milestones");
+
+milestones.forEach((milestone) => {
+  const milestoneElement = document.createElement("p");
+  milestoneElement.textContent = `${milestone} days left!`;
+  milestonesContainer.appendChild(milestoneElement);
+});
