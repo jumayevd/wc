@@ -38,15 +38,13 @@ setInterval(updateCountdown, 1000);
 // Initial countdown update
 updateCountdown();
 
-
+document.getElementById("learn-more-text").addEventListener("click", function() {
+  const message = document.getElementById("full-message");
+  message.style.display = message.style.display === "block" ? "none" : "block";
+});
 // Toggle the message when the heart icon is clicked
 document.getElementById("flower-heart").addEventListener("click", function() {
   const message = document.getElementById("full-message");
   message.style.display = message.style.display === "block" ? "none" : "block";
 });
 
-// Toggle the message when the infinity sign is clicked
-document.getElementById("infinity-sign").addEventListener("click", function() {
-  const message = document.getElementById("full-message");
-  message.style.display = message.style.display === "block" ? "none" : "block";
-});
