@@ -162,10 +162,23 @@
 
 
         #remaining-progress {
+            position: relative;
             height: 100%;
             background: linear-gradient(to right, #4caf50, #8bc34a, #cddc39);
             width: 0%; /* Dynamically updated using JavaScript */
             transition: width 1s ease;
+            text-align: center;
+        }
+
+        #progress-text{
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
         }
 
         .scale-labels {
@@ -237,8 +250,8 @@
             }
 
             .time-box {
-                padding: 15px;
-                font-size: 1.8rem;
+                flex: 1 1 100px;
+                padding: 10px;
             }
 
             .time-box span {
@@ -248,28 +261,29 @@
             #progress-bar h3 {
                 font-size: 1rem;
             }
-
-            #remaining-progress {
-                height: 15px;
-            }
         }
 
+
         @media (max-width: 480px) {
+            #flower-heart {
+                font-size: 3rem;
+            }
+
             .time-box {
-                padding: 10px;
-                font-size: 1.5rem;
+                flex: 1 1 90px;
+                padding: 8px;
             }
 
             .time-box span {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
             }
 
-            #progress-bar h3 {
-                font-size: 0.9rem;
+            .progress-bar-container {
+                height: 15px;
             }
 
-            #remaining-progress {
-                height: 10px;
+            #progress-text {
+                font-size: 0.7rem;
             }
         }
     </style>
@@ -296,8 +310,11 @@
     </div>
     <div id="progress-bar">
         <h3>Time progress between 2021 and 2027</h3>
-        <div class="progress-bar-container"><div id="remaining-progress"></div></div>
-        <div id="progress-percentage">0%</div>
+        <div class="progress-bar-container">
+            <div id="remaining-progress">
+                <span id="progress-text"></span>
+            </div>
+        </div>
     </div>
     <script>
         // Heart click functionality
