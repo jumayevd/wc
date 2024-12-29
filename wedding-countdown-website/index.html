@@ -4,47 +4,84 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wedding Countdown</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Interactive "Click to Learn More" Section with Animated Heart -->
+  <section id="click-to-learn-more">
+    <div class="message-card">
+      <p id="learn-more-text">Click the Heart to Learn More About Our Journey</p>
+      <div id="flower-heart" class="animated-icon"></div> <!-- Animated Heart Icon -->
+      <div id="full-message" class="hidden">
+        <h2>Assalamu Alaikum Wa Rahmatullahi Wa Barakatuh</h2>
+        <p>
+          This channel serves as a countdown to the blessed day of our nikah. While these days are approximations and the exact timing is known only to Allah, the messages work as gentle reminders of our commitment to make this relationship halal as soon as possible, InshaaAllah.
+        </p>
+        <p>
+          This waiting period tests our patience and strengthens our iman to control our desires for the sake of Allah. This countdown is a small way to remind us that every passing day brings us closer to starting our life together in a way that pleases Him.
+        </p>
+        <p>
+          Our love is a test, but it is also a blessing. With steadfast faith and pure intentions, we pray that Allah grants us the ultimate success: a life together in this world and eternal happiness in Jannah. May He make this journey easy for us and reward us abundantly for striving to do what is right. Ameen...
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
   <header>
     <h1>Our Wedding Countdown</h1>
   </header>
+  
   <main>
     <section id="countdown">
       <h2>Time Remaining:</h2>
       <div id="timer">
         <div class="time-box">
-          <span id="days">0</span>
+          <span id="days">00</span>
           <div>Days</div>
         </div>
         <div class="time-box">
-          <span id="hours">0</span>
+          <span id="hours">00</span>
           <div>Hours</div>
         </div>
         <div class="time-box">
-          <span id="minutes">0</span>
+          <span id="minutes">00</span>
           <div>Minutes</div>
         </div>
         <div class="time-box">
-          <span id="seconds">0</span>
+          <span id="seconds">00</span>
           <div>Seconds</div>
         </div>
       </div>
     </section>
+
     <section id="progress-bar">
-      <h3>Time Progress Bar</h3>
+      <h3>Progress Since We Met</h3>
       <div class="progress-bar-container">
         <div id="remaining-progress"></div>
-        <div class="progress-label start-label">2021</div>
-        <div class="progress-label end-label">2027</div>
       </div>
-      <p id="progress-percentage">0% completed</p>
+    </section>
+
+    <section id="details">
+      <h2>Wedding Details</h2>
+      <p><strong>Estimated Wedding Date:</strong> August 2027</p>
+      <p><strong>Venue:</strong> Dream Wedding Hall</p>
     </section>
   </main>
+
   <script src="script.js"></script>
 </body>
 </html>
+<div id="progress-bar">
+  <h3>Progress Since We Met</h3>
+  <div class="progress-bar-container">
+    <div id="remaining-progress"></div>
+    <!-- Add scale lines and labels dynamically with JavaScript -->
+  </div>
+  <p id="progress-percentage">0% completed</p>
+</div>
+
+
 
 
 
