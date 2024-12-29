@@ -45,3 +45,8 @@ document.getElementById("flower-heart").addEventListener("click", function() {
   message.style.display = message.style.display === "block" ? "none" : "block";
 });
 
+// Toggle the message when the infinity sign is clicked
+document.getElementById("infinity-sign").addEventListener("click", function() {
+  const message = document.getElementById("full-message");
+  message.style.display = message.style.display === "block" ? "none" : "block";
+});

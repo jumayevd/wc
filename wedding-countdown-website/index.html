@@ -7,72 +7,49 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Interactive "Click to Learn More" Section with Animated Heart -->
-  <section id="click-to-learn-more">
-    <div class="message-card">
-      <p id="learn-more-text">Click the Heart to Learn More About Our Journey</p>
-      <div id="flower-heart" class="animated-icon"></div> <!-- Animated Heart Icon -->
-      <div id="full-message" class="hidden">
-        <h2>Assalamu Alaikum Wa Rahmatullahi Wa Barakatuh</h2>
-        <p>
-          This channel serves as a countdown to the blessed day of our nikah. While these days are approximations and the exact timing is known only to Allah, the messages work as gentle reminders of our commitment to make this relationship halal as soon as possible, InshaaAllah.
-        </p>
-        <p>
-          This waiting period tests our patience and strengthens our iman to control our desires for the sake of Allah. This countdown is a small way to remind us that every passing day brings us closer to starting our life together in a way that pleases Him.
-        </p>
-        <p>
-          Our love is a test, but it is also a blessing. With steadfast faith and pure intentions, we pray that Allah grants us the ultimate success: a life together in this world and eternal happiness in Jannah. May He make this journey easy for us and reward us abundantly for striving to do what is right. Ameen...
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Main Content -->
   <header>
     <h1>Our Wedding Countdown</h1>
   </header>
   
   <main>
+    <!-- Countdown Section -->
     <section id="countdown">
       <h2>Time Remaining:</h2>
       <div id="timer">
-        <div class="time-box">
-          <span id="days">00</span>
-          <div>Days</div>
-        </div>
-        <div class="time-box">
-          <span id="hours">00</span>
-          <div>Hours</div>
-        </div>
-        <div class="time-box">
-          <span id="minutes">00</span>
-          <div>Minutes</div>
-        </div>
-        <div class="time-box">
-          <span id="seconds">00</span>
-          <div>Seconds</div>
-        </div>
+        <span id="days">00</span> Days
+        <span id="hours">00</span> Hours
+        <span id="minutes">00</span> Minutes
+        <span id="seconds">00</span> Seconds
       </div>
     </section>
+    
+    <!-- Wedding Details Section -->
+    <section id="wedding-details">
+      <h2>Wedding Details</h2>
+      <p>We’re excited to celebrate with you! Save the date:</p>
+      <p><strong>Estimated Wedding Date:</strong> <span id="wedding-date">August 2027</span></p>
+    </section>
 
+    <!-- Progress Bar Section -->
     <section id="progress-bar">
       <h3>Progress Since We Met</h3>
-      <div class="progress-bar-container">
-        <div id="remaining-progress"></div>
-      </div>
+      <div id="progress"></div>
     </section>
-
-    <section id="details">
-      <h2>Wedding Details</h2>
-      <p><strong>Estimated Wedding Date:</strong> August 2027</p>
-      <p><strong>Venue:</strong> Dream Wedding Hall</p>
-    </section>
+    
   </main>
+
+  <!-- Floating Infinity Sign -->
+  <div id="infinity-sign">&#x221e;</div>
+
+  <!-- Hidden Message Section -->
+  <div id="full-message">
+    <p>Assalamu Alaikum Wa Rahmatullahi Wa Barakatuh</p>
+    <p>This channel serves as a countdown to the blessed day of our nikah. While these days are approximations and the exact timing is known only to Allah, the messages work as gentle reminders of our commitment to make this relationship halal as soon as possible, InshaaAllah...</p>
+  </div>
 
   <script src="script.js"></script>
 </body>
 </html>
-
 
 
 
