@@ -46,3 +46,14 @@ milestones.forEach((milestone) => {
   milestoneElement.textContent = `${milestone} days left!`;
   milestonesContainer.appendChild(milestoneElement);
 });
+
+
+function updateTheme(daysLeft) {
+  const body = document.body;
+  body.className = ""; // Reset classes
+  if (daysLeft <= 10) {
+    body.classList.add("theme-10");
+  } else if (daysLeft <= 50) {
+    body.classList.add("theme-50");
+  }
+}
