@@ -140,8 +140,8 @@ body {
 /* Progress Bar Container */
 #progress-bar {
   margin-top: 40px;
-  width: 90%;
-  max-width: 900px;
+  width: 100%;
+  max-width: 800px;
   padding: 20px;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 20px;
