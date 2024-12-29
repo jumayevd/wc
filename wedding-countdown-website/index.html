@@ -4,63 +4,58 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wedding Countdown</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <div id="click-to-learn-more">
-    <span id="learn-more-text">Click to Learn More</span>
-  </div>
-
-  <div id="full-message">
-    <h2>Our Love Story</h2>
-    <p>Assalamu Alaikum Wa Rahmatullahi Wa Barakatuh</p>
-    <p>This website serves as a countdown to the blessed day of our nikah. While these days are approximations and the exact timing is known only to Allah, the messages work as gentle reminders of our commitment to make this relationship halal as soon as possible, InshaaAllah.</p>
-    <p>This waiting period tests our patience and strengthens our iman to control our desires for the sake of Allah. This countdown is a small way to remind us that every passing day brings us closer to starting our life together in a way that pleases Him.</p>
-    <p>Our love is a test, but it is also a blessing. With steadfast faith and pure intentions, we pray that Allah grants us the ultimate success: a life together in this world and eternal happiness in Jannah. May He make this journey easy for us and reward us abundantly for striving to do what is right. Ameen...</p>
-  </div>
-
-  <div id="flower-heart" onclick="showFullMessage()">
-    ❤️
-  </div>
-
   <div id="countdown">
-    <h2>Time Remaining</h2>
+    <h2>Wedding Countdown</h2>
     <div id="timer">
       <div class="time-box">
-        <span id="days">0</span>
+        <span id="days"></span>
         <div>Days</div>
       </div>
       <div class="time-box">
-        <span id="hours">0</span>
+        <span id="hours"></span>
         <div>Hours</div>
       </div>
       <div class="time-box">
-        <span id="minutes">0</span>
+        <span id="minutes"></span>
         <div>Minutes</div>
       </div>
       <div class="time-box">
-        <span id="seconds">0</span>
+        <span id="seconds"></span>
         <div>Seconds</div>
       </div>
     </div>
   </div>
 
   <div id="progress-bar">
-    <h3>Progress Towards Our Nikah</h3>
+    <h3>Progress to Wedding</h3>
     <div class="progress-bar-container">
       <div id="remaining-progress"></div>
+      <div class="scale-labels">
+        <div class="scale-label">2021</div>
+        <div class="scale-label">2027</div>
+      </div>
     </div>
-    <div class="scale-labels">
-      <span class="scale-label">2021</span>
-      <span class="scale-label">2027</span>
-    </div>
-    <div id="progress-percentage">0%</div>
+    <div id="progress-percentage"></div>
   </div>
 
-  <div id="details">
-    <p>Wedding Date: 15th September 2027</p>
+  <div id="heart-container">
+    <div id="flower-heart" onclick="showMessage()">
+      ❤️
+    </div>
+  </div>
+
+  <div id="full-message">
+    <h2>Our Commitment</h2>
+    <p>
+      Assalamu Alaikum Wa Rahmatullahi Wa Barakatuh<br>
+      This website serves as a countdown to the blessed day of our nikah. While these days are approximations and the exact timing is known only to Allah, the messages work as gentle reminders of our commitment to make this relationship halal as soon as possible, InshaaAllah.<br><br>
+      This waiting period tests our patience and strengthens our iman to control our desires for the sake of Allah. This countdown is a small way to remind us that every passing day brings us closer to starting our life together in a way that pleases Him.<br><br>
+      Our love is a test, but it is also a blessing. With steadfast faith and pure intentions, we pray that Allah grants us the ultimate success: a life together in this world and eternal happiness in Jannah. May He make this journey easy for us and reward us abundantly for striving to do what is right. Ameen...
+    </p>
   </div>
 
   <script src="script.js"></script>

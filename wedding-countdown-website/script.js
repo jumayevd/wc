@@ -1,36 +1,38 @@
-// Countdown Timer Logic
-const targetDate = new Date("September 15, 2027 00:00:00").getTime();
+const weddingDate = new Date('2027-08-15T00:00:00');
+const currentDate = new Date();
 
-function updateCountdown() {
-  const now = new Date().getTime();
-  const timeRemaining = targetDate - now;
-
-  if (timeRemaining <= 0) {
-    clearInterval(countdownInterval);
-    document.getElementById("timer").innerHTML = "It's the day of our nikah!";
-    return;
-  }
+const updateCountdown = () => {
+  const now = new Date();
+  const timeRemaining = weddingDate - now;
 
   const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
   const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-  document.getElementById("days").textContent = days;
-  document.getElementById("hours").textContent = hours;
-  document.getElementById("minutes").textContent = minutes;
-  document.getElementById("seconds").textContent = seconds;
+  document.getElementById('days').innerText = days;
+  document.getElementById('hours').innerText = hours;
+  document.getElementById('minutes').innerText = minutes;
+  document.getElementById('seconds').innerText = seconds;
+  const progress = ((currentDate - new Date('2021-01-01T00:00:00')) / (weddingDate - new Date('2021-01-01T00:00:00'))) * 100;
 
-  const totalDays = Math.floor((targetDate - new Date("2021-01-01").getTime()) / (1000 * 60 * 60 * 24));
-  const currentProgress = Math.floor((days / totalDays) * 100);
-  document.getElementById("remaining-progress").style.width = `${currentProgress}%`;
-  document.getElementById("progress-percentage").textContent = `${currentProgress}%`;
-}
+  // Update progress bar
+  document.getElementById('remaining-progress').style.width = `${progress}%`;
 
-const countdownInterval = setInterval(updateCountdown, 1000);
+  // Update progress percentage
+  document.getElementById('progress-percentage').innerText = `${Math.round(progress)}% Completed`;
 
-// Function to show the full message when clicking the heart icon
-function showFullMessage() {
-  document.getElementById("full-message").style.display = "block";
-  document.getElementById("click-to-learn-more").style.display = "none";
+  // Update progress bar labels
+  document.querySelectorAll('.scale-label').forEach((label, index) => {
+    if (index === 0) label.innerText = '2021';
+    else label.innerText = '2027';
+  });
+};
+
+// Call the updateCountdown function every second to update the countdown timer
+setInterval(updateCountdown, 1000);
+
+// Show full message when the heart is clicked
+function showMessage() {
+  document.getElementById('full-message').style.display = 'block';
 }
