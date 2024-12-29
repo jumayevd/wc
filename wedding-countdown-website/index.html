@@ -239,6 +239,19 @@
         <div id="progress-percentage">0%</div>
     </div>
     <script>
+        // Heart click functionality
+        const flowerHeart = document.getElementById('flower-heart');
+        const fullMessage = document.getElementById('full-message');
+
+        flowerHeart.addEventListener('click', () => {
+            if (fullMessage.style.display === "none" || fullMessage.style.display === "") {
+                fullMessage.style.display = "block";
+            } else {
+                fullMessage.style.display = "none";
+            }
+        });
+    </script>
+    <script>
         const targetDate = new Date('2027-08-15T00:00:00');
         const startDate = new Date('2021-01-01T00:00:00');
 
