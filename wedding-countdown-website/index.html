@@ -327,10 +327,13 @@
         const targetDate = new Date('2027-08-15T00:00:00');
         const startDate = new Date('2021-01-01T00:00:00');
 
+        const targetDate_timer = new Date('2027-08-15T00:00:00');
+        const startDate_timer = new Date('2021-01-01T00:00:00');
+
         function updateCountdown() {
             const now = new Date();
-            const totalSeconds = Math.floor((targetDate - now) / 1000);
-            const totalDuration = Math.floor((targetDate - startDate) / 1000);
+            const totalSeconds = Math.floor((targetDate_timer - now) / 1000);
+            const totalDuration = Math.floor((targetDate_timer - startDate) / 1000);
             const days = Math.floor(totalSeconds / 86400);
             const hours = Math.floor((totalSeconds % 86400) / 3600);
             const minutes = Math.floor((totalSeconds % 3600) / 60);
