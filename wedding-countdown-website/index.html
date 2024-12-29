@@ -120,11 +120,18 @@
             transform: scale(1.1);
         }
 
-        .time-box span {
+        /* .time-box span {
             font-size: 3rem;
             font-weight: 700;
             color: black;
             display: block;
+        } */
+
+        .time-box span {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: inline-block;
+            animation: flip 1s ease-in-out;
         }
 
         #timer .time-box div {
@@ -194,6 +201,18 @@
             color: #812424;
             transition: transform 0.5s ease;
         }
+
+
+        @keyframes flip {
+        0% {
+            transform: rotateX(90deg);
+        }
+
+        100% {
+            transform: rotateX(0);
+        }
+        }
+
 
         @keyframes fadeIn {
             0% {
