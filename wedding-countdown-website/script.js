@@ -1,5 +1,5 @@
 // Set wedding and meeting dates
-const weddingDate = new Date('September 1, 2027 00:00:00'); // Wedding date
+const weddingDate = new Date('August 1, 2027 00:00:00'); // Wedding date (Updated)
 const meetingDate = new Date('October 1, 2021 00:00:00'); // Meeting date
 
 // Function to update the countdown

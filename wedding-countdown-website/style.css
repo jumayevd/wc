@@ -69,8 +69,8 @@ h1 {
 }
 
 /* Smaller labels for days, hours, minutes, and seconds */
-#timer .time-box span:last-child {
-  font-size: 1.5rem;
+#timer .time-box div {
+  font-size: 1rem;
   font-weight: 500;
 }
 
@@ -83,12 +83,15 @@ h1 {
 }
 
 /* Progress Bar Styling */
-#progress {
-  width: 80%;
+#progress-bar {
   margin-top: 40px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 15px;
-  padding: 5px;
+  width: 80%;
+}
+
+#progress-bar h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #fff;
 }
 
 .progress-bar-container {
