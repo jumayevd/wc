@@ -1,50 +1,41 @@
-// Set wedding and meeting dates
-const weddingDate = new Date('August 1, 2027 00:00:00'); // Wedding date (Updated)
-const meetingDate = new Date('October 1, 2021 00:00:00'); // Meeting date
+const progressBar = document.querySelector(".progress-bar-container");
+const remainingProgress = document.getElementById("remaining-progress");
+const progressPercentage = document.getElementById("progress-percentage");
 
-// Function to update the countdown
-function updateCountdown() {
-  const currentDate = new Date();
-  
-  // Calculate time difference between now and wedding date
-  const timeRemaining = weddingDate - currentDate;
-  
-  // Calculate remaining time (in days, hours, minutes, and seconds)
-  const daysRemaining = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-  const hoursRemaining = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutesRemaining = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-  const secondsRemaining = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-  
-  // Update the countdown display
-  document.getElementById('days').textContent = daysRemaining;
-  document.getElementById('hours').textContent = hoursRemaining;
-  document.getElementById('minutes').textContent = minutesRemaining;
-  document.getElementById('seconds').textContent = secondsRemaining;
+// Date Range
+const startDate = new Date(2021, 9); // October 2021
+const endDate = new Date(2027, 7); // August 2027
+const currentDate = new Date();
 
-  // Calculate total time between meeting and wedding in milliseconds
-  const totalTime = weddingDate - meetingDate;
+// Calculate total duration and elapsed time
+const totalDuration = endDate - startDate;
+const elapsedTime = currentDate - startDate;
 
-  // Calculate the percentage of time passed
-  const timeElapsed = currentDate - meetingDate;
-  const percentage = (timeElapsed / totalTime) * 100;
+// Calculate percentage of progress
+const progressPercent = Math.min((elapsedTime / totalDuration) * 100, 100);
+remainingProgress.style.width = `${progressPercent}%`;
+progressPercentage.textContent = `${progressPercent.toFixed(2)}% completed`;
 
-  // Update progress bar based on the percentage
-  document.getElementById('remaining-progress').style.width = `${percentage}%`;
+// Add Scale Lines and Labels
+const totalMonths = Math.ceil(totalDuration / (1000 * 60 * 60 * 24 * 30));
+for (let i = 0; i <= totalMonths; i++) {
+  const scaleDate = new Date(startDate);
+  scaleDate.setMonth(startDate.getMonth() + i);
+
+  const scalePosition = (i / totalMonths) * 100;
+  const scaleLine = document.createElement("div");
+  const scaleLabel = document.createElement("div");
+
+  scaleLine.className = "scale-line";
+  scaleLine.style.left = `${scalePosition}%`;
+
+  scaleLabel.className = "scale-label";
+  scaleLabel.style.left = `${scalePosition}%`;
+  scaleLabel.textContent = scaleDate.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+  });
+
+  progressBar.appendChild(scaleLine);
+  progressBar.appendChild(scaleLabel);
 }
-
-// Update the countdown every second
-setInterval(updateCountdown, 1000);
-
-// Initial countdown update
-updateCountdown();
-
-document.getElementById("learn-more-text").addEventListener("click", function() {
-  const message = document.getElementById("full-message");
-  message.style.display = message.style.display === "block" ? "none" : "block";
-});
-// Toggle the message when the heart icon is clicked
-document.getElementById("flower-heart").addEventListener("click", function() {
-  const message = document.getElementById("full-message");
-  message.style.display = message.style.display === "block" ? "none" : "block";
-});
-
