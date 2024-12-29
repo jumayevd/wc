@@ -121,10 +121,9 @@
         }
 
         .time-box span {
-            font-size: 3rem;
-            font-weight: 700;
-            color: black;
-            display: block;
+        display: inline-block;
+        transform: rotateX(0deg);
+        animation: flip 1s ease-in-out infinite alternate; /* Flip animation */
         }
 
         #timer .time-box div {
@@ -168,6 +167,17 @@
             transition: width 1s ease;
         }
 
+        #progress-text {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
         .scale-labels {
             position: absolute;
             top: 40px;
@@ -191,6 +201,18 @@
             font-weight: 600;
             color: #fff;
             transition: transform 0.5s ease;
+        }
+
+        @keyframes flip {
+        0% {
+            transform: rotateX(0deg);
+        }
+        50% {
+            transform: rotateX(180deg);
+        }
+        100% {
+            transform: rotateX(360deg);
+        }
         }
 
         @keyframes fadeIn {
@@ -253,8 +275,12 @@
         </div>
     </div>
     <div id="progress-bar">
-        <div class="progress-bar-container"><div id="remaining-progress"></div></div>
-        <div id="progress-percentage">0%</div>
+        <h3>Time progress between 2021 and 2027</h3>
+        <div class="progress-bar-container">
+            <div id="remaining-progress">
+                <span id="progress-text"></span>
+            </div>
+        </div>
     </div>
     <script>
         // Heart click functionality
