@@ -23,19 +23,35 @@ header {
   margin-top: 20px;
 }
 
-#progress-bar {
+#progress-bars {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+  padding: 10px;
+}
+
+#remaining-progress-bar, #completed-progress-bar {
+  width: 40%;
+}
+
+label {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  display: block;
+}
+
+#remaining-progress-bar, #completed-progress-bar {
   width: 100%;
   background-color: #ddd;
   height: 20px;
   border-radius: 10px;
   overflow: hidden;
-  margin-top: 10px;
 }
 
-#progress {
+#remaining-progress, #completed-progress {
   height: 100%;
   background-color: #4caf50;
-  width: 0%; /* This will be dynamically updated */
+  width: 0%;
   transition: width 0.5s;
 }
 
