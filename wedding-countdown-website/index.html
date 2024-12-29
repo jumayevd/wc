@@ -225,6 +225,18 @@
             }
         }
 
+           /* Bounce Animation for Countdown */
+           @keyframes bounce {
+            0% {
+                transform: translateY(-100%);
+            }
+            50% {
+                transform: translateY(10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
 
         @keyframes fadeIn {
             0% {
@@ -374,26 +386,55 @@
         const startDate = new Date('2021-01-01T00:00:00');
 
         function updateCountdown() {
-            const now = new Date(); // Get current date and time
-            const totalSeconds = Math.floor((targetDate - now) / 1000); // Calculate total seconds remaining
-            const totalDuration = Math.floor((targetDate - startDate) / 1000); // Total duration from start date to target date
-
-            // Calculate the number of days, hours, minutes, and seconds remaining
+            const now = new Date();
+            const totalSeconds = Math.floor((targetDate - now) / 1000);
+            const totalDuration = Math.floor((targetDate - startDate) / 1000);
             const days = Math.floor(totalSeconds / 86400);
             const hours = Math.floor((totalSeconds % 86400) / 3600);
             const minutes = Math.floor((totalSeconds % 3600) / 60);
             const seconds = totalSeconds % 60;
 
-            // Update the HTML elements with the new time values
-            document.getElementById('days').textContent = days;
-            document.getElementById('hours').textContent = hours;
-            document.getElementById('minutes').textContent = minutes;
-            document.getElementById('seconds').textContent = seconds;
+            // Update days, hours, minutes, seconds with bounce animation
+            const daysElement = document.getElementById('days');
+            const hoursElement = document.getElementById('hours');
+            const minutesElement = document.getElementById('minutes');
+            const secondsElement = document.getElementById('seconds');
+            
+            // Only add bounce animation if the value has changed
+            if (daysElement.textContent !== (days < 10 ? '0' + days : days)) {
+                daysElement.classList.remove('bounce');
+                void daysElement.offsetWidth;  // Trigger reflow for animation
+                daysElement.classList.add('bounce');
+            }
 
-            // Update the progress bar and percentage text
+            if (hoursElement.textContent !== (hours < 10 ? '0' + hours : hours)) {
+                hoursElement.classList.remove('bounce');
+                void hoursElement.offsetWidth;  // Trigger reflow for animation
+                hoursElement.classList.add('bounce');
+            }
+
+            if (minutesElement.textContent !== (minutes < 10 ? '0' + minutes : minutes)) {
+                minutesElement.classList.remove('bounce');
+                void minutesElement.offsetWidth;  // Trigger reflow for animation
+                minutesElement.classList.add('bounce');
+            }
+
+            if (secondsElement.textContent !== (seconds < 10 ? '0' + seconds : seconds)) {
+                secondsElement.classList.remove('bounce');
+                void secondsElement.offsetWidth;  // Trigger reflow for animation
+                secondsElement.classList.add('bounce');
+            }
+
+            // Update the text content
+            daysElement.textContent = days < 10 ? '0' + days : days;
+            hoursElement.textContent = hours < 10 ? '0' + hours : hours;
+            minutesElement.textContent = minutes < 10 ? '0' + minutes : minutes;
+            secondsElement.textContent = seconds < 10 ? '0' + seconds : seconds;
+
+            // Calculate progress and update the progress bar
             const progressPercentage = ((totalDuration - totalSeconds) / totalDuration) * 100;
             document.getElementById('remaining-progress').style.width = `${progressPercentage}%`;
-            document.getElementById('progress-text').textContent = `${progressPercentage.toFixed(2)}% completed`;
+            document.getElementById('progress-percentage').textContent = `${progressPercentage.toFixed(2)}% completed`;
         }
 
         setInterval(updateCountdown, 1000);
