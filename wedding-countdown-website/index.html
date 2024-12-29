@@ -327,26 +327,27 @@
         const targetDate = new Date('2027-08-15T00:00:00');
         const startDate = new Date('2021-01-01T00:00:00');
 
-        const targetDate_timer = new Date('2027-08-15T00:00:00');
-        const startDate_timer = new Date('2021-01-01T00:00:00');
-
         function updateCountdown() {
-            const now = new Date();
-            const totalSeconds = Math.floor((targetDate_timer - now) / 1000);
-            const totalDuration = Math.floor((targetDate_timer - startDate) / 1000);
+            const now = new Date(); // Get current date and time
+            const totalSeconds = Math.floor((targetDate - now) / 1000); // Calculate total seconds remaining
+            const totalDuration = Math.floor((targetDate - startDate) / 1000); // Total duration from start date to target date
+
+            // Calculate the number of days, hours, minutes, and seconds remaining
             const days = Math.floor(totalSeconds / 86400);
             const hours = Math.floor((totalSeconds % 86400) / 3600);
             const minutes = Math.floor((totalSeconds % 3600) / 60);
             const seconds = totalSeconds % 60;
 
+            // Update the HTML elements with the new time values
             document.getElementById('days').textContent = days;
             document.getElementById('hours').textContent = hours;
             document.getElementById('minutes').textContent = minutes;
             document.getElementById('seconds').textContent = seconds;
 
+            // Update the progress bar and percentage text
             const progressPercentage = ((totalDuration - totalSeconds) / totalDuration) * 100;
             document.getElementById('remaining-progress').style.width = `${progressPercentage}%`;
-            document.getElementById('progress-percentage').textContent = `${progressPercentage.toFixed(2)}%`;
+            document.getElementById('progress-text').textContent = `${progressPercentage.toFixed(2)}% completed`;
         }
 
         setInterval(updateCountdown, 1000);
