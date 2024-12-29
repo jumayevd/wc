@@ -228,10 +228,16 @@
            /* Bounce Animation for Countdown */
         @keyframes bounce {
             0% {
-                transform: translateY(-100%);
+                transform: translateY(-50%);
+            }
+            30% {
+                transform: translateY(10px);
             }
             50% {
-                transform: translateY(10px);
+                transform: translateY(0);
+            }
+            70% {
+                transform: translateY(-10px);
             }
             100% {
                 transform: translateY(0);
@@ -385,6 +391,7 @@
         const targetDate = new Date('2027-08-15T00:00:00');
         const startDate = new Date('2021-01-01T00:00:00');
 
+        
         function updateCountdown() {
             const now = new Date();
             const totalSeconds = Math.floor((targetDate - now) / 1000);
