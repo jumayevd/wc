@@ -2,79 +2,114 @@
 body, h1, h2, h3, p {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
-  background-color: #f0f0f0;
+  background-color: #f7f7f7;
   color: #333;
   text-align: center;
   padding: 20px;
 }
 
 header {
-  background-color: #ff6347;
+  background-color: #ff6f61; /* Soft coral */
   color: white;
-  padding: 20px;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
 }
 
 #countdown {
   font-size: 2rem;
   margin-top: 20px;
+  color: #444;
+  font-weight: 600;
 }
 
 #progress-bars {
   display: flex;
   justify-content: space-around;
   margin-top: 30px;
-  padding: 10px;
-}
-
-#remaining-progress-bar, #completed-progress-bar {
-  width: 40%;
-}
-
-label {
-  font-size: 1rem;
-  margin-bottom: 10px;
-  display: block;
+  padding: 20px;
+  gap: 20px;
 }
 
 #remaining-progress-bar, #completed-progress-bar {
   width: 100%;
   background-color: #ddd;
-  height: 20px;
-  border-radius: 10px;
+  height: 25px;
+  border-radius: 15px;
   overflow: hidden;
+  position: relative;
+}
+
+label {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  display: block;
+  color: #666;
 }
 
 #remaining-progress, #completed-progress {
   height: 100%;
-  background-color: #4caf50;
-  width: 0%;
-  transition: width 0.5s;
+  transition: width 0.5s ease-in-out;
+}
+
+#remaining-progress {
+  background-color: #4caf50; /* Green for remaining days */
+}
+
+#completed-progress {
+  background-color: #ff9800; /* Orange for completed days */
 }
 
 #details {
+  margin-top: 40px;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+#details p {
+  margin-bottom: 10px;
+}
+
+#details strong {
+  font-weight: bold;
+}
+
+#share-buttons {
   margin-top: 30px;
 }
 
 #share-buttons a {
   display: inline-block;
-  background-color: #3b5998;
+  background-color: #1da1f2; /* Twitter blue */
   color: white;
-  padding: 10px 15px;
-  margin: 5px;
+  padding: 12px 20px;
+  margin: 10px;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-weight: 500;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 #share-buttons a:hover {
-  background-color: #1d68a7;
+  background-color: #0c85d0;
+  transform: translateY(-2px);
 }
 
 #milestones {
-  margin-top: 30px;
+  margin-top: 40px;
+  font-size: 1.1rem;
+  text-align: left;
+  color: #444;
 }
 
 #milestones ul {
@@ -83,8 +118,20 @@ label {
 }
 
 #milestones li {
-  background-color: #ffebcd;
-  margin: 5px 0;
-  padding: 10px;
-  border-radius: 5px;
+  background-color: #fff;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+#milestones li:hover {
+  background-color: #f1f1f1;
+}
+
+#milestones h3 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  font-weight: 600;
 }
