@@ -31,75 +31,7 @@
             transition: all 0.5s ease;
         }
 
-        /* Click to Learn More Section */
-        #click-to-learn-more {
-            width: 80%;
-            max-width: 800px;
-            margin: 20px 0;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 20px;
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        #learn-more-text {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #FFD700;
-            cursor: pointer;
-            text-decoration: underline;
-            transition: color 0.3s ease;
-        }
-
-        #learn-more-text:hover {
-            color: #ff5733;
-        }
-
-        #full-message {
-            margin-top: 20px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            display: none;
-            animation: fadeIn 3s forwards;
-        }
-
-        #full-message p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #fff;
-            margin-bottom: 15px;
-            text-align: justify;
-            text-indent: 20px;
-        }
-
-        #full-message h2 {
-            font-size: 2rem;
-            color: #FFD700;
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-
-        /* Animated Heart Icon */
-        #flower-heart {
-            position: relative;
-            margin-top: 20px;
-            font-size: 2.5rem;
-            color: #FFD700;
-            animation: floatingHeart 2s ease-in-out infinite;
-            cursor: pointer;
-        }
-
-        #flower-heart::after {
-            content: '❤️'; /* Use heart symbol for now */
-            position: absolute;
-            top: 0;
-            left: 0;
-            font-size: 3.5rem;
-            color: #FFD700;
-        }
-
-        /* Countdown Timer */
+        /* Countdown Section */
         #countdown {
             margin-top: 40px;
             padding: 40px;
@@ -208,31 +140,6 @@
             color: #fff;
         }
 
-        /* Wedding Details Section */
-        #details {
-            margin-top: 50px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        #details p {
-            font-size: 1.1rem;
-            margin: 10px 0;
-        }
-
-        /* Fade-in Animation */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
         /* Heart Animation */
         @keyframes floatingHeart {
             0% {
@@ -307,13 +214,17 @@
             <div id="remaining-progress"></div>
         </div>
         <div class="scale-labels">
-            <div class="scale-label">Start</div>
-            <div class="scale-label">Finish</div>
+            <div class="scale-label">2021</div>
+            <div class="scale-label">2027</div>
         </div>
         <div id="progress-percentage">0%</div>
     </div>
 
     <script>
+        // Date calculation
+        const weddingDate = new Date("2027-08-15T00:00:00Z");
+        const startDate = new Date("2021-01-01T00:00:00Z");
+
         // Heart click functionality
         const flowerHeart = document.getElementById('flower-heart');
         const fullMessage = document.getElementById('full-message');
@@ -325,11 +236,39 @@
                 fullMessage.style.display = "none";
             }
         });
+
+        // Update countdown and progress every second
+        function updateCountdown() {
+            const currentDate = new Date();
+
+            // Calculate remaining time
+            const timeRemaining = weddingDate - currentDate;
+            const totalTime = weddingDate - startDate;
+
+            // Calculate days, hours, minutes, and seconds
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            // Update countdown display
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
+
+            // Update progress bar
+            const progress = ((currentDate - startDate) / totalTime) * 100;
+            document.getElementById('remaining-progress').style.width = `${progress}%`;
+            document.getElementById('progress-percentage').innerText = `${Math.round(progress)}% Completed`;
+        }
+
+        // Update every second
+        setInterval(updateCountdown, 1000);
     </script>
 </body>
 
 </html>
-
 
 
 
