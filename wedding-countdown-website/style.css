@@ -6,10 +6,14 @@ body, h1, h2, h3, p {
 }
 
 body {
-  background-color: #f7f7f7;
+  background: linear-gradient(135deg, #f6d365, #fda085); /* Soft gradient for the background */
   color: #333;
   text-align: center;
   padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 header {
@@ -18,6 +22,8 @@ header {
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 80%;
+  margin: 0 auto;
 }
 
 h1 {
