@@ -168,32 +168,35 @@ body {
   margin-top: 10px;
 }
 
-/* Filled Progress */
+/* Motion Filling Bar */
 #remaining-progress {
   height: 100%;
   background: linear-gradient(to right, #4caf50, #8bc34a, #cddc39);
-  width: 0%; /* Updated dynamically with JavaScript */
+  width: 0%; /* Dynamically updated using JavaScript */
   transition: width 1s ease;
 }
 
-/* Scale Lines */
-.scale-line {
+/* Scale Lines and Labels */
+.scale-labels {
   position: absolute;
-  height: 100%;
-  width: 2px;
-  background: rgba(255, 255, 255, 0.7);
-  top: 0;
+  top: 40px; /* Below the progress bar */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
-/* Scale Labels */
 .scale-label {
-  position: absolute;
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 600;
   color: #fff;
-  top: 35px; /* Adjusts below the progress bar */
-  transform: translateX(-50%);
-  white-space: nowrap;
+}
+
+/* Percentage Text */
+#progress-percentage {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
 }
 
 

@@ -11,10 +11,19 @@ const currentDate = new Date();
 const totalDuration = endDate - startDate;
 const elapsedTime = currentDate - startDate;
 
-// Calculate percentage of progress
-const progressPercent = Math.min((elapsedTime / totalDuration) * 100, 100);
-remainingProgress.style.width = `${progressPercent}%`;
-progressPercentage.textContent = `${progressPercent.toFixed(2)}% completed`;
+// Progress Bar Logic
+const startYear = new Date('2021-01-01');
+const endYear = new Date('2027-01-01');
+const currentDatee = new Date();
+
+const totalDurationn = endYear - startYear;
+const elapsedTimee = currentDatee - startYear;
+const percentageCompleted = Math.min((elapsedTimee / totalDurationn) * 100, 100).toFixed(2);
+
+// Update the progress bar and percentage text
+document.getElementById('remaining-progress').style.width = `${percentageCompleted}%`;
+document.getElementById('progress-percentage').textContent = `${percentageCompleted}% completed`;
+
 
 // Add Scale Lines and Labels
 const totalMonths = Math.ceil(totalDuration / (1000 * 60 * 60 * 24 * 30));
