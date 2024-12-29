@@ -226,23 +226,27 @@
         }
 
            /* Bounce Animation for Countdown */
-        @keyframes bounce {
+        @keyframes bounceIn {
             0% {
-                transform: translateY(-50%);
+                transform: translateY(100%);
             }
-            30% {
-                transform: translateY(10px);
+            20% {
+                transform: translateY(-30%);
             }
-            50% {
-                transform: translateY(0);
+            40% {
+                transform: translateY(10%);
             }
-            70% {
-                transform: translateY(-10px);
+            60% {
+                transform: translateY(-10%);
+            }
+            80% {
+                transform: translateY(4%);
             }
             100% {
-                transform: translateY(0);
+                transform: translateY(0%);
             }
         }
+
 
         @keyframes fadeIn {
             0% {
@@ -408,29 +412,14 @@
             const secondsElement = document.getElementById('seconds');
             
             // Trigger bounce animation only when values change
-            if (daysElement.textContent !== (days < 10 ? '0' + days : days)) {
-                daysElement.classList.remove('bounce');
-                void daysElement.offsetWidth;  // Trigger reflow for animation
-                daysElement.classList.add('bounce');
-            }
-
-            if (hoursElement.textContent !== (hours < 10 ? '0' + hours : hours)) {
-                hoursElement.classList.remove('bounce');
-                void hoursElement.offsetWidth;  // Trigger reflow for animation
-                hoursElement.classList.add('bounce');
-            }
-
-            if (minutesElement.textContent !== (minutes < 10 ? '0' + minutes : minutes)) {
-                minutesElement.classList.remove('bounce');
-                void minutesElement.offsetWidth;  // Trigger reflow for animation
-                minutesElement.classList.add('bounce');
-            }
-
-            if (secondsElement.textContent !== (seconds < 10 ? '0' + seconds : seconds)) {
-                secondsElement.classList.remove('bounce');
-                void secondsElement.offsetWidth;  // Trigger reflow for animation
-                secondsElement.classList.add('bounce');
-            }
+            const animateBounce = (element, newValue) => {
+                const oldValue = element.textContent;
+                if (oldValue !== newValue) {
+                    element.classList.remove('bounceIn');
+                    void element.offsetWidth;  // Trigger reflow for animation
+                    element.classList.add('bounceIn');
+                }
+            };
 
             // Update the text content
             daysElement.textContent = days < 10 ? '0' + days : days;
@@ -438,12 +427,16 @@
             minutesElement.textContent = minutes < 10 ? '0' + minutes : minutes;
             secondsElement.textContent = seconds < 10 ? '0' + seconds : seconds;
 
+            animateBounce(daysElement, daysElement.textContent);
+            animateBounce(hoursElement, hoursElement.textContent);
+            animateBounce(minutesElement, minutesElement.textContent);
+            animateBounce(secondsElement, secondsElement.textContent);
+
             // Calculate progress and update the progress bar
             const progressPercentage = ((totalDuration - totalSeconds) / totalDuration) * 100;
             document.getElementById('remaining-progress').style.width = `${progressPercentage}%`;
             document.getElementById('progress-percentage').textContent = `${progressPercentage.toFixed(2)}% completed`;
         }
-
 
         setInterval(updateCountdown, 1000);
 
