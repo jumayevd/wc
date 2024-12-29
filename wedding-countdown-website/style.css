@@ -36,3 +36,11 @@ body {
     display: inline-block;
   }
   
+
+  body {
+    background-image: url('default.jpg');
+    transition: background-image 1s ease-in-out;
+  }
+  body.theme-50 { background-image: url('50-days.jpg'); }
+  body.theme-10 { background-image: url('10-days.jpg'); }
+  
