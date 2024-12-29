@@ -38,7 +38,10 @@ setInterval(updateCountdown, 1000);
 // Initial countdown update
 updateCountdown();
 
-document.getElementById("learn-more-text").addEventListener("click", function() {
+
+// Toggle the message when the heart icon is clicked
+document.getElementById("flower-heart").addEventListener("click", function() {
   const message = document.getElementById("full-message");
   message.style.display = message.style.display === "block" ? "none" : "block";
 });
+

@@ -34,16 +34,16 @@ body {
 }
 
 #learn-more-text {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 600;
-  color: #fff;
+  color: #FFD700;
   cursor: pointer;
   text-decoration: underline;
   transition: color 0.3s ease;
 }
 
 #learn-more-text:hover {
-  color: #FFD700;
+  color: #ff5733;
 }
 
 #full-message {
@@ -71,13 +71,14 @@ body {
   font-weight: 700;
 }
 
-/* Animated Heart (or Flower) Icon */
+/* Animated Heart Icon */
 #flower-heart {
   position: relative;
   margin-top: 20px;
   font-size: 2.5rem;
   color: #FFD700;
   animation: floatingHeart 2s ease-in-out infinite;
+  cursor: pointer;
 }
 
 #flower-heart::after {
@@ -201,7 +202,7 @@ body {
   }
 }
 
-/* Background Gradient Animation */
+/* Gradient Background Animation */
 @keyframes gradientBackground {
   0% {
     background-position: 0% 50%;
