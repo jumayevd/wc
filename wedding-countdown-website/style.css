@@ -1,147 +1,136 @@
-/* Resetting margins and paddings for consistent behavior across browsers */
+/* General Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Setting background color and overall body styles */
+/* Body styles */
 body {
-  background-color: #f4f4f4; /* Light background for the page */
-  font-family: 'Arial', sans-serif; /* Simple and clean font */
-  color: #333; /* Dark gray for text */
+  font-family: 'Helvetica', sans-serif;
+  background: linear-gradient(135deg, #ff9a8b, #ff6a88);
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 20px;
   text-align: center;
+  flex-direction: column;
+  padding: 20px;
+  transition: all 0.5s ease;
 }
 
-/* Styling the header */
+/* Header Styling */
 header {
-  background-color: #fff; /* White background for header */
-  border-radius: 15px; /* Rounded corners */
-  padding: 40px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
   width: 100%;
-  max-width: 800px;
-  margin-bottom: 40px;
+  padding: 20px 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
   font-size: 3rem;
-  color: #3e8e41; /* Elegant green color */
   letter-spacing: 2px;
-  margin-bottom: 10px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
-#countdown-description {
-  font-size: 1.2rem;
-  color: #555;
-  margin-top: 10px;
-}
-
-/* Countdown timer section */
+/* Countdown Timer */
 #countdown {
-  margin-top: 20px;
-}
-
-#timer {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-top: 20px;
-}
-
-#timer span {
-  margin: 0 15px;
-  background-color: #fff;
-  padding: 10px 20px;
-  border-radius: 10px;
-  color: #333;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Styling the progress bars */
-#progress-bars {
-  display: flex;
-  justify-content: space-between;
-  width: 80%;
-  margin-top: 50px;
-  max-width: 800px;
-}
-
-#remaining-progress-bar, #completed-progress-bar {
-  width: 45%;
-  background-color: #ddd; /* Light gray background */
-  height: 20px;
-  border-radius: 10px;
-}
-
-#remaining-progress, #completed-progress {
-  height: 100%;
-  border-radius: 10px;
-  transition: width 0.5s ease;
-}
-
-#remaining-progress {
-  background-color: #4CAF50; /* Green for remaining time */
-}
-
-#completed-progress {
-  background-color: #FF9800; /* Orange for completed time */
-}
-
-/* Styling the details section */
-#details {
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 800px;
   margin-top: 40px;
 }
 
-#details h2 {
+#timer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+.time-box {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  border-radius: 10px;
+  width: 80px;
+  text-align: center;
   font-size: 2rem;
-  color: #333;
-  margin-bottom: 20px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#timer span {
+  font-size: 3rem;
+}
+
+/* Progress Bar Styling */
+#progress {
+  width: 70%;
+  margin-top: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 20px;
+  background: #ddd;
+  border-radius: 10px;
+}
+
+#remaining-progress {
+  height: 100%;
+  width: 0%;
+  background: #4caf50; /* Green */
+  border-radius: 10px;
+  transition: width 1s ease;
+}
+
+/* Wedding Details Section */
+#details {
+  margin-top: 50px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 #details p {
   font-size: 1.1rem;
-  color: #555;
-  margin-bottom: 10px;
+  margin: 10px 0;
 }
 
-/* Styling for Share buttons */
-#share-buttons {
+/* Share Buttons */
+#share {
   margin-top: 40px;
 }
 
-#share-buttons a {
-  display: inline-block;
-  background-color: #1DA1F2;
-  color: white;
-  padding: 12px 20px;
-  margin: 10px;
+.share-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.share-buttons a {
+  background-color: #1da1f2;
+  color: #fff;
+  padding: 15px 30px;
   text-decoration: none;
-  border-radius: 20px;
-  font-weight: bold;
-  transition: background-color 0.3s, transform 0.3s;
+  border-radius: 30px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
 }
 
-#share-buttons a:hover {
-  background-color: #0d74a8;
-  transform: translateY(-2px);
+.share-buttons a:hover {
+  background-color: #0a74da;
+  transform: translateY(-5px);
 }
 
-/* Styling for the milestones section */
+/* Milestone Styling */
 #milestones {
   margin-top: 50px;
-  font-size: 1rem;
-  color: #555;
 }
 
 #milestones ul {
@@ -149,20 +138,20 @@ h1 {
 }
 
 #milestones li {
-  background-color: #fff;
+  background: rgba(255, 255, 255, 0.2);
   padding: 15px;
   margin: 10px 0;
   border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
 }
 
 #milestones li:hover {
-  background-color: #f7f7f7;
+  background: rgba(255, 255, 255, 0.3);
 }
 
 #milestones h3 {
-  font-size: 1.5rem;
-  color: #333;
-  margin-bottom: 15px;
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 20px;
 }
