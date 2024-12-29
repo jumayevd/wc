@@ -137,6 +137,18 @@ body {
   transform: scale(1.1);
 }
 
+/* Progress Bar Container */
+#progress-bar {
+  margin-top: 40px;
+  width: 90%;
+  max-width: 800px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
 /* Title for the Progress Bar */
 #progress-bar h3 {
   font-size: 1.8rem;
@@ -236,16 +248,4 @@ body {
 }
 
 
-#progress-bar {
-  height: 100%;
-  width: 0;
-  background: linear-gradient(90deg, #4caf50, #8bc34a);
-  transition: width 1s;
-}
 
-.progress-details {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-  font-size: 1rem;
-}
