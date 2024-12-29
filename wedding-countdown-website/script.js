@@ -49,7 +49,7 @@ for (let i = 0; i <= totalMonths; i++) {
   progressBar.appendChild(scaleLabel);
 }
 // Target date: Wedding Date in 2027
-const weddingDate = new Date('2027-09-15T00:00:00'); // Change this to your target wedding date
+const weddingDate = new Date('2027-08-15T00:00:00'); // Change this to your target wedding date
 
 // Function to update the time remaining
 function updateTimeRemaining() {
