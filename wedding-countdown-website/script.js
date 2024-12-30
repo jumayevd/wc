@@ -1,5 +1,6 @@
+// Listen for the form submission
 document.getElementById('guestBookForm').addEventListener('submit', function (event) {
-  event.preventDefault();
+  event.preventDefault(); // Prevent form from refreshing the page
 
   const name = document.getElementById('name').value;
   const message = document.getElementById('message').value;
@@ -16,7 +17,7 @@ document.getElementById('guestBookForm').addEventListener('submit', function (ev
     messages.push(newMessage);
     localStorage.setItem('guestBookMessages', JSON.stringify(messages));
 
-    // Clear form after submission
+    // Clear form fields after submitting
     document.getElementById('name').value = '';
     document.getElementById('message').value = '';
 
@@ -25,7 +26,7 @@ document.getElementById('guestBookForm').addEventListener('submit', function (ev
   }
 });
 
-// Load and display all messages from localStorage
+// Load and display all messages when the page loads
 window.onload = function () {
   const savedMessages = JSON.parse(localStorage.getItem('guestBookMessages')) || [];
   savedMessages.forEach(message => {
@@ -33,6 +34,7 @@ window.onload = function () {
   });
 };
 
+// Function to display a single message
 function displayMessage(message) {
   const messagesContainer = document.getElementById('messagesContainer');
   const messageDiv = document.createElement('div');
