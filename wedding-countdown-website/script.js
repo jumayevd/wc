@@ -8,39 +8,39 @@ document.getElementById('guestBookForm').addEventListener('submit', function (ev
     const newMessage = {
       name: name,
       message: message,
+      timestamp: new Date().toISOString(),
     };
 
-    // Store the message in the local storage or a database
-    saveMessage(newMessage);
+    // Save message to localStorage
+    let messages = JSON.parse(localStorage.getItem('guestBookMessages')) || [];
+    messages.push(newMessage);
+    localStorage.setItem('guestBookMessages', JSON.stringify(messages));
 
-    // Display the new message
-    displayMessage(newMessage);
-
-    // Clear the form
+    // Clear form after submission
     document.getElementById('name').value = '';
     document.getElementById('message').value = '';
+
+    // Display the new message immediately
+    displayMessage(newMessage);
   }
 });
 
-function saveMessage(message) {
-  // For now, we use localStorage. In production, use a database or serverless function.
-  let messages = JSON.parse(localStorage.getItem('guestBookMessages')) || [];
-  messages.push(message);
-  localStorage.setItem('guestBookMessages', JSON.stringify(messages));
-}
-
-function displayMessage(message) {
-  const messagesContainer = document.getElementById('messagesContainer');
-  const messageDiv = document.createElement('div');
-  messageDiv.classList.add('message');
-  messageDiv.innerHTML = `<strong>${message.name}</strong>: <p>${message.message}</p>`;
-  messagesContainer.appendChild(messageDiv);
-}
-
-// Load existing messages when the page loads
+// Load and display all messages from localStorage
 window.onload = function () {
   const savedMessages = JSON.parse(localStorage.getItem('guestBookMessages')) || [];
   savedMessages.forEach(message => {
     displayMessage(message);
   });
 };
+
+function displayMessage(message) {
+  const messagesContainer = document.getElementById('messagesContainer');
+  const messageDiv = document.createElement('div');
+  messageDiv.classList.add('message');
+  messageDiv.innerHTML = `
+    <strong>${message.name}</strong>
+    <p>${message.message}</p>
+    <small>${new Date(message.timestamp).toLocaleString()}</small>
+  `;
+  messagesContainer.appendChild(messageDiv);
+}

@@ -11,7 +11,7 @@ body {
 
 .guestbook {
   background-color: white;
-  max-width: 600px;
+  max-width: 700px;
   margin: 20px;
   padding: 30px;
   border-radius: 15px;
@@ -30,11 +30,18 @@ body {
   gap: 15px;
 }
 
-.guestbook input, .guestbook textarea {
+.guestbook input,
+.guestbook textarea {
   padding: 12px;
   border-radius: 8px;
   border: 1px solid #ddd;
   font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.guestbook input:focus,
+.guestbook textarea:focus {
+  border-color: #5cb85c;
 }
 
 .guestbook button {
@@ -60,25 +67,34 @@ body {
 }
 
 .message {
-  background-color: #eaf1f4;
+  background-color: #f9fafb;
   padding: 15px;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .message:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .message strong {
   color: #3c763d;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .message p {
-  margin-top: 5px;
+  margin-top: 10px;
   color: #555;
   font-size: 1rem;
+}
+
+.message small {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: #999;
 }
 
