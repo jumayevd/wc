@@ -1,40 +1,84 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7f6;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .guestbook {
+  background-color: white;
   max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.guestbook h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
 }
 
 .guestbook form {
   display: flex;
   flex-direction: column;
+  gap: 15px;
 }
 
 .guestbook input, .guestbook textarea {
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
 }
 
 .guestbook button {
-  padding: 10px;
-  background-color: #4CAF50;
+  padding: 12px;
+  background-color: #5cb85c;
   color: white;
   border: none;
+  border-radius: 8px;
   cursor: pointer;
-  border-radius: 5px;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
 }
 
-#messagesContainer {
-  margin-top: 20px;
+.guestbook button:hover {
+  background-color: #4cae4c;
+}
+
+.messages-container {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .message {
-  background-color: #f1f1f1;
-  margin: 10px 0;
+  background-color: #eaf1f4;
   padding: 15px;
-  border-radius: 5px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
 }
+
+.message:hover {
+  transform: scale(1.05);
+}
+
+.message strong {
+  color: #3c763d;
+  font-size: 1.1rem;
+}
+
+.message p {
+  margin-top: 5px;
+  color: #555;
+  font-size: 1rem;
+}
+
