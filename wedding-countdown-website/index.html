@@ -472,39 +472,6 @@
 
         setInterval(updateProgressBar, 1000);
     </script>
-
-
-<script>
-    // Set the wedding date (change this to the actual wedding date)
-    const weddingDate = new Date("2024-12-31T00:00:00").getTime();
-  
-    // Update the countdown every second
-    setInterval(function() {
-      // Get the current time
-      const now = new Date().getTime();
-  
-      // Calculate the remaining time
-      const remainingTime = weddingDate - now;
-  
-      // Calculate the days, hours, minutes, and seconds
-      const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
-  
-      // Display the results
-      document.getElementById("days").innerHTML = days;
-      document.getElementById("hours").innerHTML = hours;
-      document.getElementById("minutes").innerHTML = minutes;
-      document.getElementById("seconds").innerHTML = seconds;
-  
-      // If the countdown reaches zero, display a message
-      if (remainingTime <= 0) {
-        clearInterval();
-        document.querySelector(".countdown-timer").innerHTML = "Wedding Day Arrived!";
-      }
-    }, 1000);
-  </script>
   
 </body>
 
