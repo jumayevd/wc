@@ -248,44 +248,6 @@
         }
 
 
-        
-        .modal {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgb(0, 0, 0);
-        background-color: rgba(0, 0, 0, 0.4);
-        padding-top: 60px;
-        }
-
-        .modal-content {
-        background-color: #fefefe;
-        margin: 5% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-        max-width: 400px;
-        text-align: center;
-        }
-
-        .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-        }
 
 
 
@@ -465,15 +427,61 @@
         <a href="https://t.me/daycount_marriage" target="_blank" class="cta-button">Telegram Channel</a>
     </div>
 
-    <div id="joinModal" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <h2>Join Our Telegram Channel</h2>
-          <p>Stay updated with daily messages! Click below to join.</p>
-          <a href="https://t.me/daycount_marriage" target="_blank" class="cta-button">Join Now</a>
+    <div class="slider-container">
+        <div class="mySlides fade">
+          <img src="image1.jpg" style="width:100%">
+        </div>
+        <div class="mySlides fade">
+          <img src="image2.jpg" style="width:100%">
+        </div>
+        <div class="mySlides fade">
+          <img src="image3.jpg" style="width:100%">
         </div>
       </div>
-
+      
+      <style>
+      .slider-container {
+        position: relative;
+        max-width: 100%;
+        margin: auto;
+      }
+      
+      .mySlides {
+        display: none;
+      }
+      
+      img {
+        width: 100%;
+      }
+      
+      .fade {
+        animation-name: fade;
+        animation-duration: 1.5s;
+      }
+      
+      @keyframes fade {
+        from {opacity: 0.4;}
+        to {opacity: 1;}
+      }
+      </style>
+      
+      <script>
+        var slideIndex = 0;
+        showSlides();
+      
+        function showSlides() {
+          var slides = document.getElementsByClassName("mySlides");
+          for (var i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+          }
+          slideIndex++;
+          if (slideIndex > slides.length) {slideIndex = 1}
+          slides[slideIndex-1].style.display = "block";
+          setTimeout(showSlides, 3000); // Change image every 3 seconds
+        }
+      </script>
+      
+ 
       
     <script>
         // Heart click functionality
@@ -554,25 +562,6 @@
         setInterval(updateProgressBar, 1000);
     </script>
 
-    <script>
-        // Show the modal after 5 seconds
-        setTimeout(function() {
-        document.getElementById("joinModal").style.display = "block";
-        }, 5000);
-    
-        // Close the modal when the user clicks the close button
-        var span = document.getElementsByClassName("close")[0];
-        span.onclick = function() {
-        document.getElementById("joinModal").style.display = "none";
-        }
-    
-        // Close the modal if the user clicks outside of it
-        window.onclick = function(event) {
-        if (event.target == document.getElementById("joinModal")) {
-            document.getElementById("joinModal").style.display = "none";
-        }
-        }
-    </script>
   
 </body>
 
