@@ -1,13 +1,19 @@
-// Testimonials Array
-let testimonials = [];
+// Testimonials Array (Load from Local Storage)
+let testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
 
 // Toggle Testimonial Section Visibility
 const testimonialButton = document.getElementById('testimonial-toggle');
 const testimonialSection = document.getElementById('testimonial-section');
+const closeButton = document.getElementById('close-testimonial');
 
 testimonialButton.addEventListener('click', () => {
-  testimonialSection.classList.toggle('visible');
-  testimonialSection.classList.toggle('hidden');
+  testimonialSection.classList.add('visible');
+  testimonialSection.classList.remove('hidden');
+});
+
+closeButton.addEventListener('click', () => {
+  testimonialSection.classList.add('hidden');
+  testimonialSection.classList.remove('visible');
 });
 
 // Render the last three testimonials
@@ -36,10 +42,17 @@ document.getElementById('testimonial-form').addEventListener('submit', function 
   if (name && message) {
     testimonials.push({ name, message });
 
+    // Save to Local Storage
+    localStorage.setItem('testimonials', JSON.stringify(testimonials));
+
     document.getElementById('name').value = '';
     document.getElementById('message').value = '';
 
     renderTestimonials();
   }
 });
+
+// Initial Render on Page Load
+renderTestimonials();
+
 

@@ -252,6 +252,7 @@
         }
 
 
+
         .testimonial-button {
         background: linear-gradient(135deg, #007bff, #00d4ff);
         color: #fff;
@@ -274,14 +275,16 @@
         .testimonial-section {
         position: fixed;
         bottom: -100%;
-        left: 0;
-        right: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 500px;
         background: #ffffff;
         border-radius: 20px 20px 0 0;
         box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
         padding: 30px;
         transition: bottom 0.5s ease;
-        max-height: 90vh;
+        max-height: 80vh;
         overflow-y: auto;
         }
 
@@ -293,18 +296,32 @@
         bottom: 0;
         }
 
+        /* Close Button */
+        .close-button {
+        background: none;
+        border: none;
+        font-size: 20px;
+        color: #333;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        cursor: pointer;
+        }
+
         /* Section Titles */
         .section-title {
         font-size: 24px;
         color: #333;
         margin-bottom: 20px;
         font-weight: bold;
+        text-align: center;
         }
 
         .section-subtitle {
         font-size: 20px;
         color: #555;
         margin: 20px 0;
+        text-align: center;
         }
 
         /* Form Styling */
@@ -555,20 +572,24 @@
         <a href="https://t.me/daycount_marriage" target="_blank" class="cta-button">Telegram Channel</a>
     </div>
 
+
+
+
     <button id="testimonial-toggle" class="testimonial-button">✨ Share Your Wishes</button>
 
     <!-- Testimonial Section -->
     <div id="testimonial-section" class="testimonial-section hidden">
-        <h2 class="section-title">💌 Share Your Wishes</h2>
-        <form id="testimonial-form" class="testimonial-form">
+      <button id="close-testimonial" class="close-button">✖</button>
+      <h2 class="section-title">💌 Share Your Wishes</h2>
+      <form id="testimonial-form" class="testimonial-form">
         <input type="text" id="name" placeholder="Your Name" required />
         <textarea id="message" placeholder="Your Testimonial" required></textarea>
         <button type="submit">✨ Submit Your Wish</button>
-        </form>
-        <div id="testimonial-display">
-        <h3 class="section-subtitle">Latest Testimonials</h3>
+      </form>
+      <div id="testimonial-display">
+        <h3 class="section-subtitle">✨ Latest Testimonials</h3>
         <ul id="testimonial-list"></ul>
-        </div>
+      </div>
     </div>
 
       
