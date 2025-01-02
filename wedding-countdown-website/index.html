@@ -278,18 +278,16 @@
         position: fixed;
         bottom: -100%;
         left: 50%;
-        transform: translateY(-100%);
+        transform: translateX(-50%);
         width: 90%;
         max-width: 500px;
         background: #ffffff;
         border-radius: 20px 20px 0 0;
         box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
         padding: 30px;
-        transition: transform 0.4s ease, opacity 0.4s ease;
+        transition: bottom 0.5s ease;
         max-height: 80vh;
         overflow-y: auto;
-        opacity: 0;
-        pointer-events: none; 
         }
 
         .testimonial-section.hidden {
@@ -297,9 +295,7 @@
         }
 
         .testimonial-section.visible {
-        transform: translateY(0);
-        opacity: 1;
-        pointer-events: auto;
+        bottom: 0;
         }
 
         /* Close Button */
@@ -428,7 +424,7 @@
         vertical-align: middle;
         }
 
-      
+
 
         
 
