@@ -25,24 +25,7 @@ function toggleTestimonialSection() {
 }
 
 // Function to close the testimonial section
-function closeTestimonialSection() {
-  if (testimonialSection.classList.contains('visible')) {
-    testimonialSection.classList.remove('visible');
-  }
-}
 
-// Event listener for the toggle button
-testimonialToggle.addEventListener('click', toggleTestimonialSection);
-
-// Event listener for clicks outside the testimonial section
-document.addEventListener('click', (event) => {
-  if (
-    !testimonialSection.contains(event.target) && // Click is not inside testimonial section
-    !testimonialToggle.contains(event.target)    // Click is not on the toggle button
-  ) {
-    closeTestimonialSection();
-  }
-});
 
 
 
@@ -88,6 +71,26 @@ function renderTestimonials() {
   
       // Render Testimonials with Animation
       renderTestimonials();
+    }
+  });
+
+
+  function closeTestimonialSection() {
+    if (testimonialSection.classList.contains('visible')) {
+      testimonialSection.classList.remove('visible');
+    }
+  }
+  
+  // Event listener for the toggle button
+  testimonialToggle.addEventListener('click', toggleTestimonialSection);
+  
+  // Event listener for clicks outside the testimonial section
+  document.addEventListener('click', (event) => {
+    if (
+      !testimonialSection.contains(event.target) && // Click is not inside testimonial section
+      !testimonialToggle.contains(event.target)    // Click is not on the toggle button
+    ) {
+      closeTestimonialSection();
     }
   });
   
