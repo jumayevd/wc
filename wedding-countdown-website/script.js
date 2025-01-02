@@ -14,7 +14,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
-// Get DOM elements
+// DOM Elements
 const testimonialButton = document.getElementById('testimonial-toggle');
 const testimonialSection = document.getElementById('testimonial-section');
 const closeButton = document.getElementById('close-testimonial');
@@ -57,11 +57,19 @@ testimonialForm.addEventListener('submit', function (event) {
     if (name && message) {
         // Push testimonial to Firebase
         const testimonial = { name, message, timestamp: Date.now() };
-        database.ref('testimonials').push(testimonial);
-
-        // Clear input fields
-        document.getElementById('name').value = '';
-        document.getElementById('message').value = '';
+        database.ref('testimonials').push(testimonial)
+            .then(() => {
+                // Clear input fields
+                document.getElementById('name').value = '';
+                document.getElementById('message').value = '';
+                alert('Your testimonial has been submitted!');
+            })
+            .catch((error) => {
+                console.error('Error submitting testimonial:', error);
+                alert('There was an error submitting your testimonial. Please try again.');
+            });
+    } else {
+        alert('Please fill out both the name and message fields.');
     }
 });
 
