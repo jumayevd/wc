@@ -17,18 +17,17 @@ closeButton.addEventListener('click', () => {
 });
 
 // Select elements
-const testimonialSection1 = document.querySelector('.testimonial-section');
 const testimonialToggle = document.getElementById('testimonial-toggle');
 
 // Function to toggle testimonial section visibility
 function toggleTestimonialSection() {
-  testimonialSection1.classList.toggle('visible');
+  testimonialSection.classList.toggle('visible');
 }
 
 // Function to close the testimonial section
 function closeTestimonialSection() {
-  if (testimonialSection1.classList.contains('visible')) {
-    testimonialSection1.classList.remove('visible');
+  if (testimonialSection.classList.contains('visible')) {
+    testimonialSection.classList.remove('visible');
   }
 }
 
@@ -38,7 +37,7 @@ testimonialToggle.addEventListener('click', toggleTestimonialSection);
 // Event listener for clicks outside the testimonial section
 document.addEventListener('click', (event) => {
   if (
-    !testimonialSection1.contains(event.target) && // Click is not inside testimonial section
+    !testimonialSection.contains(event.target) && // Click is not inside testimonial section
     !testimonialToggle.contains(event.target)    // Click is not on the toggle button
   ) {
     closeTestimonialSection();
