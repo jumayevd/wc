@@ -100,7 +100,7 @@ form.addEventListener('submit', (event) => {
   });
   
   // Render testimonials from Firebase
-  function renderTestimonials(snapshot) {
+function renderTestimonials(snapshot) {
     list.innerHTML = '';
   
     const testimonials = [];
@@ -118,12 +118,12 @@ form.addEventListener('submit', (event) => {
       `;
       list.appendChild(listItem);
     });
-  }
+}
   
   // Listen for changes in the database and render
-  database.ref('testimonials').on('value', (snapshot) => {
+database.ref('testimonials').on('value', (snapshot) => {
     renderTestimonials(snapshot);
-  });
+});
 
 // Initial Render on Page Load
 renderTestimonials();
