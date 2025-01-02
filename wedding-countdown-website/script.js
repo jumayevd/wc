@@ -53,56 +53,45 @@ function closeTestimonialSection() {
   testimonialSection.classList.remove('visible');
 }
 
-// Handle form submission
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
-  
-    const name = nameInput.value.trim();
-    const message = messageInput.value.trim();
-  
-    if (name && message) {
-      const testimonial = { name, message, timestamp: Date.now() };
-  
-      // Push testimonial to Firebase
-      database.ref('testimonials').push(testimonial)
-        .then(() => {
-          nameInput.value = '';
-          messageInput.value = '';
-          alert('Your message has been submitted!');
-        })
-        .catch((error) => {
-          console.error('Error saving testimonial:', error);
-          alert('Failed to submit your message. Please try again.');
-        });
-    } else {
-      alert('Please fill in both name and message fields.');
-    }
+// Render the last three testimonials with animations
+function renderTestimonials() {
+  const list = document.getElementById('testimonial-list');
+  list.innerHTML = '';
+
+  const recentTestimonials = testimonials.slice(-3).reverse();
+  recentTestimonials.forEach((testimonial, index) => {
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `
+      <strong>${testimonial.name}</strong>
+      <p>${testimonial.message}</p>
+    `;
+
+    // Add a delay for the floating effect for new testimonials
+    listItem.style.animationDelay = `${index * 0.2}s`;
+
+    list.appendChild(listItem);
   });
-  
-  // Render testimonials from Firebase
-function renderTestimonials(snapshot) {
-    list.innerHTML = '';
-  
-    const testimonials = [];
-    snapshot.forEach((childSnapshot) => {
-      testimonials.push(childSnapshot.val());
-    });
-  
-    // Sort by timestamp (latest first) and display the last 3
-    testimonials.sort((a, b) => b.timestamp - a.timestamp);
-    testimonials.slice(0, 3).forEach((testimonial) => {
-      const listItem = document.createElement('li');
-      listItem.innerHTML = `
-        <strong>${testimonial.name}</strong>
-        <p>${testimonial.message}</p>
-      `;
-      list.appendChild(listItem);
-    });
 }
-  
-  // Listen for changes in the database and render
-database.ref('testimonials').on('value', (snapshot) => {
-    renderTestimonials(snapshot);
+
+// Handle Form Submission
+document.getElementById('testimonial-form').addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  const name = document.getElementById('name').value.trim();
+  const message = document.getElementById('message').value.trim();
+
+  if (name && message) {
+    testimonials.push({ name, message });
+
+    // Save to Local Storage
+    localStorage.setItem('testimonials', JSON.stringify(testimonials));
+
+    document.getElementById('name').value = '';
+    document.getElementById('message').value = '';
+
+    // Render Testimonials with Animation
+    renderTestimonials();
+  }
 });
 
 // Initial Render on Page Load
