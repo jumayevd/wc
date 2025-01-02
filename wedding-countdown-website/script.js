@@ -1,3 +1,22 @@
+// Testimonials Array (Load from Local Storage)
+let testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
+
+// Toggle Testimonial Section Visibility
+const testimonialButton = document.getElementById('testimonial-toggle');
+const testimonialSection = document.getElementById('testimonial-section');
+const closeButton = document.getElementById('close-testimonial');
+
+testimonialButton.addEventListener('click', () => {
+  testimonialSection.classList.add('visible');
+  testimonialSection.classList.remove('hidden');
+});
+
+closeButton.addEventListener('click', () => {
+  testimonialSection.classList.add('hidden');
+  testimonialSection.classList.remove('visible');
+});
+
+// Render the last three testimonials
 // Render the last three testimonials with animations
 function renderTestimonials() {
     const list = document.getElementById('testimonial-list');
@@ -42,4 +61,5 @@ function renderTestimonials() {
   // Initial Render on Page Load
   renderTestimonials();
   
+
 
