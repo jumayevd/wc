@@ -207,23 +207,7 @@
         }
 
 
-        .testimonials {
-        text-align: center;
-        margin: 30px 0;
-        }
 
-        .testimonial-item {
-        margin: 15px 0;
-        padding: 20px;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        background-color: #f9f9f9;
-        }
-
-        h2 {
-        font-size: 24px;
-        margin-bottom: 20px;
-        }
 
         
 
@@ -269,64 +253,89 @@
 
 
         .testimonial-section {
-        background: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 20px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        padding: 30px;
         width: 90%;
-        max-width: 500px;
-        }
-
-        h2 {
+        max-width: 600px;
         text-align: center;
+        }
+
+        /* Section Titles */
+        .section-title {
+        font-size: 24px;
         color: #333;
-        }
-
-        form {
-        display: flex;
-        flex-direction: column;
         margin-bottom: 20px;
+        font-weight: bold;
         }
 
-        input, textarea, button {
-        margin: 10px 0;
-        padding: 10px;
+        .section-subtitle {
+        font-size: 20px;
+        color: #555;
+        margin: 20px 0;
+        }
+
+        /* Form Styling */
+        .testimonial-form input, .testimonial-form textarea {
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 15px;
         border: 1px solid #ddd;
-        border-radius: 5px;
+        border-radius: 10px;
+        font-size: 14px;
+        background: #f9f9f9;
+        transition: 0.3s;
         }
 
-        textarea {
-        height: 80px;
-        resize: none;
+        .testimonial-form input:focus, .testimonial-form textarea:focus {
+        outline: none;
+        border-color: #007bff;
+        background: #ffffff;
         }
 
-        button {
-        background: #007bff;
+        .testimonial-form button {
+        background: linear-gradient(135deg, #007bff, #00d4ff);
         color: #fff;
+        padding: 15px 20px;
         border: none;
-        cursor: pointer;
+        border-radius: 10px;
         font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
         }
 
-        button:hover {
-        background: #0056b3;
+        .testimonial-form button:hover {
+        background: linear-gradient(135deg, #0056b3, #0099cc);
         }
 
-        #testimonial-display {
-        margin-top: 20px;
-        }
-
+        /* Testimonial List */
         #testimonial-list {
-        list-style-type: none;
+        list-style: none;
         padding: 0;
         }
 
         #testimonial-list li {
-        background: #f9f9f9;
-        margin: 10px 0;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
+        background: #f3f4f6;
+        border: 1px solid #e3e4e8;
+        border-radius: 10px;
+        padding: 15px 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        text-align: left;
+        }
+
+        #testimonial-list li strong {
+        display: block;
+        font-size: 16px;
+        color: #007bff;
+        margin-bottom: 5px;
+        }
+
+        #testimonial-list li p {
+        font-size: 14px;
+        color: #333;
         }
 
 
@@ -512,14 +521,14 @@
     </div>
 
     <div class="testimonial-section">
-        <h2>Share Your Wishes</h2>
-        <form id="testimonial-form">
+        <h2 class="section-title">💌 Share Your Wishes</h2>
+        <form id="testimonial-form" class="testimonial-form">
           <input type="text" id="name" placeholder="Your Name" required />
           <textarea id="message" placeholder="Your Testimonial" required></textarea>
-          <button type="submit">Submit</button>
+          <button type="submit">✨ Submit Your Wish</button>
         </form>
         <div id="testimonial-display">
-          <h3>Latest Testimonials</h3>
+          <h3 class="section-subtitle">✨ Latest Testimonials</h3>
           <ul id="testimonial-list"></ul>
         </div>
     </div>
