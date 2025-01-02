@@ -24,12 +24,14 @@ const firebaseConfig = {
   const list = document.getElementById('testimonial-list');
   
   // Toggle Testimonial Section Visibility
-  testimonialButton.addEventListener('click', () => {
+  testimonialButton.addEventListener('click', (event) => {
+    event.stopPropagation(); // Prevent triggering the document click listener
     testimonialSection.classList.add('visible');
     testimonialSection.classList.remove('hidden');
   });
   
-  closeButton.addEventListener('click', () => {
+  closeButton.addEventListener('click', (event) => {
+    event.stopPropagation(); // Prevent triggering the document click listener
     testimonialSection.classList.add('hidden');
     testimonialSection.classList.remove('visible');
   });
@@ -61,10 +63,14 @@ const firebaseConfig = {
         .then(() => {
           nameInput.value = '';
           messageInput.value = '';
+          alert('Your message has been submitted!'); // Optional confirmation
         })
         .catch((error) => {
           console.error("Error saving testimonial:", error);
+          alert('Failed to submit your message. Please try again.');
         });
+    } else {
+      alert('Please fill in both name and message fields.');
     }
   });
   
@@ -92,4 +98,5 @@ const firebaseConfig = {
   database.ref('testimonials').on('value', (snapshot) => {
     renderTestimonials(snapshot);
   });
+  
   
