@@ -16,20 +16,9 @@ closeButton.addEventListener('click', () => {
   testimonialSection.classList.remove('visible');
 });
 
-// Select elements
-const testimonialToggle = document.getElementById('testimonial-toggle');
-
-// Function to toggle testimonial section visibility
-function toggleTestimonialSection() {
-  testimonialSection.classList.toggle('visible');
-}
-
-// Function to close the testimonial section
 
 
-
-
-
+// Render the last three testimonials
 // Render the last three testimonials with animations
 function renderTestimonials() {
     const list = document.getElementById('testimonial-list');
@@ -74,3 +63,5 @@ function renderTestimonials() {
   // Initial Render on Page Load
   renderTestimonials();
   
+
+
