@@ -1,62 +1,77 @@
+// Testimonials Array (Load from Local Storage)
+let testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
+
 // Get elements
 const testimonialButton = document.getElementById('testimonial-toggle');
 const testimonialSection = document.getElementById('testimonial-section');
 const closeButton = document.getElementById('close-testimonial');
-const testimonialForm = document.getElementById('testimonial-form');
-const testimonialList = document.getElementById('testimonial-list');
 
-// Toggle visibility of testimonial section
+// Toggle Testimonial Section Visibility
 testimonialButton.addEventListener('click', () => {
-  testimonialSection.classList.toggle('hidden');
-  testimonialSection.classList.toggle('visible');
+  testimonialSection.classList.add('visible');
+  testimonialSection.classList.remove('hidden');
 });
 
-// Close Testimonial Section
-closeButton.addEventListener('click', () => {
-  testimonialSection.classList.remove('visible');
+// Close Testimonial Section on clicking the close button
+closeButton.addEventListener('click', closeTestimonialSection);
+
+// Close Testimonial Section on clicking outside the section
+document.addEventListener('click', (event) => {
+  if (
+    testimonialSection.classList.contains('visible') &&
+    !testimonialSection.contains(event.target) &&
+    event.target !== testimonialButton
+  ) {
+    closeTestimonialSection();
+  }
+});
+
+// Close testimonial section function
+function closeTestimonialSection() {
   testimonialSection.classList.add('hidden');
-});
+  testimonialSection.classList.remove('visible');
+}
 
-// Handle Form Submission (Store in localStorage)
-testimonialForm.addEventListener('submit', function (event) {
+// Render the last three testimonials with animations
+function renderTestimonials() {
+  const list = document.getElementById('testimonial-list');
+  list.innerHTML = '';
+
+  const recentTestimonials = testimonials.slice(-3).reverse();
+  recentTestimonials.forEach((testimonial, index) => {
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `
+      <strong>${testimonial.name}</strong>
+      <p>${testimonial.message}</p>
+    `;
+
+    // Add a delay for the floating effect for new testimonials
+    listItem.style.animationDelay = `${index * 0.2}s`;
+
+    list.appendChild(listItem);
+  });
+}
+
+// Handle Form Submission
+document.getElementById('testimonial-form').addEventListener('submit', function (event) {
   event.preventDefault();
 
   const name = document.getElementById('name').value.trim();
   const message = document.getElementById('message').value.trim();
 
   if (name && message) {
-    // Retrieve existing testimonials from localStorage
-    const testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
+    testimonials.push({ name, message });
 
-    // Add the new testimonial to the array
-    testimonials.push({ name, message, timestamp: Date.now() });
-
-    // Save the updated testimonials back to localStorage
+    // Save to Local Storage
     localStorage.setItem('testimonials', JSON.stringify(testimonials));
 
-    // Clear form fields
     document.getElementById('name').value = '';
     document.getElementById('message').value = '';
 
-    // Update the testimonial list on the page
+    // Render Testimonials with Animation
     renderTestimonials();
   }
 });
 
-// Render Testimonials from localStorage
-function renderTestimonials() {
-  const testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
-  testimonialList.innerHTML = ''; // Clear the existing list
-
-  // Get the last 3 testimonials, sorted by timestamp
-  const recentTestimonials = testimonials.slice(-3).reverse();
-
-  recentTestimonials.forEach(testimonial => {
-    const listItem = document.createElement('li');
-    listItem.innerHTML = `<strong>${testimonial.name}</strong><p>${testimonial.message}</p>`;
-    testimonialList.appendChild(listItem);
-  });
-}
-
-// Initial Render
+// Initial Render on Page Load
 renderTestimonials();
