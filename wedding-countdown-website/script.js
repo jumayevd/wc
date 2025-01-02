@@ -77,4 +77,59 @@ document.getElementById('testimonial-form').addEventListener('submit', function 
 renderTestimonials();
 
 
+// Firebase Configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyA55DAlDH8cSvw3qObgSYFzh5mBb0jQw8I",
+    authDomain: "marriage-count.firebaseapp.com",
+    databaseURL: "https://marriage-count-default-rtdb.firebaseio.com",
+    projectId: "marriage-count",
+    storageBucket: "marriage-count.firebasestorage.app",
+    messagingSenderId: "1050626778504",
+    appId: "1:1050626778504:web:1a205c05734072201dc63d",
+    measurementId: "G-WH68D0KR11"
+  };
+  
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
 
+  document.getElementById('testimonial-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+  
+    const name = document.getElementById('name').value.trim();
+    const message = document.getElementById('message').value.trim();
+  
+    if (name && message) {
+      const testimonial = { name, message, timestamp: Date.now() };
+      firebase.database().ref('testimonials').push(testimonial);
+  
+      document.getElementById('name').value = '';
+      document.getElementById('message').value = '';
+    }
+  });
+  
+  function renderTestimonials(snapshot) {
+    const list = document.getElementById('testimonial-list');
+    list.innerHTML = '';
+  
+    const testimonials = [];
+    snapshot.forEach((childSnapshot) => {
+      testimonials.push(childSnapshot.val());
+    });
+  
+    testimonials.sort((a, b) => b.timestamp - a.timestamp); // Sort by latest
+    testimonials.slice(0, 3).forEach((testimonial) => {
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `
+        <strong>${testimonial.name}</strong>
+        <p>${testimonial.message}</p>
+      `;
+      list.appendChild(listItem);
+    });
+  }
+  
+  // Listen for database changes
+  firebase.database().ref('testimonials').on('value', (snapshot) => {
+    renderTestimonials(snapshot);
+  });
+  
