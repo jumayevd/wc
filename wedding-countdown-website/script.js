@@ -21,18 +21,6 @@ closeButton.addEventListener('click', () => {
   testimonialSection.classList.add('hidden');
 });
 
-// Close Testimonial Section if clicked outside the section
-document.addEventListener('click', (event) => {
-  if (
-    testimonialSection.classList.contains('visible') &&
-    !testimonialSection.contains(event.target) &&
-    event.target !== testimonialButton
-  ) {
-    testimonialSection.classList.remove('visible');
-    testimonialSection.classList.add('hidden');
-  }
-});
-
 // Handle Form Submission (Save Testimonial to Firebase and Local Storage)
 document.getElementById('testimonial-form').addEventListener('submit', function (event) {
   event.preventDefault();
@@ -74,4 +62,5 @@ function renderTestimonials() {
 
 // Initial Render
 renderTestimonials();
+
 
