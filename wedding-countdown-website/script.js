@@ -2,6 +2,8 @@
 const testimonialButton = document.getElementById('testimonial-toggle');
 const testimonialSection = document.getElementById('testimonial-section');
 const closeButton = document.getElementById('close-testimonial');
+const testimonialForm = document.getElementById('testimonial-form');
+const testimonialList = document.getElementById('testimonial-list');
 
 // Toggle visibility of testimonial section
 testimonialButton.addEventListener('click', () => {
@@ -16,7 +18,7 @@ closeButton.addEventListener('click', () => {
 });
 
 // Handle Form Submission (Store in localStorage)
-document.getElementById('testimonial-form').addEventListener('submit', function (event) {
+testimonialForm.addEventListener('submit', function (event) {
   event.preventDefault();
 
   const name = document.getElementById('name').value.trim();
@@ -43,22 +45,18 @@ document.getElementById('testimonial-form').addEventListener('submit', function 
 
 // Render Testimonials from localStorage
 function renderTestimonials() {
-  const list = document.getElementById('testimonial-list');
-  list.innerHTML = '';
-
   const testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
-  
+  testimonialList.innerHTML = ''; // Clear the existing list
+
   // Get the last 3 testimonials, sorted by timestamp
   const recentTestimonials = testimonials.slice(-3).reverse();
 
   recentTestimonials.forEach(testimonial => {
     const listItem = document.createElement('li');
     listItem.innerHTML = `<strong>${testimonial.name}</strong><p>${testimonial.message}</p>`;
-    list.appendChild(listItem);
+    testimonialList.appendChild(listItem);
   });
 }
 
 // Initial Render
 renderTestimonials();
-
-
