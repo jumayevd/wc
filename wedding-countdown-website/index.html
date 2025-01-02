@@ -288,6 +288,7 @@
         transition: bottom 0.5s ease;
         max-height: 80vh;
         overflow-y: auto;
+        scrollbar-width: none; /* Firefox */
         }
 
 
@@ -303,6 +304,12 @@
         left: 0;
         background: #d4d7e1;
         z-index: -1; /* Ensures it stays behind the section content */
+        }
+
+
+        /* Hide Scrollbar for Webkit Browsers */
+        .testimonial-section::-webkit-scrollbar {
+        display: none; /* Chrome, Safari */
         }
 
         .testimonial-section.hidden {
