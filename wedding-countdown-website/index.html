@@ -388,6 +388,33 @@
         color: #333;
         }
 
+        /* Container for Buttons */
+        .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px; /* Space between buttons */
+        margin-top: 20px; /* Space below the progress bar */
+        }
+
+        .button-container button, .button-container a {
+        background: linear-gradient(135deg, #007bff, #00d4ff);
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 25px;
+        font-size: 16px;
+        text-decoration: none; /* For anchor tags */
+        font-weight: bold;
+        transition: all 0.4s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        }
+
+        .button-container button:hover, .button-container a:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
         
 
         
@@ -579,6 +606,13 @@
         <span id="progress-percentage">% completed</span>
       </section>
 
+
+
+
+    <div class="button-container">
+        <button id="testimonial-toggle">✨ Submit Your Wishes</button>
+        <a href="https://t.me/daycount_marriage" target="_blank">📲 Join Telegram Channel</a>
+    </div>
 
     <div class="cta-container">
         <a href="https://t.me/daycount_marriage" target="_blank" class="cta-button">Telegram Channel</a>
