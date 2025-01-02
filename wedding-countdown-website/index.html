@@ -364,6 +364,7 @@
         padding: 0;
         }
 
+        /* Testimonial List Item with Animation */
         #testimonial-list li {
         background: #f3f4f6;
         border: 1px solid #e3e4e8;
@@ -372,6 +373,7 @@
         margin-bottom: 15px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         text-align: left;
+        animation: floatIn 0.8s ease-in-out;
         }
 
         #testimonial-list li strong {
@@ -389,7 +391,17 @@
         
 
         
-
+        /* Animation for New Testimonials */
+        @keyframes floatIn {
+        0% {
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        }
 
 
 
