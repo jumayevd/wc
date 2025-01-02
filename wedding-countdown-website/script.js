@@ -1,6 +1,15 @@
 // Testimonials Array
 let testimonials = [];
 
+// Toggle Testimonial Section Visibility
+const testimonialButton = document.getElementById('testimonial-toggle');
+const testimonialSection = document.getElementById('testimonial-section');
+
+testimonialButton.addEventListener('click', () => {
+  testimonialSection.classList.toggle('visible');
+  testimonialSection.classList.toggle('hidden');
+});
+
 // Render the last three testimonials
 function renderTestimonials() {
   const list = document.getElementById('testimonial-list');
@@ -33,3 +42,4 @@ document.getElementById('testimonial-form').addEventListener('submit', function 
     renderTestimonials();
   }
 });
+
