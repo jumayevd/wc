@@ -14,7 +14,7 @@ const firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
   const database = firebase.database();
   
-  // Get elements
+  // Get DOM elements
   const testimonialButton = document.getElementById('testimonial-toggle');
   const testimonialSection = document.getElementById('testimonial-section');
   const closeButton = document.getElementById('close-testimonial');
@@ -23,20 +23,21 @@ const firebaseConfig = {
   const messageInput = document.getElementById('message');
   const list = document.getElementById('testimonial-list');
   
-  // Toggle Testimonial Section Visibility
+  // Toggle visibility of the testimonial section
   testimonialButton.addEventListener('click', (event) => {
-    event.stopPropagation(); // Prevent triggering the document click listener
+    event.stopPropagation();
     testimonialSection.classList.add('visible');
     testimonialSection.classList.remove('hidden');
   });
   
+  // Close testimonial section
   closeButton.addEventListener('click', (event) => {
-    event.stopPropagation(); // Prevent triggering the document click listener
+    event.stopPropagation();
     testimonialSection.classList.add('hidden');
     testimonialSection.classList.remove('visible');
   });
   
-  // Close testimonial section on clicking outside
+  // Close when clicking outside the testimonial section
   document.addEventListener('click', (event) => {
     if (
       testimonialSection.classList.contains('visible') &&
@@ -48,7 +49,7 @@ const firebaseConfig = {
     }
   });
   
-  // Handle Form Submission
+  // Handle form submission
   form.addEventListener('submit', (event) => {
     event.preventDefault();
   
@@ -63,10 +64,10 @@ const firebaseConfig = {
         .then(() => {
           nameInput.value = '';
           messageInput.value = '';
-          alert('Your message has been submitted!'); // Optional confirmation
+          alert('Your message has been submitted!');
         })
         .catch((error) => {
-          console.error("Error saving testimonial:", error);
+          console.error('Error saving testimonial:', error);
           alert('Failed to submit your message. Please try again.');
         });
     } else {
@@ -74,7 +75,7 @@ const firebaseConfig = {
     }
   });
   
-  // Render Testimonials from Firebase
+  // Render testimonials from Firebase
   function renderTestimonials(snapshot) {
     list.innerHTML = '';
   
@@ -83,7 +84,8 @@ const firebaseConfig = {
       testimonials.push(childSnapshot.val());
     });
   
-    testimonials.sort((a, b) => b.timestamp - a.timestamp); // Sort by latest
+    // Sort by timestamp (latest first) and display the last 3
+    testimonials.sort((a, b) => b.timestamp - a.timestamp);
     testimonials.slice(0, 3).forEach((testimonial) => {
       const listItem = document.createElement('li');
       listItem.innerHTML = `
@@ -94,9 +96,8 @@ const firebaseConfig = {
     });
   }
   
-  // Listen for database changes and render
+  // Listen for changes in the database and render
   database.ref('testimonials').on('value', (snapshot) => {
     renderTestimonials(snapshot);
   });
-  
   
