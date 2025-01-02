@@ -3,25 +3,19 @@ const testimonialButton = document.getElementById('testimonial-toggle');
 const testimonialSection = document.getElementById('testimonial-section');
 const closeButton = document.getElementById('close-testimonial');
 
-// Toggle Testimonial Section Visibility
+// Testimonial Section Toggle Visibility
 testimonialButton.addEventListener('click', () => {
-  // Check if the testimonial section is currently hidden
-  if (testimonialSection.classList.contains('hidden')) {
-    testimonialSection.classList.remove('hidden');
-    testimonialSection.classList.add('visible');
-  } else {
-    testimonialSection.classList.remove('visible');
-    testimonialSection.classList.add('hidden');
-  }
+  testimonialSection.classList.toggle('hidden');
+  testimonialSection.classList.toggle('visible');
 });
 
-// Close Testimonial Section on clicking the close button
+// Close Testimonial Section
 closeButton.addEventListener('click', () => {
   testimonialSection.classList.remove('visible');
   testimonialSection.classList.add('hidden');
 });
 
-// Handle Form Submission (Save Testimonial to Firebase and Local Storage)
+// Handle Form Submission (Store in localStorage and Firebase)
 document.getElementById('testimonial-form').addEventListener('submit', function (event) {
   event.preventDefault();
 
@@ -29,24 +23,24 @@ document.getElementById('testimonial-form').addEventListener('submit', function 
   const message = document.getElementById('message').value.trim();
 
   if (name && message) {
-    // Add to local storage (for offline availability)
+    // Save to localStorage
     const testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
     testimonials.push({ name, message });
     localStorage.setItem('testimonials', JSON.stringify(testimonials));
+
+    // Optionally, save to Firebase
+    firebase.database().ref('testimonials').push({ name, message, timestamp: Date.now() });
 
     // Clear form fields
     document.getElementById('name').value = '';
     document.getElementById('message').value = '';
 
-    // Optionally, you can also push to Firebase if needed
-    firebase.database().ref('testimonials').push({ name, message, timestamp: Date.now() });
-    
-    // Update the list of testimonials (using local storage as an example)
+    // Update the testimonial list on the page
     renderTestimonials();
   }
 });
 
-// Render Testimonials
+// Render Testimonials from localStorage (and Firebase if needed)
 function renderTestimonials() {
   const list = document.getElementById('testimonial-list');
   const testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
@@ -62,5 +56,6 @@ function renderTestimonials() {
 
 // Initial Render
 renderTestimonials();
+
 
 
