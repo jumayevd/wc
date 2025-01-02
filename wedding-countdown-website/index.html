@@ -749,7 +749,121 @@
 
     <script src="script.js"></script> <!-- Ensure this is linked correctly -->
 
-
+    <script type="module">
+        // Import necessary functions from Firebase SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
+        import { getFirestore, collection, addDoc, getDocs, orderBy, limit, query } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyA55DAlDH8cSvw3qObgSYFzh5mBb0jQw8I",
+          authDomain: "marriage-count.firebaseapp.com",
+          databaseURL: "https://marriage-count-default-rtdb.firebaseio.com",
+          projectId: "marriage-count",
+          storageBucket: "marriage-count.firebasestorage.app",
+          messagingSenderId: "1050626778504",
+          appId: "1:1050626778504:web:1a205c05734072201dc63d",
+          measurementId: "G-WH68D0KR11"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getFirestore(app);
+      
+        // Get elements
+        const testimonialButton = document.getElementById('testimonial-toggle');
+        const testimonialSection = document.getElementById('testimonial-section');
+        const closeButton = document.getElementById('close-testimonial');
+        const testimonialList = document.getElementById('testimonial-list');
+      
+        // Fetch Testimonials from Firestore
+        async function fetchTestimonials() {
+          try {
+            const q = query(
+              collection(db, "testimonials"),
+              orderBy("timestamp", "desc"),
+              limit(3)
+            );
+      
+            const querySnapshot = await getDocs(q);
+            const testimonials = querySnapshot.docs.map(doc => doc.data());
+            renderTestimonials(testimonials);
+          } catch (error) {
+            console.error('Error fetching testimonials:', error);
+          }
+        }
+      
+        // Render Testimonials
+        function renderTestimonials(testimonials) {
+          testimonialList.innerHTML = '';
+      
+          testimonials.forEach((testimonial, index) => {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `
+              <strong>${testimonial.name}</strong>
+              <p>${testimonial.message}</p>
+            `;
+            
+            listItem.style.animationDelay = `${index * 0.2}s`;
+            testimonialList.appendChild(listItem);
+          });
+        }
+      
+        // Handle Form Submission
+        document.getElementById('testimonial-form').addEventListener('submit', async function (event) {
+          event.preventDefault();
+      
+          const name = document.getElementById('name').value.trim();
+          const message = document.getElementById('message').value.trim();
+      
+          if (name && message) {
+            try {
+              await addDoc(collection(db, "testimonials"), {
+                name: name,
+                message: message,
+                timestamp: new Date()  // Use current timestamp
+              });
+      
+              document.getElementById('name').value = '';
+              document.getElementById('message').value = '';
+              fetchTestimonials();  // Reload testimonials
+            } catch (error) {
+              console.error('Error adding testimonial:', error);
+            }
+          }
+        });
+      
+        // Fetch Testimonials on Page Load
+        fetchTestimonials();
+      
+        // Toggle Testimonial Section Visibility
+        testimonialButton.addEventListener('click', () => {
+          testimonialSection.classList.add('visible');
+          testimonialSection.classList.remove('hidden');
+        });
+      
+        // Close Testimonial Section
+        closeButton.addEventListener('click', closeTestimonialSection);
+      
+        document.addEventListener('click', (event) => {
+          if (
+            testimonialSection.classList.contains('visible') &&
+            !testimonialSection.contains(event.target) &&
+            event.target !== testimonialButton
+          ) {
+            closeTestimonialSection();
+          }
+        });
+      
+        // Close testimonial section function
+        function closeTestimonialSection() {
+          testimonialSection.classList.add('hidden');
+          testimonialSection.classList.remove('visible');
+        }
+    </script>
+      
 
   
 </body>
