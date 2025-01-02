@@ -24,6 +24,7 @@ const testimonialList = document.getElementById('testimonial-list');
 // Toggle visibility of the testimonial section
 testimonialButton.addEventListener('click', (event) => {
     event.stopPropagation(); // Prevent event bubbling
+    console.log('Testimonial section opened');
     testimonialSection.classList.add('visible');
     testimonialSection.classList.remove('hidden');
 });
@@ -31,6 +32,7 @@ testimonialButton.addEventListener('click', (event) => {
 // Close the testimonial section
 closeButton.addEventListener('click', (event) => {
     event.stopPropagation();
+    console.log('Testimonial section closed');
     testimonialSection.classList.add('hidden');
     testimonialSection.classList.remove('visible');
 });
@@ -55,14 +57,15 @@ testimonialForm.addEventListener('submit', function (event) {
     const message = document.getElementById('message').value.trim();
 
     if (name && message) {
-        // Push testimonial to Firebase
         const testimonial = { name, message, timestamp: Date.now() };
+        // Push testimonial to Firebase
         database.ref('testimonials').push(testimonial)
             .then(() => {
-                // Clear input fields
+                // Clear input fields after submission
                 document.getElementById('name').value = '';
                 document.getElementById('message').value = '';
                 alert('Your testimonial has been submitted!');
+                console.log('Testimonial submitted:', testimonial);
             })
             .catch((error) => {
                 console.error('Error submitting testimonial:', error);
@@ -75,6 +78,7 @@ testimonialForm.addEventListener('submit', function (event) {
 
 // Render testimonials from Firebase
 function renderTestimonials(snapshot) {
+    console.log('Rendering testimonials');
     testimonialList.innerHTML = ''; // Clear the list
 
     const testimonials = [];
@@ -99,5 +103,8 @@ function renderTestimonials(snapshot) {
 // Listen for changes in the database and render testimonials
 database.ref('testimonials').on('value', (snapshot) => {
     renderTestimonials(snapshot);
+    console.log('Snapshot received:', snapshot.val());
 });
+
+
 
