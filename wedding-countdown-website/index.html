@@ -802,10 +802,12 @@
       
         // Handle Form Submission
         document.getElementById('testimonial-form').addEventListener('submit', async function (event) {
-          event.preventDefault();
+          event.preventDefault(); // Prevent the form from submitting the usual way
       
           const name = document.getElementById('name').value.trim();
           const message = document.getElementById('message').value.trim();
+      
+          console.log('Submitting testimonial:', name, message); // Debugging line
       
           if (name && message) {
             try {
@@ -820,6 +822,8 @@
                 throw error;
               }
       
+              console.log('Testimonial added:', data); // Debugging line
+      
               // Clear the form inputs
               document.getElementById('name').value = '';
               document.getElementById('message').value = '';
@@ -829,6 +833,8 @@
             } catch (error) {
               console.error('Error adding testimonial:', error);
             }
+          } else {
+            console.log('Form is incomplete'); // Debugging line
           }
         });
       
@@ -860,6 +866,7 @@
           testimonialSection.classList.remove('visible');
         }
       </script>
+      
       
       
 
