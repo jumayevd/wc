@@ -3,7 +3,7 @@ const testimonialButton = document.getElementById('testimonial-toggle');
 const testimonialSection = document.getElementById('testimonial-section');
 const closeButton = document.getElementById('close-testimonial');
 
-// Testimonial Section Toggle Visibility
+// Toggle visibility of testimonial section
 testimonialButton.addEventListener('click', () => {
   testimonialSection.classList.toggle('hidden');
   testimonialSection.classList.toggle('visible');
@@ -15,7 +15,7 @@ closeButton.addEventListener('click', () => {
   testimonialSection.classList.add('hidden');
 });
 
-// Handle Form Submission (Store in localStorage and Firebase)
+// Handle Form Submission (Store in localStorage)
 document.getElementById('testimonial-form').addEventListener('submit', function (event) {
   event.preventDefault();
 
@@ -23,13 +23,14 @@ document.getElementById('testimonial-form').addEventListener('submit', function 
   const message = document.getElementById('message').value.trim();
 
   if (name && message) {
-    // Save to localStorage
+    // Retrieve existing testimonials from localStorage
     const testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
-    testimonials.push({ name, message });
-    localStorage.setItem('testimonials', JSON.stringify(testimonials));
 
-    // Optionally, save to Firebase
-    firebase.database().ref('testimonials').push({ name, message, timestamp: Date.now() });
+    // Add the new testimonial to the array
+    testimonials.push({ name, message, timestamp: Date.now() });
+
+    // Save the updated testimonials back to localStorage
+    localStorage.setItem('testimonials', JSON.stringify(testimonials));
 
     // Clear form fields
     document.getElementById('name').value = '';
@@ -40,14 +41,17 @@ document.getElementById('testimonial-form').addEventListener('submit', function 
   }
 });
 
-// Render Testimonials from localStorage (and Firebase if needed)
+// Render Testimonials from localStorage
 function renderTestimonials() {
   const list = document.getElementById('testimonial-list');
+  list.innerHTML = '';
+
   const testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
   
-  list.innerHTML = '';
-  
-  testimonials.slice(-3).reverse().forEach(testimonial => {
+  // Get the last 3 testimonials, sorted by timestamp
+  const recentTestimonials = testimonials.slice(-3).reverse();
+
+  recentTestimonials.forEach(testimonial => {
     const listItem = document.createElement('li');
     listItem.innerHTML = `<strong>${testimonial.name}</strong><p>${testimonial.message}</p>`;
     list.appendChild(listItem);
@@ -56,6 +60,5 @@ function renderTestimonials() {
 
 // Initial Render
 renderTestimonials();
-
 
 
