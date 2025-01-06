@@ -822,15 +822,15 @@
             if (name && message) {
                 try {
                 // Add testimonial to Firestore or Realtime Database
-                await addTestimonial(name, message);
+                    await addTestimonial(name, message);
 
-                // Clear the input fields
-                document.getElementById('name').value = '';
-                document.getElementById('message').value = '';
+                    // Clear the input fields
+                    document.getElementById('name').value = '';
+                    document.getElementById('message').value = '';
 
-                console.log("Testimonial submitted successfully!");
+                    console.log("Testimonial submitted successfully!");
                 } catch (error) {
-                console.error("Error submitting testimonial:", error);
+                    console.error("Error submitting testimonial:", error);
                 }
             } else {
                 console.error("Name and message are required!");
