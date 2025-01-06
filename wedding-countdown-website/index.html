@@ -748,124 +748,92 @@
     </script>
 
     <script src="script.js"></script> <!-- Ensure this is linked correctly -->
+    
     <script type="module">
-        // Import necessary functions from Supabase SDK
-        import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/+esm";
-      
-        // Your Supabase configuration (replace these with your actual keys)
-        const SUPABASE_URL = "https://xyzcompany.supabase.co";
-        const SUPABASE_ANON_KEY = "public-anon-key";
-      
-        // Initialize Supabase
-        const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-      
-        // Get elements
+        // Import Firebase libraries
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+    
+        // Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyA55DAlDH8cSvw3qObgSYFzh5mBb0jQw8I",
+          authDomain: "marriage-count.firebaseapp.com",
+          projectId: "marriage-count",
+          storageBucket: "marriage-count.appspot.com",
+          messagingSenderId: "1050626778504",
+          appId: "1:1050626778504:web:1a205c05734072201dc63d",
+          measurementId: "G-WH68D0KR11"
+        };
+    
+        // Initialize Firebase and Firestore
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+    
+        // DOM Elements
         const testimonialButton = document.getElementById('testimonial-toggle');
         const testimonialSection = document.getElementById('testimonial-section');
         const closeButton = document.getElementById('close-testimonial');
         const testimonialList = document.getElementById('testimonial-list');
-      
-        // Fetch Testimonials from Supabase
-        async function fetchTestimonials() {
-          try {
-            const { data, error } = await supabase
-              .from('testimonials')
-              .select('*')
-              .order('created_at', { ascending: false })
-              .limit(3); // Fetch only the latest 3 testimonials
-      
-            if (error) {
-              throw error;
-            }
-      
-            renderTestimonials(data);
-          } catch (error) {
-            console.error('Error fetching testimonials:', error);
-          }
-        }
-      
+        const form = document.getElementById('testimonial-form');
+    
+        // Toggle Testimonial Form Visibility
+        testimonialButton.addEventListener('click', () => {
+          testimonialSection.classList.add('visible');
+          testimonialSection.classList.remove('hidden');
+        });
+    
+        closeButton.addEventListener('click', () => {
+          testimonialSection.classList.add('hidden');
+          testimonialSection.classList.remove('visible');
+        });
+    
         // Render Testimonials
         function renderTestimonials(testimonials) {
           testimonialList.innerHTML = '';
-      
-          testimonials.forEach((testimonial, index) => {
+          testimonials.forEach((testimonial) => {
             const listItem = document.createElement('li');
             listItem.innerHTML = `
               <strong>${testimonial.name}</strong>
               <p>${testimonial.message}</p>
             `;
-            
-            listItem.style.animationDelay = `${index * 0.2}s`;
             testimonialList.appendChild(listItem);
           });
         }
-      
+    
+        // Real-Time Listener for Testimonials
+        const testimonialsQuery = query(
+          collection(db, 'testimonials'),
+          orderBy('createdAt', 'desc'),
+          limit(3)
+        );
+    
+        onSnapshot(testimonialsQuery, (snapshot) => {
+          const testimonials = snapshot.docs.map(doc => doc.data());
+          renderTestimonials(testimonials);
+        });
+    
         // Handle Form Submission
-        document.getElementById('testimonial-form').addEventListener('submit', async function (event) {
-          event.preventDefault(); // Prevent the form from submitting the usual way
-      
+        form.addEventListener('submit', async (event) => {
+          event.preventDefault();
+    
           const name = document.getElementById('name').value.trim();
           const message = document.getElementById('message').value.trim();
-      
-          console.log('Submitting testimonial:', name, message); // Debugging line
-      
+    
           if (name && message) {
             try {
-              // Insert the new testimonial into the Supabase database
-              const { data, error } = await supabase
-                .from('testimonials')
-                .insert([
-                  { name: name, message: message, created_at: new Date() }
-                ]);
-      
-              if (error) {
-                throw error;
-              }
-      
-              console.log('Testimonial added:', data); // Debugging line
-      
-              // Clear the form inputs
-              document.getElementById('name').value = '';
-              document.getElementById('message').value = '';
-      
-              // Fetch and render the latest testimonials (including the one just added)
-              fetchTestimonials();
+              await addDoc(collection(db, 'testimonials'), {
+                name,
+                message,
+                createdAt: new Date()
+              });
+    
+              form.reset(); // Clear form fields after submission
             } catch (error) {
               console.error('Error adding testimonial:', error);
             }
-          } else {
-            console.log('Form is incomplete'); // Debugging line
           }
         });
-      
-        // Fetch Testimonials on Page Load
-        fetchTestimonials();
-      
-        // Toggle Testimonial Section Visibility
-        testimonialButton.addEventListener('click', () => {
-          testimonialSection.classList.add('visible');
-          testimonialSection.classList.remove('hidden');
-        });
-      
-        // Close Testimonial Section
-        closeButton.addEventListener('click', closeTestimonialSection);
-      
-        document.addEventListener('click', (event) => {
-          if (
-            testimonialSection.classList.contains('visible') &&
-            !testimonialSection.contains(event.target) &&
-            event.target !== testimonialButton
-          ) {
-            closeTestimonialSection();
-          }
-        });
-      
-        // Close testimonial section function
-        function closeTestimonialSection() {
-          testimonialSection.classList.add('hidden');
-          testimonialSection.classList.remove('visible');
-        }
-      </script>
+    </script>
       
       
       
