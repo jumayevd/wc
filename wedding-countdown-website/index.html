@@ -814,56 +814,56 @@
     
                 // Form Submission Handler
         document.getElementById('testimonial-form').addEventListener('submit', async function (event) {
-        event.preventDefault(); // Prevent page reload
+            event.preventDefault(); // Prevent page reload
 
-        const name = document.getElementById('name').value.trim();
-        const message = document.getElementById('message').value.trim();
+            const name = document.getElementById('name').value.trim();
+            const message = document.getElementById('message').value.trim();
 
-        if (name && message) {
-            try {
-            // Add testimonial to Firestore or Realtime Database
-            await addTestimonial(name, message);
+            if (name && message) {
+                try {
+                // Add testimonial to Firestore or Realtime Database
+                await addTestimonial(name, message);
 
-            // Clear the input fields
-            document.getElementById('name').value = '';
-            document.getElementById('message').value = '';
+                // Clear the input fields
+                document.getElementById('name').value = '';
+                document.getElementById('message').value = '';
 
-            console.log("Testimonial submitted successfully!");
-            } catch (error) {
-            console.error("Error submitting testimonial:", error);
+                console.log("Testimonial submitted successfully!");
+                } catch (error) {
+                console.error("Error submitting testimonial:", error);
+                }
+            } else {
+                console.error("Name and message are required!");
             }
-        } else {
-            console.error("Name and message are required!");
-        }
         });
 
         // Real-Time Listener
         onSnapshot(testimonialsRef, (snapshot) => {
-        const testimonials = [];
-        snapshot.forEach((doc) => testimonials.push(doc.data()));
-        displayTestimonials(testimonials.slice(-3).reverse());
+            const testimonials = [];
+            snapshot.forEach((doc) => testimonials.push(doc.data()));
+            displayTestimonials(testimonials.slice(-3).reverse());
         });
 
         // Display Testimonials
         function displayTestimonials(testimonials) {
-        const list = document.getElementById('testimonial-list');
-        list.innerHTML = ''; // Clear the list before appending
+            const list = document.getElementById('testimonial-list');
+            list.innerHTML = ''; // Clear the list before appending
 
-        testimonials.forEach(({ name, message }) => {
-            const listItem = document.createElement('li');
-            listItem.innerHTML = `<strong>${name}</strong><p>${message}</p>`;
-            list.appendChild(listItem);
-        });
+            testimonials.forEach(({ name, message }) => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<strong>${name}</strong><p>${message}</p>`;
+                list.appendChild(listItem);
+            });
         }
 
         // Example Function to Add Testimonial
         async function addTestimonial(name, message) {
-        try {
-            // Use Firestore or Realtime Database logic
-            await addDoc(testimonialsRef, { name, message, timestamp: Date.now() });
-        } catch (error) {
-            console.error("Error adding testimonial:", error);
-        }
+            try {
+                // Use Firestore or Realtime Database logic
+                await addDoc(testimonialsRef, { name, message, timestamp: Date.now() });
+            } catch (error) {
+                console.error("Error adding testimonial:", error);
+            }
         }
 
     </script>
