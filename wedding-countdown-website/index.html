@@ -446,65 +446,6 @@
         vertical-align: middle;
         }
 
-        /* Define basic styling for countdown */
-        #countdown {
-        font-size: 40px;
-        font-family: 'Arial', sans-serif;
-        color: #333;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        }
-
-        .time-block {
-        display: inline-block;
-        position: relative;
-        }
-
-        .time-block span {
-        display: inline-block;
-        position: relative;
-        }
-
-        /* Water Drop Effect */
-        @keyframes waterDrop {
-        0% {
-            transform: scale(1);
-            opacity: 1;
-        }
-        50% {
-            transform: scale(1.2);
-            opacity: 0.5;
-        }
-        100% {
-            transform: scale(1);
-            opacity: 0;
-        }
-        }
-
-        /* Animation for when time changes */
-        .time-block span.water-drop {
-        animation: waterDrop 0.6s ease-out;
-        }
-
-        /* Sliding Effect */
-        @keyframes slideIn {
-        0% {
-            transform: translateY(-100%);
-            opacity: 0;
-        }
-        100% {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        }
-
-        .time-block span.slide-in {
-        animation: slideIn 0.6s ease-out;
-        }
-
-
 
 
         
@@ -723,12 +664,6 @@
         </div>
     </div>
       
-    <div id="countdown">
-        <div class="time-block">
-          <span id="hours">6</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
-        </div>
-    </div>
-      
       
     
  
@@ -931,13 +866,6 @@
             }
         });
 
-        // // Real-Time Listener
-        // onSnapshot(testimonialsRef, (snapshot) => {
-        //     const testimonials = [];
-        //     snapshot.forEach((doc) => testimonials.push(doc.data()));
-        //     displayTestimonials(testimonials.slice(-3).reverse());
-        // });
-
         // Display Testimonials
         function displayTestimonials(testimonials) {
             const list = document.getElementById('testimonial-list');
@@ -959,43 +887,10 @@
                 console.error("Error adding testimonial:", error);
             }
         }
+
     </script>
 
-    <script>
-        // Example function to update time
-        function updateCountdown(hours, minutes, seconds) {
-            // Get the current time blocks
-            const hourElement = document.getElementById('hours');
-            const minuteElement = document.getElementById('minutes');
-            const secondElement = document.getElementById('seconds');
-        
-            // Check if time values have changed
-            if (hourElement.innerText !== hours) {
-            hourElement.classList.add('water-drop'); // Add water drop effect
-            setTimeout(() => hourElement.classList.remove('water-drop'), 600); // Remove after animation ends
-            hourElement.classList.add('slide-in'); // Add sliding effect
-            setTimeout(() => hourElement.classList.remove('slide-in'), 600); // Remove after animation ends
-            hourElement.innerText = hours; // Update time
-            }
-        
-            if (minuteElement.innerText !== minutes) {
-            minuteElement.classList.add('water-drop');
-            setTimeout(() => minuteElement.classList.remove('water-drop'), 600);
-            minuteElement.classList.add('slide-in');
-            setTimeout(() => minuteElement.classList.remove('slide-in'), 600);
-            minuteElement.innerText = minutes;
-            }
-        
-            if (secondElement.innerText !== seconds) {
-            secondElement.classList.add('water-drop');
-            setTimeout(() => secondElement.classList.remove('water-drop'), 600);
-            secondElement.classList.add('slide-in');
-            setTimeout(() => secondElement.classList.remove('slide-in'), 600);
-            secondElement.innerText = seconds;
-            }
-        }
-        
-    </script>
+
     
       
       
