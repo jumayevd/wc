@@ -883,19 +883,19 @@
             }
         }
 
-            // Wait for the new data to appear
-        function waitForNewData() {
-            return new Promise((resolve) => {
-                const unsubscribe = onSnapshot(testimonialsQuery, (snapshot) => {
-                    const testimonials = snapshot.docs.map(doc => doc.data());
-                    if (testimonials.length > 0) {
-                        renderTestimonials(testimonials);
-                        resolve();
-                        unsubscribe();  // Unsubscribe from the listener once the data is loaded
-                    }
-                });
-            });
-        }
+        //     // Wait for the new data to appear
+        // function waitForNewData() {
+        //     return new Promise((resolve) => {
+        //         const unsubscribe = onSnapshot(testimonialsQuery, (snapshot) => {
+        //             const testimonials = snapshot.docs.map(doc => doc.data());
+        //             if (testimonials.length > 0) {
+        //                 renderTestimonials(testimonials);
+        //                 resolve();
+        //                 unsubscribe();  // Unsubscribe from the listener once the data is loaded
+        //             }
+        //         });
+        //     });
+        // }
 
     </script>
       
