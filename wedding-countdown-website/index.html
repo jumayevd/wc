@@ -801,7 +801,19 @@
           testimonialSection.classList.add('hidden');
           testimonialSection.classList.remove('visible');
         });
-    
+
+        // Close when clicking outside the section
+        document.addEventListener('click', (event) => {
+            if (
+                testimonialSection.classList.contains('visible') &&
+                !testimonialSection.contains(event.target) &&
+                event.target !== testimonialButton
+            ) {
+                testimonialSection.classList.add('hidden');
+                testimonialSection.classList.remove('visible');
+            }
+        });
+            
         // Render Testimonials
         function renderTestimonials(testimonials) {
           testimonialList.innerHTML = '';
