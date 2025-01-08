@@ -854,12 +854,12 @@
             }
         });
 
-        // Real-Time Listener
-        onSnapshot(testimonialsRef, (snapshot) => {
-            const testimonials = [];
-            snapshot.forEach((doc) => testimonials.push(doc.data()));
-            displayTestimonials(testimonials.slice(-3).reverse());
-        });
+        // // Real-Time Listener
+        // onSnapshot(testimonialsRef, (snapshot) => {
+        //     const testimonials = [];
+        //     snapshot.forEach((doc) => testimonials.push(doc.data()));
+        //     displayTestimonials(testimonials.slice(-3).reverse());
+        // });
 
         // Display Testimonials
         function displayTestimonials(testimonials) {
