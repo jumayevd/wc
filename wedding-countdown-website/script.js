@@ -1,33 +1,29 @@
-// Particle effect
+// Particle effect generator
 const particlesContainer = document.querySelector('.particles');
 
 function createParticle() {
   const particle = document.createElement('div');
   particle.classList.add('particle');
-  
-  // Random size for particles
-  const size = Math.random() * 3 + 1;
+
+  // Randomize particle size and position
+  const size = Math.random() * 3 + 2;
   particle.style.width = `${size}px`;
   particle.style.height = `${size}px`;
-  
-  // Positioning particles at random locations
+
   const xPos = Math.random() * 100;
   const yPos = Math.random() * 100;
   particle.style.left = `${xPos}vw`;
   particle.style.top = `${yPos}vh`;
-  
-  // Random animation timing for variation
-  const duration = Math.random() * 5 + 4; // 4 to 9 seconds
-  particle.style.animationDuration = `${duration}s`;
-  
+
+  // Add the particle to the container
   particlesContainer.appendChild(particle);
 
-  // Remove particle after animation
+  // Remove the particle after its animation ends
   setTimeout(() => {
     particle.remove();
-  }, duration * 1000);
+  }, 5000);
 }
 
-// Generate particles every 150ms
-setInterval(createParticle, 150);
+// Generate particles every 100ms
+setInterval(createParticle, 100);
 
