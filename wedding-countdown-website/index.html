@@ -775,7 +775,11 @@
         const closeButton = document.getElementById('close-testimonial');
         const testimonialList = document.getElementById('testimonial-list');
         const form = document.getElementById('testimonial-form');
-    
+        
+
+        // Firestore reference for testimonials
+        const testimonialsRef = collection(db, 'testimonials');
+
         // Toggle Testimonial Form Visibility
         testimonialButton.addEventListener('click', () => {
           testimonialSection.classList.add('visible');
@@ -802,18 +806,18 @@
     
         // Real-Time Listener for Testimonials
         const testimonialsQuery = query(
-          collection(db, 'testimonials'),
-          orderBy('createdAt', 'desc'),
-          limit(3)
+            testimonialsRef,
+            orderBy('timestamp', 'desc'),
+            limit(3)
         );
     
         onSnapshot(testimonialsQuery, (snapshot) => {
-          const testimonials = snapshot.docs.map(doc => doc.data());
-          renderTestimonials(testimonials);
+            const testimonials = snapshot.docs.map(doc => doc.data());
+            renderTestimonials(testimonials);
         });
     
                 // Form Submission Handler
-        document.getElementById('testimonial-form').addEventListener('submit', async function (event) {
+        form.addEventListener('submit', async function (event) {
             event.preventDefault(); // Prevent page reload
 
             const name = document.getElementById('name').value.trim();
