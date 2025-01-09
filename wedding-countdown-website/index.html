@@ -5,633 +5,55 @@
 
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-     
+
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Countdown</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <link rel="stylesheet" href="styles.css">
 
-
-
-        /* Body Styles */
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee, #d4d7e1);
-            background-size: 350% 300%;
-            animation: gradientBackground 15s ease infinite;
-            color: #7a230b;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            text-align: center;
-            flex-direction: column;
-            padding: 20px;
-            transition: all 0.5s ease;
-        } 
-
-
-
-
-
-        /* Heart Button */
-        #flower-heart {
-            position: relative;
-            margin-top: 20px;
-            font-size: 6rem; /* Larger size for heart */
-            color: #FFD700;
-            animation: floatingHeart 2s ease-in-out infinite;
-            cursor: pointer;
-        }
-
-        #flower-heart::after {
-            content: '❤️'; /* Use heart symbol for now */
-            position: absolute;
-            top: 0;
-            left: 0;
-            font-size: 7rem; /* Make the heart even bigger */
-            color: #FFD700;
-        }
-
-        /* Hidden Message */
-        #full-message {
-            margin-top: 20px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            display: none;
-            animation: fadeIn 3s forwards;
-            max-width: 600px; /* Narrow the message width */
-            width: 100%; /* Ensures the message scales well on different screen sizes */
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        #full-message h2 {
-            font-size: 1.6rem;
-            color:#812424;
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-
-        #full-message p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: black;
-            margin-bottom: 15px;
-            text-align: justify;
-            text-indent: 20px;
-        }
-
-
-        /* Countdown Timer */
-        #countdown {
-            margin-top: 40px;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
-            width: 100%;
-            max-width: 800px;
-        }
-
-        #countdown h2 {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #781111;
-        }
-
-        #timer {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .time-box {
-            background: rgba(255, 255, 255, 0.4);
-            padding: 20px;
-            border-radius: 10px;
-            width: 150px;
-            text-align: center;
-            font-size: 2rem;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.5s ease;
-        }
-
-        .time-box:hover {
-            transform: scale(1.1);
-        }
-
-        .time-box span {
-            font-size: 2.5rem;
-            font-weight: bold;
-            display: inline-block;
-            animation: flip 1s ease-in-out;
-        }
-
-        #timer .time-box div {
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: black
-        }
-
-
-        .time-unit {
-            display: flex;
-            justify-content: space-between;
-            width: 200px;
-        }
-
-    
-        /* Progress Bar */
-        #progress-bar {
-            margin-top: 40px;
-            width: 100%;
-            max-width: 800px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
-            text-align: center;
-        }
-
-        .progress-bar-container {
-            position: relative;
-            width: 100%;
-            height: 30px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 15px;
-            overflow: hidden;
-            margin-top: 20px;
-            transition: transform 0.5s ease;
-        }
-
-        .progress-bar-container:hover {
-            transform: scale(1.1);
-        }
-
-
-
-        
-        .cta-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-        
-        .cta-button {
-            background-color: #4f9df1; /* Blue background */
-            color: white;
-            padding: 15px 25px;
-            font-size: 16px;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 50px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .cta-button:hover {
-            background-color: #4f9df1; /* Darker blue on hover */
-            transform: scale(1.1);
-        }
-        
-        .cta-button:active {
-            background-color: #1884f7;
-            transform: scale(1);
-        }
-
-
-
-
-        
-
-
-
-        #remaining-progress {
-            position: relative;
-            height: 100%;
-            background: linear-gradient(to right, #4caf50, #8bc34a, #cddc39);
-            width: 0%; /* Dynamically updated using JavaScript */
-            transition: width 1s ease;
-            text-align: center;
-        }
-
-        .scale-labels {
-            position: absolute;
-            top: 40px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transition: transform 0.5s ease;
-        }
-
-        .scale-label {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #812424;
-            transition: transform 0.5s ease;
-        }
-
-        .fading-text {
-            animation: fadeText 1.5s ease-in-out infinite;
-        }
-
-        /* Percentage Text */
-        #progress-percentage {
-            margin-top: 10px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #812424;
-            transition: transform 0.5s ease;
-        }
-
-
-
-        .testimonial-button {
-        background: linear-gradient(135deg, #007bff, #00d4ff);
-        color: #fff;
-        padding: 15px 30px;
-        border: none;
-        border-radius: 50px;
-        font-size: 18px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: all 0.4s ease;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .testimonial-button:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Testimonial Section */
-        .testimonial-section {
-        position: fixed;
-        bottom: -100%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
-        max-width: 500px;
-        background: #ffffff;
-        border-radius: 20px 20px 0 0;
-        box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
-        padding: 30px;
-        transition: bottom 0.5s ease;
-        max-height: 80vh;
-        overflow-y: auto;
-        scrollbar-width: none; /* Firefox */
-        }
-
-
-        .testimonial-section::after {
-        content: '';
-        display: block;
-        width: 100%;
-        height: 20px;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background: #ffffff;
-        z-index: -1; /* Ensures it stays behind the section content */
-        }
-
-
-        /* Hide Scrollbar for Webkit Browsers */
-        .testimonial-section::-webkit-scrollbar {
-        display: none; /* Chrome, Safari */
-        }
-
-        .testimonial-section.hidden {
-        bottom: -100%;
-        }
-
-        .testimonial-section.visible {
-        bottom: 0;
-        }
-
-        /* Close Button */
-        .close-button {
-        background: none;
-        border: none;
-        font-size: 20px;
-        color: #333;
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        cursor: pointer;
-        }
-
-        /* Section Titles */
-        .section-title {
-        font-size: 24px;
-        color: #333;
-        margin-bottom: 20px;
-        font-weight: bold;
-        text-align: center;
-        }
-
-        .section-subtitle {
-        font-size: 20px;
-        color: #555;
-        margin: 20px 0;
-        text-align: center;
-        }
-
-        /* Form Styling */
-        .testimonial-form input, .testimonial-form textarea {
-        width: 100%;
-        padding: 15px;
-        margin-bottom: 15px;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        font-size: 14px;
-        background: #f9f9f9;
-        transition: 0.3s;
-        }
-
-        .testimonial-form input:focus, .testimonial-form textarea:focus {
-        outline: none;
-        border-color: #007bff;
-        background: #ffffff;
-        }
-
-        .testimonial-form button {
-        background: linear-gradient(135deg, #007bff, #00d4ff);
-        color: #fff;
-        padding: 15px 20px;
-        border: none;
-        border-radius: 10px;
-        font-size: 16px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: 0.3s;
-        }
-
-        .testimonial-form button:hover {
-        background: linear-gradient(135deg, #0056b3, #0099cc);
-        }
-
-        /* Testimonial List */
-        #testimonial-list {
-        list-style: none;
-        padding: 0;
-        }
-
-        /* Testimonial List Item with Animation */
-        #testimonial-list li {
-        background: #f3f4f6;
-        border: 1px solid #e3e4e8;
-        border-radius: 10px;
-        padding: 15px 20px;
-        margin-bottom: 15px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        text-align: left;
-        animation: floatIn 0.8s ease-in-out;
-        }
-
-        #testimonial-list li strong {
-        display: block;
-        font-size: 16px;
-        color: #007bff;
-        margin-bottom: 5px;
-        }
-
-        #testimonial-list li p {
-        font-size: 14px;
-        color: #333;
-        }
-
-        /* Container for Buttons */
-        .button-container {
-        display: flex;
-        justify-content: center;
-        gap: 20px; /* Space between buttons */
-        margin-top: 20px; /* Space below the progress bar */
-        }
-
-        .button-container button, .button-container a {
-        background: linear-gradient(135deg, #007bff, #00d4ff);
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 25px;
-        font-size: 16px;
-        text-decoration: none; /* For anchor tags */
-        font-weight: bold;
-        transition: all 0.4s ease;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-        }
-
-        .button-container button:hover, .button-container a:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Telegram Button Icon Styling */
-        .button-container a i {
-        margin-right: 8px; /* Space between icon and text */
-        font-size: 18px;
-        vertical-align: middle;
-        }
-
-
-
-        
-
-        
-        /* Animation for New Testimonials */
-        @keyframes floatIn {
-        0% {
-            transform: translateY(20px);
-            opacity: 0;
-        }
-        100% {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        }
-
-
-
-
-        @keyframes flip {
-            0% {
-                transform: rotateX(-90deg);
-                opacity: 0;
-            }
-            50% {
-                transform: rotateX(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: rotateX(90deg);
-                opacity: 0;
-            }
-        }
-
-           /* Bounce Animation for Countdown */
-        @keyframes bounceIn {
-            0% {
-                transform: translateY(100%);
-            }
-            20% {
-                transform: translateY(-30%);
-            }
-            40% {
-                transform: translateY(10%);
-            }
-            60% {
-                transform: translateY(-10%);
-            }
-            80% {
-                transform: translateY(4%);
-            }
-            100% {
-                transform: translateY(0%);
-            }
-        }
-
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes floatingHeart {
-            0% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-
-            100% {
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes gradientBackground {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        @keyframes fadeText {
-            0% {
-                opacity: 0;
-            }
-
-            50% {
-                opacity: 1;
-            }
-
-            100% {
-                opacity: 0;
-            }
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            #flower-heart {
-                font-size: 4rem;
-            }
-
-            .time-box {
-                flex: 1 1 100px;
-                padding: 10px;
-            }
-
-            .time-box span {
-                font-size: 2rem;
-            }
-
-            #progress-bar h3 {
-                font-size: 1rem;
-            }
-        }
-
-
-        @media (max-width: 480px) {
-            #flower-heart {
-                font-size: 3rem;
-            }
-
-            .time-box {
-                flex: 1 1 90px;
-                padding: 8px;
-            }
-
-            .time-box span {
-                font-size: 1.5rem;
-            }
-
-            .progress-bar-container {
-                height: 15px;
-            }
-
-            #progress-text {
-                font-size: 0.7rem;
-
-            }
-        }
-
-      
-    </style>
 </head>
 
 <body>
 
- 
-      
+    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 
     <div id="flower-heart">❤️</div>
     <div id="full-message">
         <h2>Assalamu Alaikum Wa Rahmatullahi Wa Barakatuh</h2>
-        <p>This webpage serves as a countdown to the blessed day of our nikah. While these days are approximations and the exact timing is known only to Allah, the messages work as gentle reminders of our commitment to make this relationship halal as soon as possible, InshaaAllah.
-            
-            This waiting period tests our patience and strengthens our iman to control our desires for the sake of Allah. This countdown is a small way to remind us that every passing day brings us closer to starting our life together in a way that pleases Him.
-            
-            Our love is a test, but it is also a blessing. With steadfast faith and pure intentions, we pray that Allah grants us the ultimate success: a life together in this world and eternal happiness in Jannah. May He make this journey easy for us and reward us abundantly for striving to do what is right. Ameen...</p>
+        <p>This webpage serves as a countdown to the blessed day of our nikah. While these days are approximations and
+            the exact timing is known only to Allah, the messages work as gentle reminders of our commitment to make
+            this relationship halal as soon as possible, InshaaAllah.
+
+            This waiting period tests our patience and strengthens our iman to control our desires for the sake of
+            Allah. This countdown is a small way to remind us that every passing day brings us closer to starting our
+            life together in a way that pleases Him.
+
+            Our love is a test, but it is also a blessing. With steadfast faith and pure intentions, we pray that Allah
+            grants us the ultimate success: a life together in this world and eternal happiness in Jannah. May He make
+            this journey easy for us and reward us abundantly for striving to do what is right. Ameen...</p>
     </div>
     <div id="countdown">
         <h2>Wedding Countdown</h2>
         <div id="timer">
-            <div class="time-box"><span id="days">00</span><div>Days</div></div>
-            <div class="time-box"><span id="hours">00</span><div>Hours</div></div>
-            <div class="time-box"><span id="minutes">00</span><div>Minutes</div></div>
-            <div class="time-box"><span id="seconds">00</span><div>Seconds</div></div>
+            <div class="time-box"><span id="days">00</span>
+                <div>Days</div>
+            </div>
+            <div class="time-box"><span id="hours">00</span>
+                <div>Hours</div>
+            </div>
+            <div class="time-box"><span id="minutes">00</span>
+                <div>Minutes</div>
+            </div>
+            <div class="time-box"><span id="seconds">00</span>
+                <div>Seconds</div>
+            </div>
         </div>
     </div>
 
@@ -640,14 +62,14 @@
     <section id="progress-bar">
         <h3>Time Progress between 2021 and 2027</h3>
         <div class="progress-bar-container">
-          <div id="remaining-progress"></div>
-          <div class="scale-labels">
-            <span class="scale-label">2021</span>
-            <span class="scale-label">2027</span>
-          </div>
+            <div id="remaining-progress"></div>
+            <div class="scale-labels">
+                <span class="scale-label">2021</span>
+                <span class="scale-label">2027</span>
+            </div>
         </div>
         <span id="progress-percentage">% completed</span>
-      </section>
+    </section>
 
 
 
@@ -655,257 +77,25 @@
     <div class="button-container">
         <button id="testimonial-toggle">✨ Share Your Wishes</button>
         <a href="https://t.me/daycount_marriage" target="_blank">
-          <i class="fab fa-telegram"></i> Telegram Channel
+            <i class="fab fa-telegram"></i> Telegram Channel
         </a>
     </div>
-      
-      <!-- Testimonial Section -->
+
+    <!-- Testimonial Section -->
     <div id="testimonial-section" class="testimonial-section hidden">
         <button id="close-testimonial" class="close-button">✖</button>
         <h2 class="section-title">💌 Share Your Wishes</h2>
         <form id="testimonial-form" class="testimonial-form">
-          <input type="text" id="name" placeholder="Your Name" required />
-          <textarea id="message" placeholder="Your Testimonial" required></textarea>
-          <button type="submit">✨ Submit Your Message</button>
+            <input type="text" id="name" placeholder="Your Name" required />
+            <textarea id="message" placeholder="Your Testimonial" required></textarea>
+            <button type="submit">✨ Submit Your Message</button>
         </form>
         <div id="testimonial-display">
-          <h3 class="section-subtitle">✨ Latest Testimonials</h3>
-          <ul id="testimonial-list"></ul>
+            <h3 class="section-subtitle">✨ Latest Testimonials</h3>
+            <ul id="testimonial-list"></ul>
         </div>
     </div>
-      
-      
-    
- 
-      
-    <script>
-        // Heart click functionality
-        const flowerHeart = document.getElementById('flower-heart');
-        const fullMessage = document.getElementById('full-message');
 
-        flowerHeart.addEventListener('click', () => {
-            if (fullMessage.style.display === "none" || fullMessage.style.display === "") {
-                fullMessage.style.display = "block";
-            } else {
-                fullMessage.style.display = "none";
-            }
-        });
-    </script>
-    <script>
-        const targetDate = new Date('2027-08-01T00:00:00');
-        const startDate = new Date('2021-01-01T00:00:00');
-
-        
-        function updateCountdown() {
-            const now = new Date();
-            const totalSeconds = Math.floor((targetDate - now) / 1000);
-            const totalDuration = Math.floor((targetDate - startDate) / 1000);
-            const days = Math.floor(totalSeconds / 86400);
-            const hours = Math.floor((totalSeconds % 86400) / 3600);
-            const minutes = Math.floor((totalSeconds % 3600) / 60);
-            const seconds = totalSeconds % 60;
-
-            // Update days, hours, minutes, seconds with bounce animation
-            const daysElement = document.getElementById('days');
-            const hoursElement = document.getElementById('hours');
-            const minutesElement = document.getElementById('minutes');
-            const secondsElement = document.getElementById('seconds');
-            
-            // Trigger bounce animation only when values change
-            const animateBounce = (element, newValue) => {
-                const oldValue = element.textContent;
-                if (oldValue !== newValue) {
-                    element.classList.remove('bounceIn');
-                    void element.offsetWidth;  // Trigger reflow for animation
-                    element.classList.add('bounceIn');
-                }
-            };
-
-            // Update the text content
-            daysElement.textContent = days < 10 ? '0' + days : days;
-            hoursElement.textContent = hours < 10 ? '0' + hours : hours;
-            minutesElement.textContent = minutes < 10 ? '0' + minutes : minutes;
-            secondsElement.textContent = seconds < 10 ? '0' + seconds : seconds;
-
-            animateBounce(daysElement, daysElement.textContent);
-            animateBounce(hoursElement, hoursElement.textContent);
-            animateBounce(minutesElement, minutesElement.textContent);
-            animateBounce(secondsElement, secondsElement.textContent);
-
-            // Calculate progress and update the progress bar
-            const progressPercentage = ((totalDuration - totalSeconds) / totalDuration) * 100;
-            document.getElementById('remaining-progress').style.width = `${progressPercentage}%`;
-            document.getElementById('progress-percentage').textContent = `${progressPercentage.toFixed(2)}% completed`;
-        }
-
-        setInterval(updateCountdown, 1000);
-
-        function updateProgressBar() {
-            const now = new Date();
-            const totalSeconds = Math.floor((targetDate - now) / 1000);
-            const totalDuration = Math.floor((targetDate - startDate) / 1000);
-            const elapsedSeconds = totalDuration - totalSeconds;
-
-            const progressPercentage = (elapsedSeconds / totalDuration) * 100;
-            const progressBar = document.getElementById('remaining-progress');
-            const progressText = document.getElementById('progress-percentage');
-
-            progressBar.style.width = `${progressPercentage}%`;
-            progressText.textContent = `${progressPercentage.toFixed(2)}%`;
-        }
-
-        setInterval(updateProgressBar, 1000);
-    </script>
-
-    <script src = "script.js"></script> <!-- Ensure this is linked correctly -->
-
-    <script type="module">
-        // Import Firebase libraries
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, limit, enableIndexedDbPersistence } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
-    
-        // Firebase configuration
-        const firebaseConfig = {
-          apiKey: "AIzaSyA55DAlDH8cSvw3qObgSYFzh5mBb0jQw8I",
-          authDomain: "marriage-count.firebaseapp.com",
-          projectId: "marriage-count",
-          storageBucket: "marriage-count.appspot.com",
-          messagingSenderId: "1050626778504",
-          appId: "1:1050626778504:web:1a205c05734072201dc63d",
-          measurementId: "G-WH68D0KR11"
-        };
-    
-        // Initialize Firebase and Firestore
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-    
-        // Enable offline data persistence
-        enableIndexedDbPersistence(db)
-        .catch((err) => {
-            if (err.code == 'failed-precondition') {
-            console.log("Persistence failed");
-            } else if (err.code == 'unimplemented') {
-            console.log("Persistence is not available");
-            }
-        });
-
-
-        // DOM Elements
-        const testimonialButton = document.getElementById('testimonial-toggle');
-        const testimonialSection = document.getElementById('testimonial-section');
-        const closeButton = document.getElementById('close-testimonial');
-        const testimonialList = document.getElementById('testimonial-list');
-        const form = document.getElementById('testimonial-form');
-        
-
-        // Firestore reference for testimonials
-        const testimonialsRef = collection(db, 'testimonials');
-
-        // Toggle Testimonial Form Visibility
-        testimonialButton.addEventListener('click', () => {
-          testimonialSection.classList.add('visible');
-          testimonialSection.classList.remove('hidden');
-        });
-    
-        closeButton.addEventListener('click', () => {
-          testimonialSection.classList.add('hidden');
-          testimonialSection.classList.remove('visible');
-        });
-
-        // Close when clicking outside the section
-        document.addEventListener('click', (event) => {
-            if (
-                testimonialSection.classList.contains('visible') &&
-                !testimonialSection.contains(event.target) &&
-                event.target !== testimonialButton
-            ) {
-                testimonialSection.classList.add('hidden');
-                testimonialSection.classList.remove('visible');
-            }
-        });
-            
-        // Render Testimonials
-        function renderTestimonials(testimonials) {
-          testimonialList.innerHTML = '';
-          testimonials.forEach((testimonial) => {
-            const listItem = document.createElement('li');
-            listItem.innerHTML = `
-              <strong>${testimonial.name}</strong>
-              <p>${testimonial.message}</p>
-            `;
-            testimonialList.appendChild(listItem);
-          });
-        }
-    
-        // Real-Time Listener for Testimonials
-        const testimonialsQuery = query(
-            testimonialsRef,
-            orderBy('timestamp', 'desc'),
-            limit(3)
-        );
-    
-        onSnapshot(testimonialsQuery, (snapshot) => {
-            const testimonials = snapshot.docs.map(doc => doc.data());
-            renderTestimonials(testimonials);
-        });
-    
-                // Form Submission Handler
-        document.getElementById('testimonial-form').addEventListener('submit', async function (event) {
-            event.preventDefault(); // Prevent page reload
-
-            const name = document.getElementById('name').value.trim();
-            const message = document.getElementById('message').value.trim();
-
-            if (name && message) {
-                try {
-                // Add testimonial to Firestore or Realtime Database
-                    await addTestimonial(name, message);
-
-                    // Clear the input fields
-                    document.getElementById('name').value = '';
-                    document.getElementById('message').value = '';
-
-                    console.log("Testimonial submitted successfully!");
-                    // Force the real-time listener to pick up the new data
-                    await waitForNewData();
-                } catch (error) {
-                    console.error("Error submitting testimonial:", error);
-                }
-            } else {
-                console.error("Name and message are required!");
-            }
-        });
-
-        // Display Testimonials
-        function displayTestimonials(testimonials) {
-            const list = document.getElementById('testimonial-list');
-            list.innerHTML = ''; // Clear the list before appending
-
-            testimonials.forEach(({ name, message }) => {
-                const listItem = document.createElement('li');
-                listItem.innerHTML = `<strong>${name}</strong><p>${message}</p>`;
-                list.appendChild(listItem);
-            });
-        }
-
-        // Example Function to Add Testimonial
-        async function addTestimonial(name, message) {
-            try {
-                // Use Firestore or Realtime Database logic
-                await addDoc(testimonialsRef, { name, message, timestamp: Date.now() });
-            } catch (error) {
-                console.error("Error adding testimonial:", error);
-            }
-        }
-
-    </script>      
-      
-
-  
 </body>
 
 </html>
-
-
-
-
