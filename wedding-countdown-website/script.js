@@ -2,37 +2,30 @@
 const flowerHeart = document.getElementById('flower-heart');
 const fullMessage = document.getElementById('full-message');
 
-flowerHeart.addEventListener('click', () => {
+// Function to toggle the message visibility
+function toggleMessage() {
     if (fullMessage.style.display === "none" || fullMessage.style.display === "") {
         fullMessage.style.display = "block";
     } else {
         fullMessage.style.display = "none";
     }
-});
-
-
-
-// Function to show the fullMessage
-function showMessage() {
-    fullMessage.style.display = "block";
 }
 
+// Heart button click event to toggle the message
+flowerHeart.addEventListener('click', (event) => {
+    event.stopPropagation(); // Prevent click event from bubbling to document
+    toggleMessage();
+});
 
-
-// Toggle the display of the fullMessage on flowerHeart click
-flowerHeart.addEventListener("click", (event) => {
-    event.stopPropagation(); // Prevent the click from bubbling to the document
-    if (fullMessage.style.display === "none" || fullMessage.style.display === "") {
-        showMessage();
+// Document click event to close the message if clicked outside
+document.addEventListener('click', (event) => {
+    // Check if the click is outside the message and heart button
+    const isClickInside = flowerHeart.contains(event.target) || fullMessage.contains(event.target);
+    if (!isClickInside) {
+        fullMessage.style.display = "none";
     }
 });
 
-// Close fullMessage when clicking outside
-document.addEventListener("click", (event) => {
-    if (!flowerHeart.contains(event.target) && !fullMessage.contains(event.target)) {
-        hideMessage();
-    }
-});
 
 
 
