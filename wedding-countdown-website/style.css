@@ -1,9 +1,30 @@
-/* General Reset */
+/* General Reset
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+
+
+Body Styles
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee, #d4d7e1);
+    background-size: 350% 300%;
+    animation: gradientBackground 15s ease infinite;
+    color: #7a230b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    flex-direction: column;
+    padding: 20px;
+    transition: all 0.5s ease;
+    overflow: hidden
+} */
+
 
 * {
     box-sizing: border-box;
@@ -21,25 +42,6 @@ body {
     background: black;
 }
 
-
-
-
-/* Body Styles */
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee, #d4d7e1);
-    background-size: 350% 300%;
-    animation: gradientBackground 15s ease infinite;
-    color: #7a230b;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    text-align: center;
-    flex-direction: column;
-    padding: 20px;
-    transition: all 0.5s ease;
-}
 
 
 
