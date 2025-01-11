@@ -419,26 +419,3 @@ class PointerParticles extends HTMLElement {
 PointerParticles.register();
 
 
-// Wait for the page to load
-
-window.addEventListener('load', () => {
-    const rainSound = document.getElementById('rain-sound');
-    rainSound.play().catch(error => {
-        console.error("Audio playback failed:", error);
-    });
-});
-
-
-// Wait for the iframe to load
-window.addEventListener('load', function () {
-    var iframe = document.getElementById('background-video');
-    var player = new YT.Player(iframe, {
-        events: {
-            'onReady': onPlayerReady
-        }
-    });
-
-    function onPlayerReady(event) {
-        event.target.unMute(); // Unmute the video
-    }
-});
