@@ -10,6 +10,18 @@ flowerHeart.addEventListener('click', () => {
     }
 });
 
+// Close when clicking outside the section
+document.addEventListener('click', (event) => {
+    if (
+        flowerHeart.classList.contains('visible') &&
+        !flowerHeart.contains(event.target) &&
+        event.target !== flowerHeart
+    ) {
+        flowerHeart.classList.add('hidden');
+        flowerHeart.classList.remove('visible');
+    }
+});
+
 
 const targetDate = new Date('2027-08-01T00:00:00');
 const startDate = new Date('2021-01-01T00:00:00');
