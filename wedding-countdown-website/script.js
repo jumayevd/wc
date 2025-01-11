@@ -1,73 +1,35 @@
-// // Heart click functionality
-// const flowerHeart = document.getElementById('flower-heart');
-// const fullMessage = document.getElementById('full-message');
+// Heart click functionality
+const flowerHeart = document.getElementById('flower-heart');
+const fullMessage = document.getElementById('full-message');
 
-// flowerHeart.addEventListener('click', () => {
-//     if (fullMessage.style.display === "none" || fullMessage.style.display === "") {
-//         fullMessage.style.display = "block";
-//     } else {
-//         fullMessage.style.display = "none";
-//     }
-// });
-
-
-
-// // Function to show the fullMessage
-// function showMessage() {
-//     fullMessage.style.display = "block";
-// }
-
-// // Function to hide the fullMessage
-// function hideMessage() {
-//     fullMessage.style.display = "none";
-// }
-
-// // Toggle the display of the fullMessage on flowerHeart click
-// flowerHeart.addEventListener("click", (event) => {
-//     event.stopPropagation(); // Prevent the click from bubbling to the document
-//     if (fullMessage.style.display === "none" || fullMessage.style.display === "") {
-//         showMessage();
-//     } else {
-//         hideMessage();
-//     }
-// });
-
-// // Close fullMessage when clicking outside
-// document.addEventListener("click", (event) => {
-//     if (!flowerHeart.contains(event.target) && !fullMessage.contains(event.target)) {
-//         hideMessage();
-//     }
-// });
-
-
-// Get references to the elements
-const flowerHeart = document.getElementById("flowerHeart");
-const fullMessage = document.getElementById("full-message");
-
-// Function to toggle the fullMessage display
-function toggleMessage() {
+flowerHeart.addEventListener('click', () => {
     if (fullMessage.style.display === "none" || fullMessage.style.display === "") {
         fullMessage.style.display = "block";
     } else {
         fullMessage.style.display = "none";
     }
-}
-
-// Function to hide the fullMessage
-function hideMessage() {
-    fullMessage.style.display = "none";
-}
-
-// FlowerHeart click event: Toggle the message
-flowerHeart.addEventListener("click", (event) => {
-    event.stopPropagation(); // Prevent bubbling to the document click
-    toggleMessage();
 });
 
-// Document click event: Close the message when clicking outside
+
+
+// Function to show the fullMessage
+function showMessage() {
+    fullMessage.style.display = "block";
+}
+
+
+
+// Toggle the display of the fullMessage on flowerHeart click
+flowerHeart.addEventListener("click", (event) => {
+    event.stopPropagation(); // Prevent the click from bubbling to the document
+    if (fullMessage.style.display === "none" || fullMessage.style.display === "") {
+        showMessage();
+    }
+});
+
+// Close fullMessage when clicking outside
 document.addEventListener("click", (event) => {
-    const isClickInside = flowerHeart.contains(event.target) || fullMessage.contains(event.target);
-    if (!isClickInside) {
+    if (!flowerHeart.contains(event.target) && !fullMessage.contains(event.target)) {
         hideMessage();
     }
 });
