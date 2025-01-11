@@ -423,8 +423,8 @@ PointerParticles.register();
 window.addEventListener('load', () => {
     const rainSound = document.getElementById('rain-sound');
 
-    // Optional: Stop the sound after a certain amount of time (e.g., 10 seconds)
-    // setTimeout(() => {
-    //     rainSound.pause(); // Pause the sound
-    // }, 10000); // Stop the sound after 10 seconds
+    //Optional: Stop the sound after a certain amount of time (e.g., 10 seconds)
+    setTimeout(() => {
+        rainSound.pause(); // Pause the sound
+    }, 10000); // Stop the sound after 10 seconds
 });
