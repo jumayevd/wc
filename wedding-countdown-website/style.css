@@ -1,14 +1,14 @@
-/* General Reset
+/* General Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} 
 
 
 
-Body Styles
-body {
+/* Body Styles */
+/* body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee, #d4d7e1);
     background-size: 350% 300%;
@@ -25,10 +25,6 @@ body {
     overflow: hidden
 } */
 
-
-* {
-    box-sizing: border-box;
-}
 
 html,
 body {
