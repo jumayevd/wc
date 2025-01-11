@@ -36,6 +36,12 @@ pointer-particles {
     pointer-events: none; /* Ensures clicks pass through */
 }
 
+/* Hide the audio element */
+audio {
+    display: none;
+}
+
+
 /* Centered Content */
 .content {
     position: relative;
