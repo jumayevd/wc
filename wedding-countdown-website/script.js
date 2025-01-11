@@ -420,11 +420,10 @@ PointerParticles.register();
 
 
 // Wait for the page to load
+
 window.addEventListener('load', () => {
     const rainSound = document.getElementById('rain-sound');
-
-    //Optional: Stop the sound after a certain amount of time (e.g., 10 seconds)
-    setTimeout(() => {
-        rainSound.pause(); // Pause the sound
-    }, 10000); // Stop the sound after 10 seconds
+    rainSound.play().catch(error => {
+        console.error("Audio playback failed:", error);
+    });
 });
