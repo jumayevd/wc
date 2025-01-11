@@ -400,16 +400,3 @@ class PointerParticles extends HTMLElement {
 PointerParticles.register();
 
 
-document.addEventListener("DOMContentLoaded", () => {
-    const svg = document.getElementById("svg5");
-    const message = document.getElementById("full-message");
-
-    // Set animation duration (matches the SVG animation duration)
-    const animationDuration = 3000; // 3 seconds
-
-    // Wait for the SVG animation to complete
-    setTimeout(() => {
-        svg.style.display = "none"; // Hide the SVG
-        message.style.display = "block"; // Show the message
-    }, animationDuration);
-});
