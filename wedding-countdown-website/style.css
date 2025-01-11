@@ -8,7 +8,7 @@
 
 
 /* Body Styles */
-/* body {
+body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee, #d4d7e1);
     background-size: 350% 300%;
@@ -23,21 +23,35 @@
     padding: 20px;
     transition: all 0.5s ease;
     overflow: hidden
-} */
+} 
 
 
-html,
-body {
+/* Particle Layer */
+pointer-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
+    pointer-events: none; /* Ensures clicks pass through */
 }
 
-body {
-    overflow: hidden;
-    display: grid;
-    color: white;
-    background: black;
+/* Centered Content */
+.content {
+    position: relative;
+    z-index: 1; /* Ensures it is above the particles */
+    color: #7a230b;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.2rem;
+}
 
 
 
