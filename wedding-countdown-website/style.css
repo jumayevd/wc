@@ -93,6 +93,13 @@ p {
     /* Ensures the message scales well on different screen sizes */
     margin-left: auto;
     margin-right: auto;
+    position: relative;
+}
+
+#full-message svg {
+    margin: 10px auto;
+    max-width: 100%;
+    display: block; /* Center the SVG inside the container */
 }
 
 #full-message h2 {
