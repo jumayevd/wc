@@ -322,11 +322,13 @@ class PointerParticles extends HTMLElement {
     }
 
     setPointerValues(event) {
-        this.pointer.x = event.x - this.offsetLeft;
-        this.pointer.y = event.y - this.offsetTop;
+        const rect = this.canvas.getBoundingClientRect();
+        this.pointer.x = event.clientX - rect.left;
+        this.pointer.y = event.clientY - rect.top;
         this.pointer.mx = event.movementX;
         this.pointer.my = event.movementY;
-    }
+      }
+      
 
     setupEvents() {
         const parent = this.parentNode;
