@@ -6,8 +6,14 @@ const fullMessage = document.getElementById('full-message');
 function toggleMessage() {
     if (fullMessage.style.display === "none" || fullMessage.style.display === "") {
         fullMessage.style.display = "block";
+        setTimeout(() => {
+            fullMessage.classList.remove('hidden');
+        }, 0); // Ensure class is applied after the element is visible
     } else {
         fullMessage.style.display = "none";
+        setTimeout(() => {
+            fullMessage.style.display = "none"; // Set display to none after transition
+        }, 1500); // Wait for transition to finish before hiding the element
     }
 }
 
@@ -24,6 +30,9 @@ document.addEventListener('click', (event) => {
     if (!isClickInside) {
         fullMessage.style.display = "none";
     }
+    setTimeout(() => {
+        fullMessage.style.display = "none"; // Set display to none after transition
+    }, 1500); // Wait for transition to finish before hiding the element
 });
 
 

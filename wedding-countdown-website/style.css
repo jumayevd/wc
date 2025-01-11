@@ -86,7 +86,7 @@ p {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     display: none;
-    opacity: 0;
+    opacity: 1;
     animation: fadeIn 3s forwards;
     max-width: 600px;
     /* Narrow the message width */
@@ -94,8 +94,13 @@ p {
     /* Ensures the message scales well on different screen sizes */
     margin-left: auto;
     margin-right: auto;
+    transition: opacity 1.5s ease, visibility 1.5s ease;
 }
 
+#full-message.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
 
 #full-message h2 {
     font-size: 1.6rem;
