@@ -10,17 +10,25 @@ flowerHeart.addEventListener('click', () => {
     }
 });
 
-// Close when clicking outside the section
-document.addEventListener('click', (event) => {
-    if (
-        flowerHeart.classList.contains('visible') &&
-        !flowerHeart.contains(event.target) &&
-        event.target !== flowerHeart
-    ) {
-        flowerHeart.classList.add('hidden');
-        flowerHeart.classList.remove('visible');
+
+// Toggle the display of the fullMessage on flowerHeart click
+flowerHeart.addEventListener("click", (event) => {
+    event.stopPropagation(); // Prevent the click from bubbling to the document
+    if (fullMessage.style.display === "none" || fullMessage.style.display === "") {
+        fullMessage.style.display = "block";
+    } else {
+        fullMessage.style.display = "none";
     }
 });
+
+// Close fullMessage when clicking outside
+document.addEventListener("click", (event) => {
+    // Check if the click is outside both the flowerHeart and fullMessage elements
+    if (!flowerHeart.contains(event.target) && !fullMessage.contains(event.target)) {
+        fullMessage.style.display = "none";
+    }
+});
+
 
 
 const targetDate = new Date('2027-08-01T00:00:00');
