@@ -11,23 +11,34 @@ flowerHeart.addEventListener('click', () => {
 });
 
 
+
+// Function to show the fullMessage
+function showMessage() {
+    fullMessage.style.display = "block";
+}
+
+// Function to hide the fullMessage
+function hideMessage() {
+    fullMessage.style.display = "none";
+}
+
 // Toggle the display of the fullMessage on flowerHeart click
 flowerHeart.addEventListener("click", (event) => {
     event.stopPropagation(); // Prevent the click from bubbling to the document
     if (fullMessage.style.display === "none" || fullMessage.style.display === "") {
-        fullMessage.style.display = "block";
+        showMessage();
     } else {
-        fullMessage.style.display = "none";
+        hideMessage();
     }
 });
 
 // Close fullMessage when clicking outside
 document.addEventListener("click", (event) => {
-    // Check if the click is outside both the flowerHeart and fullMessage elements
     if (!flowerHeart.contains(event.target) && !fullMessage.contains(event.target)) {
-        fullMessage.style.display = "none";
+        hideMessage();
     }
 });
+
 
 
 
