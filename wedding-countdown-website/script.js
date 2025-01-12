@@ -419,39 +419,27 @@ class PointerParticles extends HTMLElement {
 PointerParticles.register();
 
 
-// document.addEventListener("DOMContentLoaded", () => {
-//     const rainSound = document.getElementById("rain-sound");
+document.addEventListener("DOMContentLoaded", () => {
+    const rainSound = document.getElementById("rain-sound");
 
-//     // Attempt to autoplay the sound
-//     const playRainSound = () => {
-//         rainSound.play()
-//             .then(() => {
-//                 console.log("Rain sound is playing.");
-//             })
-//             .catch((error) => {
-//                 console.warn("Autoplay blocked. Waiting for user interaction.");
-//             });
-//     };
+    // Attempt to autoplay the sound
+    const playRainSound = () => {
+        rainSound.play()
+            .then(() => {
+                console.log("Rain sound is playing.");
+            })
+            .catch((error) => {
+                console.warn("Autoplay blocked. Waiting for user interaction.");
+            });
+    };
 
-//     // Try to autoplay on page load
-//     playRainSound();
+    // Try to autoplay on page load
+    playRainSound();
 
-//     // Fallback: Start playing on user interaction
-//     document.addEventListener("click", () => {
-//         if (rainSound.paused) {
-//             rainSound.play();
-//         }
-//     });
-// });
-
-// JavaScript for triggering rain sound
-const rainMessage = document.getElementById("rain-message");
-const rainSound = document.getElementById("rain-sound");
-const rainEffect = document.getElementById("rain-effect");
-
-document.body.addEventListener("click", () => {
-    rainSound.play();
-    rainMessage.style.display = "none"; // Remove the hint
-    rainEffect.style.opacity = 1; // Amplify the rain effect
+    // Fallback: Start playing on user interaction
+    document.addEventListener("click", () => {
+        if (rainSound.paused) {
+            rainSound.play();
+        }
+    });
 });
-
