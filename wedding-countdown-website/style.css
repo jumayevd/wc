@@ -69,16 +69,27 @@ p {
 
 
 
-/* Heart Button */
+/* Heart Button
 #flower-heart {
     position: relative;
     margin-top: 20px;
     font-size: 6rem;
-    /* Larger size for heart */
+    /* Larger size for heart 
     color: #FFD700;
     animation: floatingHeart 2s ease-in-out infinite;
     cursor: pointer;
+} */
+
+#flower-heart {
+    cursor: pointer; /* Makes it clear the element is clickable */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for scaling and shadow */
 }
+
+#flower-heart:hover {
+    transform: scale(1.2); /* Slightly increase size on hover */
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6); /* Add a glowing effect */
+}
+
 
 #flower-heart::after {
     content: '❤️';
