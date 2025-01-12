@@ -3,11 +3,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-} 
+}
 
 
 
-/* Body Styles */
+/*Body Styles*/
+/*
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee, #d4d7e1);
@@ -22,9 +23,70 @@ body {
     flex-direction: column;
     padding: 20px;
     transition: all 0.5s ease;
-    overflow-y: auto; /* Enables vertical scrolling */
+    overflow-y: auto; 
     overflow-x: hidden;
-} 
+}  */
+
+
+
+/* Rain background */
+body {
+    margin: 0;
+    overflow: hidden;
+    background: #101820;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-size: 1.5em;
+}
+
+/* Rain Effect */
+#rain-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: url('https://www.transparenttextures.com/patterns/raindrops.png');
+    animation: rain 0.5s linear infinite;
+    opacity: 0.5;
+}
+
+@keyframes rain {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 0 100%;
+    }
+}
+
+/* Rain Message */
+#rain-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 1.8rem;
+    opacity: 1;
+    animation: fadeIn 2s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
 
 
 
@@ -36,7 +98,8 @@ pointer-particles {
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* Ensures clicks pass through */
+    pointer-events: none;
+    /* Ensures clicks pass through */
 }
 
 /* Hide the audio element */
@@ -48,7 +111,8 @@ audio {
 /* Centered Content */
 .content {
     position: relative;
-    z-index: 1; /* Ensures it is above the particles */
+    z-index: 1;
+    /* Ensures it is above the particles */
     color: #7a230b;
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }

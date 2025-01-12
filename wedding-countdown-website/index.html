@@ -13,6 +13,10 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
 
+
+    <title>Rain Surprise</title>
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Countdown</title>
@@ -23,13 +27,19 @@
 
 <body>
 
-    <audio id="rain-sound" preload="auto" loop>
+    <!-- <audio id="rain-sound" preload="auto" loop>
         <source src="rain-sounds.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
-    </audio>
+    </audio> -->
     
 
+    <div id="rain-message">
+        <p>Feel the rain... <br> Click anywhere to start 🌧️</p>
+    </div>
 
+    <audio id="rain-sound" src="rain-sound.mp3" loop></audio>
+    <div id="rain-effect"></div>
+    <script src="script.js"></script>
     
     
 
