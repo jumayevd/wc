@@ -85,84 +85,82 @@ p {
 /* Keyframes for heartbeat animation */
 /* Keyframes for heartbeat animation */
 @keyframes heartbeat {
-
-    0%,
-    100% {
-        transform: scale(1) rotateY(0deg) rotateX(0deg);
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
     }
-
     25% {
-        transform: scale(1.1) rotateY(45deg) rotateX(10deg);
+        transform: scale(1.1) rotate(5deg);
     }
-
     50% {
-        transform: scale(0.95) rotateY(90deg) rotateX(20deg);
+        transform: scale(0.95) rotate(10deg);
     }
-
     75% {
-        transform: scale(1.2) rotateY(135deg) rotateX(10deg);
+        transform: scale(1.2) rotate(5deg);
     }
 }
 
-/* Center the heart element */
+/* Center the heart container */
 #flower-heart-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    /* Full screen height */
-    perspective: 1000px;
-    /* Adds depth for 3D effect */
+    height: 100vh; /* Full screen height */
+    perspective: 1000px; /* Adds depth for 3D effect */
 }
 
-/* Styling the rotating 3D flower heart */
+/* Styling the 3D heart */
 #flower-heart {
     position: relative;
     width: 150px;
     height: 150px;
-    background: linear-gradient(to bottom, #ff4e50, #e73c3e);
-    /* Red gradient for the 3D effect */
-    border-radius: 50%;
-    transform-origin: center;
-    /* Rotation origin at center */
-    animation: heartbeat 2s infinite;
-    /* Animation for heartbeat */
-    transform-style: preserve-3d;
-    /* Keep the 3D transformation */
-    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.4), inset 0 -5px 10px rgba(200, 0, 0, 0.6);
-    /* 3D-like shadow */
+    animation: heartbeat 2s infinite; /* Heartbeat animation */
+    transform-style: preserve-3d; /* Keep 3D transforms */
 }
 
-/* Adding the top "humps" to make it look like a heart */
-#flower-heart:before,
-#flower-heart:after {
-    content: '';
+/* Create the left side of the heart */
+#flower-heart .left,
+#flower-heart .right {
     position: absolute;
-    width: 75px;
-    height: 75px;
-    background: linear-gradient(to bottom, #ff4e50, #e73c3e);
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(to bottom, #ff4e50, #e73c3e); /* Red gradient for depth */
     border-radius: 50%;
 }
 
 /* Position the left hump */
-#flower-heart:before {
-    left: -50%;
+#flower-heart .left {
     top: 0;
+    left: 0;
+    transform: rotate(-45deg) translate(-50%, -50%);
+    transform-origin: 100% 100%;
 }
 
 /* Position the right hump */
-#flower-heart:after {
-    right: -50%;
+#flower-heart .right {
     top: 0;
+    right: 0;
+    transform: rotate(45deg) translate(50%, -50%);
+    transform-origin: 0% 100%;
+}
+
+/* Styling the bottom triangle to complete the heart */
+#flower-heart .bottom {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(to bottom, #ff4e50, #e73c3e);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
 }
 
 /* Glow effect on hover */
 #flower-heart:hover {
-    transform: rotateY(360deg) rotateX(360deg) scale(1.1);
-    /* Full 360 rotation with slight scale */
-    box-shadow: 0 0 40px rgba(255, 0, 0, 0.8), inset 0 -5px 15px rgba(200, 0, 0, 0.8);
-    /* Stronger glow */
+    transform: rotateY(360deg) rotateX(360deg);
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.8); /* Stronger glow */
 }
+
 
 
 
