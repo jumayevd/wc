@@ -83,7 +83,7 @@ p {
 } */
 
 /* Keyframes for heartbeat animation */
-/* Keyframes for heartbeat animation with smoother rotation */
+/* Keyframes for heartbeat animation */
 @keyframes heartbeat {
 
     0%,
@@ -104,62 +104,6 @@ p {
     }
 }
 
-/* Styling the rotating 3D flower heart */
-#flower-heart {
-    width: 150px;
-    /* Heart size */
-    height: 150px;
-    /* Heart size */
-    background: linear-gradient(to bottom, #ff4e50, #e73c3e);
-    /* Red gradient for 3D effect */
-    border-radius: 50%;
-    position: relative;
-    cursor: pointer;
-    animation: heartbeat 2s infinite;
-    /* Slower beat and rotation (2 seconds per cycle) */
-    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.4), inset 0 -5px 10px rgba(200, 0, 0, 0.6);
-    /* 3D-like shadow */
-    transform-origin: center;
-    /* Rotation and scale from center */
-    transform-style: preserve-3d;
-    /* Enable 3D effect */
-    transition: transform 0.5s ease-in-out;
-    /* Smooth transition for hover effect */
-}
-
-/* Adding the top "humps" to make it look like a heart */
-#flower-heart:before,
-#flower-heart:after {
-    content: '';
-    width: 75px;
-    /* Half of heart width */
-    height: 75px;
-    /* Half of heart height */
-    background: linear-gradient(to bottom, #ff4e50, #e73c3e);
-    /* Same gradient for consistency */
-    border-radius: 50%;
-    position: absolute;
-    top: 0;
-}
-
-/* Position the left hump */
-#flower-heart:before {
-    left: -50%;
-}
-
-/* Position the right hump */
-#flower-heart:after {
-    right: -50%;
-}
-
-/* Glow effect on hover with smooth rotation */
-#flower-heart:hover {
-    transform: rotateY(360deg) rotateX(360deg) scale(1);
-    /* Full 360 rotation with heartbeat */
-    box-shadow: 0 0 40px rgba(255, 0, 0, 0.8), inset 0 -5px 15px rgba(200, 0, 0, 0.8);
-    /* Stronger glow */
-}
-
 /* Center the heart element */
 #flower-heart-container {
     display: flex;
@@ -170,6 +114,56 @@ p {
     perspective: 1000px;
     /* Adds depth for 3D effect */
 }
+
+/* Styling the rotating 3D flower heart */
+#flower-heart {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(to bottom, #ff4e50, #e73c3e);
+    /* Red gradient for the 3D effect */
+    border-radius: 50%;
+    transform-origin: center;
+    /* Rotation origin at center */
+    animation: heartbeat 2s infinite;
+    /* Animation for heartbeat */
+    transform-style: preserve-3d;
+    /* Keep the 3D transformation */
+    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.4), inset 0 -5px 10px rgba(200, 0, 0, 0.6);
+    /* 3D-like shadow */
+}
+
+/* Adding the top "humps" to make it look like a heart */
+#flower-heart:before,
+#flower-heart:after {
+    content: '';
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    background: linear-gradient(to bottom, #ff4e50, #e73c3e);
+    border-radius: 50%;
+}
+
+/* Position the left hump */
+#flower-heart:before {
+    left: -50%;
+    top: 0;
+}
+
+/* Position the right hump */
+#flower-heart:after {
+    right: -50%;
+    top: 0;
+}
+
+/* Glow effect on hover */
+#flower-heart:hover {
+    transform: rotateY(360deg) rotateX(360deg) scale(1.1);
+    /* Full 360 rotation with slight scale */
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.8), inset 0 -5px 15px rgba(200, 0, 0, 0.8);
+    /* Stronger glow */
+}
+
 
 
 
