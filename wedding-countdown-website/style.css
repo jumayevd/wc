@@ -103,23 +103,46 @@ p {
     }
 }
 
-/* Styling the flower heart */
+/* Keyframes for heartbeat animation */
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+
+    25% {
+        transform: scale(1.1) rotate(45deg);
+    }
+
+    50% {
+        transform: scale(0.95) rotate(90deg);
+    }
+
+    75% {
+        transform: scale(1.2) rotate(135deg);
+    }
+}
+
+/* Styling the rotating 3D flower heart */
 #flower-heart {
     width: 150px;
-    /* Increase size */
+    /* Heart size */
     height: 150px;
-    /* Increase size */
+    /* Heart size */
     background: linear-gradient(to bottom, #ff4e50, #e73c3e);
     /* Red gradient for 3D effect */
     border-radius: 50%;
     position: relative;
     cursor: pointer;
     animation: heartbeat 2s infinite;
-    /* Slower beat (2 seconds per cycle) */
+    /* Slower beat and rotation (2 seconds per cycle) */
     box-shadow: 0 10px 20px rgba(255, 0, 0, 0.4), inset 0 -5px 10px rgba(200, 0, 0, 0.6);
     /* 3D-like shadow */
     transform-origin: center;
-    /* Beat from center */
+    /* Rotation and scale from center */
+    transform-style: preserve-3d;
+    /* Ensure 3D effect */
 }
 
 /* Adding the top "humps" to make it look like a heart */
@@ -160,7 +183,10 @@ p {
     align-items: center;
     height: 100vh;
     /* Full screen height */
+    perspective: 1000px;
+    /* Adds depth for 3D effect */
 }
+
 
 
 
