@@ -422,8 +422,24 @@ PointerParticles.register();
 document.addEventListener("DOMContentLoaded", () => {
     const rainSound = document.getElementById("rain-sound");
 
-    // Play audio when the page loads
-    rainSound.play().catch(error => {
-        console.error("Autoplay failed due to browser restrictions:", error);
+    // Attempt to autoplay the sound
+    const playRainSound = () => {
+        rainSound.play()
+            .then(() => {
+                console.log("Rain sound is playing.");
+            })
+            .catch((error) => {
+                console.warn("Autoplay blocked. Waiting for user interaction.");
+            });
+    };
+
+    // Try to autoplay on page load
+    playRainSound();
+
+    // Fallback: Start playing on user interaction
+    document.addEventListener("click", () => {
+        if (rainSound.paused) {
+            rainSound.play();
+        }
     });
 });
