@@ -80,27 +80,44 @@ p {
     cursor: pointer;
 } */
 
+/* Keyframes for heartbeat animation */
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    75% {
+        transform: scale(1.2);
+    }
+}
+
+/* Heartbeat animation on the flower heart */
 #flower-heart {
-    cursor: pointer; /* Makes it clear the element is clickable */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for scaling and shadow */
+    cursor: pointer;
+    animation: heartbeat 1.5s infinite; /* Heartbeat animation every 1.5 seconds */
+    transition: box-shadow 0.3s ease; /* For the hover glow effect */
 }
 
 #flower-heart:hover {
-    transform: scale(1.2); /* Slightly increase size on hover */
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6); /* Add a glowing effect */
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6); /* Glow effect on hover */
 }
 
 
-#flower-heart::after {
+/* #flower-heart::after {
     content: '❤️';
-    /* Use heart symbol for now */
+    /* Use heart symbol for now 
     position: absolute;
     top: 0;
     left: 0;
     font-size: 7rem;
-    /* Make the heart even bigger */
+    /* Make the heart even bigger 
     color: #FFD700;
-}
+} */
 
 /* Hidden Message */
 #full-message {
