@@ -419,3 +419,11 @@ class PointerParticles extends HTMLElement {
 PointerParticles.register();
 
 
+document.addEventListener("DOMContentLoaded", () => {
+    const rainSound = document.getElementById("rain-sound");
+
+    // Play audio when the page loads
+    rainSound.play().catch(error => {
+        console.error("Autoplay failed due to browser restrictions:", error);
+    });
+});
