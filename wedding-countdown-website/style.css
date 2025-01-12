@@ -83,44 +83,24 @@ p {
 } */
 
 /* Keyframes for heartbeat animation */
+/* Keyframes for heartbeat animation with smoother rotation */
 @keyframes heartbeat {
 
     0%,
     100% {
-        transform: scale(1);
+        transform: scale(1) rotateY(0deg) rotateX(0deg);
     }
 
     25% {
-        transform: scale(1.1);
+        transform: scale(1.1) rotateY(45deg) rotateX(10deg);
     }
 
     50% {
-        transform: scale(0.95);
+        transform: scale(0.95) rotateY(90deg) rotateX(20deg);
     }
 
     75% {
-        transform: scale(1.2);
-    }
-}
-
-/* Keyframes for heartbeat animation */
-@keyframes heartbeat {
-
-    0%,
-    100% {
-        transform: scale(1) rotate(0deg);
-    }
-
-    25% {
-        transform: scale(1.1) rotate(45deg);
-    }
-
-    50% {
-        transform: scale(0.95) rotate(90deg);
-    }
-
-    75% {
-        transform: scale(1.2) rotate(135deg);
+        transform: scale(1.2) rotateY(135deg) rotateX(10deg);
     }
 }
 
@@ -142,7 +122,9 @@ p {
     transform-origin: center;
     /* Rotation and scale from center */
     transform-style: preserve-3d;
-    /* Ensure 3D effect */
+    /* Enable 3D effect */
+    transition: transform 0.5s ease-in-out;
+    /* Smooth transition for hover effect */
 }
 
 /* Adding the top "humps" to make it look like a heart */
@@ -170,8 +152,10 @@ p {
     right: -50%;
 }
 
-/* Glow effect on hover */
+/* Glow effect on hover with smooth rotation */
 #flower-heart:hover {
+    transform: rotateY(360deg) rotateX(360deg) scale(1);
+    /* Full 360 rotation with heartbeat */
     box-shadow: 0 0 40px rgba(255, 0, 0, 0.8), inset 0 -5px 15px rgba(200, 0, 0, 0.8);
     /* Stronger glow */
 }
