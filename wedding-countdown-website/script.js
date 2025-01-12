@@ -13,8 +13,8 @@ function toggleMessage() {
 
 // Heart button click event to toggle the message
 flowerHeart.addEventListener('click', (event) => {
-    playRainSound();
     event.stopPropagation(); // Prevent click event from bubbling to document
+    playRainSound();
     toggleMessage();
 });
 
