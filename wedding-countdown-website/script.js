@@ -13,9 +13,9 @@ function toggleMessage() {
 
 // Heart button click event to toggle the message
 flowerHeart.addEventListener('click', (event) => {
-    event.stopPropagation(); // Prevent click event from bubbling to document
     playRainSound();
     toggleMessage();
+    event.stopPropagation(); // Prevent click event from bubbling to document
 });
 
 // Document click event to close the message if clicked outside
