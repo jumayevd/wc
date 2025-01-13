@@ -110,7 +110,7 @@ p {
     position: relative;
     animation: heartbeat 2s ease-in-out infinite;
     font-size: 7rem;
-    top: -20px;
+    top: -10px;
     right: 15px;
     cursor: pointer;
 }
