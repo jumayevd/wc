@@ -114,6 +114,7 @@ p {
     /* Heartbeat animation */
     transform-style: preserve-3d;
     /* Keep 3D transforms */
+    z-index: -1;
 }
 
 
@@ -124,21 +125,6 @@ p {
     /* Stronger glow */
 }
 
-
-
-#flower-heart::after {
-    content: '❤️';
-    position: absolute;
-    top: -30px;
-    /* Adjust overlap vertically */
-    right: 15px;
-    /* Adjust overlap horizontally */
-    font-size: 7rem;
-    /* Slightly smaller heart */
-    color: #FFD700;
-    /* Golden color for contrast */
-    z-index: -1;
-}
 
 /* Hidden Message */
 #full-message {
