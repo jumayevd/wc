@@ -105,7 +105,7 @@ p {
     position: relative;
     width: 150px;
     height: 150px;
-    animation: heartbeat 2s ease-in-out; /* Heartbeat animation */
+    animation: heartbeat 2s ease-in-out infinite; /* Heartbeat animation */
     transform-style: preserve-3d; /* Keep 3D transforms */
 }
 
