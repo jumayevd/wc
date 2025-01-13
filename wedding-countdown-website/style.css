@@ -113,6 +113,8 @@ p {
     top: -10px;
     right: 15px;
     cursor: pointer;
+    box-shadow: 0 0 0 rgba(255, 0, 0, 0), /* Invisible shadow to avoid squared edges */
+                0 0 40px rgba(255, 0, 0, 0.8);
 }
 
 
@@ -121,6 +123,8 @@ p {
     transform: rotateY(360deg) rotateX(360deg);
     box-shadow: 0 0 40px rgba(255, 0, 0, 0.8);
     /* Stronger glow */
+    box-shadow: 0 0 0 rgba(255, 0, 0, 0), /* Invisible shadow */
+                0 0 60px rgba(255, 0, 0, 1); /* Stronger glowing effect */
 }
 
 
