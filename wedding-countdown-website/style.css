@@ -113,18 +113,14 @@ p {
     margin-top: 20px;
     right: 15px;
     cursor: pointer;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5), /* Glow only */
-                0 0 30px rgba(255, 0, 0, 0.6), 
-                0 0 45px rgba(255, 0, 0, 0.7);
 }
 
 
 /* Glow effect on hover */
 #flower-heart:hover {
     transform: rotateY(360deg) rotateX(360deg);
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.7),
-                0 0 50px rgba(255, 0, 0, 1),
-                0 0 80px rgba(255, 0, 0, 1); /* Stronger and smoother glow *
+    box-shadow: 0 0 0 rgba(255, 0, 0, 0), /* Invisible shadow */
+                0 0 60px rgba(255, 0, 0, 1); /* Stronger glowing effect */
 }
 
 
