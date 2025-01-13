@@ -85,15 +85,20 @@ p {
 /* Keyframes for heartbeat animation */
 /* Keyframes for heartbeat animation */
 @keyframes heartbeat {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1) rotate(0deg);
     }
+
     25% {
         transform: scale(1.1) rotate(0deg);
     }
+
     50% {
         transform: scale(0.95) rotate(0deg);
     }
+
     75% {
         transform: scale(1.2) rotate(0deg);
     }
@@ -105,56 +110,35 @@ p {
     position: relative;
     width: 150px;
     height: 150px;
-    animation: heartbeat 2s ease-in-out infinite; /* Heartbeat animation */
-    transform-style: preserve-3d; /* Keep 3D transforms */
+    animation: heartbeat 2s ease-in-out infinite;
+    /* Heartbeat animation */
+    transform-style: preserve-3d;
+    /* Keep 3D transforms */
 }
-
-/* Create the left side of the heart */
-/* #flower-heart .left,
-#flower-heart .right {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background: linear-gradient(to bottom, #ff4e50, #e73c3e); /* Red gradient for depth 
-    border-radius: 50%;
-} */
-
-/* Position the left hump
-#flower-heart .left {
-    top: 0;
-    left: 0;
-    transform: rotate(-45deg) translate(-50%, -50%);
-    transform-origin: 100% 100%;
-}
-
-/* Position the right hump 
-#flower-heart .right {
-    top: 0;
-    right: 0;
-    transform: rotate(45deg) translate(50%, -50%);
-    transform-origin: 0% 100%;
-} */
 
 
 /* Glow effect on hover */
 #flower-heart:hover {
     transform: rotateY(360deg) rotateX(360deg);
-    box-shadow: 0 0 40px rgba(255, 0, 0, 0.8); /* Stronger glow */
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.8);
+    /* Stronger glow */
 }
-
-
 
 
 
 #flower-heart::after {
     content: '❤️';
-  
+
     position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 7rem;
-   
+    top: -20px;
+    /* Adjust overlap vertically */
+    left: 15px;
+    /* Adjust overlap horizontally */
+    font-size: 6rem;
+    /* Slightly smaller heart */
     color: #FFD700;
+    /* Golden color for contrast */
+    z-index: -1;
 }
 
 /* Hidden Message */
