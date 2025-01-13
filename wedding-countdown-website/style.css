@@ -130,9 +130,9 @@ p {
     content: '❤️';
 
     position: absolute;
-    top: -20px;
+    top: -10px;
     /* Adjust overlap vertically */
-    left: 15px;
+    right: 15px;
     /* Adjust overlap horizontally */
     font-size: 6rem;
     /* Slightly smaller heart */
