@@ -128,13 +128,12 @@ p {
 
 #flower-heart::after {
     content: '❤️';
-
     position: absolute;
     top: -30px;
     /* Adjust overlap vertically */
     right: 15px;
     /* Adjust overlap horizontally */
-    font-size: 6rem;
+    font-size: 7rem;
     /* Slightly smaller heart */
     color: #FFD700;
     /* Golden color for contrast */
