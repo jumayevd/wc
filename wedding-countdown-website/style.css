@@ -89,10 +89,10 @@ p {
         transform: scale(1) rotate(0deg);
     }
     25% {
-        transform: scale(1.1) rotate(1deg);
+        transform: scale(1.1) rotate(0deg);
     }
     50% {
-        transform: scale(0.95) rotate(-1deg);
+        transform: scale(0.95) rotate(0deg);
     }
     75% {
         transform: scale(1.2) rotate(0deg);
@@ -110,16 +110,16 @@ p {
 }
 
 /* Create the left side of the heart */
-#flower-heart .left,
+/* #flower-heart .left,
 #flower-heart .right {
     position: absolute;
     width: 100px;
     height: 100px;
-    background: linear-gradient(to bottom, #ff4e50, #e73c3e); /* Red gradient for depth */
+    background: linear-gradient(to bottom, #ff4e50, #e73c3e); /* Red gradient for depth 
     border-radius: 50%;
-}
+} */
 
-/* Position the left hump */
+/* Position the left hump
 #flower-heart .left {
     top: 0;
     left: 0;
@@ -127,13 +127,13 @@ p {
     transform-origin: 100% 100%;
 }
 
-/* Position the right hump */
+/* Position the right hump 
 #flower-heart .right {
     top: 0;
     right: 0;
     transform: rotate(45deg) translate(50%, -50%);
     transform-origin: 0% 100%;
-}
+} */
 
 
 /* Glow effect on hover */
