@@ -111,13 +111,11 @@ p {
     width: 150px;
     height: 150px;
     animation: heartbeat 2s ease-in-out infinite;
-    /* Heartbeat animation */
-    transform-style: preserve-3d;
-    /* Keep 3D transforms */
     z-index: -1;
     font-size: 7rem;
     top: -20px;
     right: 15px;
+    cursor: pointer;
 }
 
 
