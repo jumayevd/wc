@@ -89,10 +89,10 @@ p {
         transform: scale(1) rotate(0deg);
     }
     25% {
-        transform: scale(1.1) rotate(4deg);
+        transform: scale(1.1) rotate(1deg);
     }
     50% {
-        transform: scale(0.95) rotate(-4deg);
+        transform: scale(0.95) rotate(-1deg);
     }
     75% {
         transform: scale(1.2) rotate(0deg);
