@@ -126,35 +126,6 @@ enableIndexedDbPersistence(db)
     });
 
 
-// DOM Element for the floating quote
-const floatingQuote = document.getElementById('floating-quote');
-
-// Fetch the latest testimonial for the floating quote
-const latestTestimonialQuery = query(
-    testimonialsRef,
-    orderBy('timestamp', 'desc'),
-    limit(1) // Fetch only the latest testimonial
-);
-
-onSnapshot(latestTestimonialQuery, (snapshot) => {
-    if (!snapshot.empty) {
-        const latestDoc = snapshot.docs[0];
-        const { name, message, timestamp } = latestDoc.data();
-
-        // Check if the testimonial is within the last 24 hours
-        const storedTimestamp = localStorage.getItem('latestTestimonialTimestamp');
-        const isStillValid = storedTimestamp && (Date.now() - storedTimestamp < 24 * 60 * 60 * 1000);
-
-        if (!isStillValid) {
-            // Update floating quote and save timestamp
-            floatingQuote.innerHTML = `"${message}" - <strong>${name}</strong>`;
-            floatingQuote.style.display = 'block'; // Make it visible
-            localStorage.setItem('latestTestimonialTimestamp', Date.now());
-        }
-    }
-});
-
-
 
 
 // DOM Elements
