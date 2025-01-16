@@ -112,7 +112,7 @@ p {
 }
 
 @media (max-width: 768px) {
-    .heart {
+    .flower-heart {
         font-size: 30px;
         /* Adjust size for smaller screens */
     }
