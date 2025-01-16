@@ -430,6 +430,9 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch((error) => {
                 console.warn("Autoplay blocked. Waiting for user interaction.");
             });
+    };
+
+    const PlayNasheed = () => {
         nasheed.play()
             .then(() => {
                 console.log("nasheed is playing.");
@@ -437,15 +440,20 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch((error) => {
                 console.warn("Autoplay blocked. Waiting for user interaction.");
             });
-    };
+
+    }
 
     // Try to autoplay on page load
     playRainSound();
+    PlayNasheed();
 
     // Fallback: Start playing on user interaction
     document.addEventListener("click", () => {
         if (rainSound.paused) {
             rainSound.play();
+        }
+        if (nasheed.paused) {
+            nasheed.play();
         }
     });
 });
