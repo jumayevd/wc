@@ -419,12 +419,20 @@ PointerParticles.register();
 
 document.addEventListener("DOMContentLoaded", () => {
     const rainSound = document.getElementById("rain-sound");
+    const nasheed  = document.getElementById("nasheed");
 
     // Attempt to autoplay the sound
     const playRainSound = () => {
         rainSound.play()
             .then(() => {
                 console.log("Rain sound is playing.");
+            })
+            .catch((error) => {
+                console.warn("Autoplay blocked. Waiting for user interaction.");
+            });
+        nasheed.play()
+            .then(() => {
+                console.log("nasheed is playing.");
             })
             .catch((error) => {
                 console.warn("Autoplay blocked. Waiting for user interaction.");
