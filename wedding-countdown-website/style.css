@@ -108,6 +108,13 @@ p {
     transform: rotateY(360deg) rotateX(360deg);
 }
 
+@media (max-width: 768px) {
+    .heart {
+        font-size: 30px;
+        /* Adjust size for smaller screens */
+    }
+}
+
 
 /* Hidden Message */
 #full-message {
