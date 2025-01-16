@@ -111,13 +111,6 @@ p {
     transform: rotateY(360deg) rotateX(360deg);
 }
 
-@media (max-width: 768px) {
-    .flower-heart {
-        font-size: 30px;
-        /* Adjust size for smaller screens */
-    }
-}
-
 
 /* Hidden Message */
 #full-message {
@@ -646,7 +639,7 @@ p {
 /* Responsive Styles */
 @media (max-width: 768px) {
     #flower-heart {
-        font-size: 4rem;
+        font-size: 6rem;
     }
 
     .time-box {
