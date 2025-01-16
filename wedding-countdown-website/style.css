@@ -126,7 +126,7 @@ p {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     display: none;
-    animation: fadeIn 3s forwards;
+    animation: fadeIn 5s forwards;
     max-width: 600px;
     /* Narrow the message width */
     width: 100%;
