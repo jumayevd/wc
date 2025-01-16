@@ -127,6 +127,37 @@ enableIndexedDbPersistence(db)
 
 
 // DOM Elements
+const floatingQuote = document.getElementById('floating-quote');
+
+// Fetch Latest Testimonial
+const latestTestimonialQuery = query(
+    testimonialsRef,
+    orderBy('timestamp', 'desc'),
+    limit(1) // Get only the latest testimonial
+);
+
+onSnapshot(latestTestimonialQuery, (snapshot) => {
+    if (!snapshot.empty) {
+        const latestDoc = snapshot.docs[0];
+        const { name, message, timestamp } = latestDoc.data();
+
+        // Check if the quote is still valid (within 24 hours)
+        const storedTimestamp = localStorage.getItem('latestTestimonialTimestamp');
+        const isStillValid = storedTimestamp && (Date.now() - storedTimestamp < 24 * 60 * 60 * 1000);
+
+        if (!isStillValid) {
+            // Update the floating quote and timestamp
+            floatingQuote.innerHTML = `"${message}" - <strong>${name}</strong>`;
+            floatingQuote.style.display = 'block'; // Make it visible
+            localStorage.setItem('latestTestimonialTimestamp', Date.now());
+        }
+    }
+});
+
+
+
+
+// DOM Elements
 const testimonialButton = document.getElementById('testimonial-toggle');
 const testimonialSection = document.getElementById('testimonial-section');
 const closeButton = document.getElementById('close-testimonial');
@@ -419,7 +450,7 @@ PointerParticles.register();
 
 document.addEventListener("DOMContentLoaded", () => {
     const rainSound = document.getElementById("rain-sound");
-    const nasheed  = document.getElementById("nasheed");
+    const nasheed = document.getElementById("nasheed");
 
     // Attempt to autoplay the sound
     const playRainSound = () => {
