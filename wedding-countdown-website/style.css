@@ -97,7 +97,7 @@ p {
 #flower-heart {
     position: relative;
     animation: heartbeat 2s ease-in-out infinite;
-    font-size: 8rem;
+    font-size: 7vw;
     margin-top: 20px;
     cursor: pointer;
 }
