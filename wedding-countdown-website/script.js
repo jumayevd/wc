@@ -41,42 +41,38 @@ function updateCountdown() {
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = totalSeconds % 60;
 
-    // Update days, hours, minutes, seconds with flip animation
+    // Update days, hours, minutes, seconds with bounce animation
     const daysElement = document.getElementById('days');
     const hoursElement = document.getElementById('hours');
     const minutesElement = document.getElementById('minutes');
     const secondsElement = document.getElementById('seconds');
 
-    // Trigger flip animation only when values change
-    const animateFlip = (element, newValue) => {
+    // Trigger bounce animation only when values change
+    const animateBounce = (element, newValue) => {
         const oldValue = element.textContent;
         if (oldValue !== newValue) {
-            // Wrapping the number inside a div to apply the animation
-            const numberDiv = element.querySelector('div');
-            numberDiv.textContent = newValue;
-            numberDiv.classList.remove('flip');
-            void numberDiv.offsetWidth;  // Trigger reflow for animation
-            numberDiv.classList.add('flip');
+            element.classList.remove('bounceIn');
+            void element.offsetWidth;  // Trigger reflow for animation
+            element.classList.add('bounceIn');
         }
     };
 
     // Update the text content
-    daysElement.querySelector('div').textContent = days < 10 ? '0' + days : days;
-    hoursElement.querySelector('div').textContent = hours < 10 ? '0' + hours : hours;
-    minutesElement.querySelector('div').textContent = minutes < 10 ? '0' + minutes : minutes;
-    secondsElement.querySelector('div').textContent = seconds < 10 ? '0' + seconds : seconds;
+    daysElement.textContent = days < 10 ? '0' + days : days;
+    hoursElement.textContent = hours < 10 ? '0' + hours : hours;
+    minutesElement.textContent = minutes < 10 ? '0' + minutes : minutes;
+    secondsElement.textContent = seconds < 10 ? '0' + seconds : seconds;
 
-    animateFlip(daysElement, daysElement.textContent);
-    animateFlip(hoursElement, hoursElement.textContent);
-    animateFlip(minutesElement, minutesElement.textContent);
-    animateFlip(secondsElement, secondsElement.textContent);
+    animateBounce(daysElement, daysElement.textContent);
+    animateBounce(hoursElement, hoursElement.textContent);
+    animateBounce(minutesElement, minutesElement.textContent);
+    animateBounce(secondsElement, secondsElement.textContent);
 
     // Calculate progress and update the progress bar
     const progressPercentage = ((totalDuration - totalSeconds) / totalDuration) * 100;
     document.getElementById('remaining-progress').style.width = `${progressPercentage}%`;
     document.getElementById('progress-percentage').textContent = `${progressPercentage.toFixed(2)}% completed`;
 }
-
 
 setInterval(updateCountdown, 1000);
 
