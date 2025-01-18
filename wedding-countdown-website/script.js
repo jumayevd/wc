@@ -31,6 +31,7 @@ document.addEventListener('click', (event) => {
 const targetDate = new Date('2027-08-01T00:00:00');
 const startDate = new Date('2021-01-01T00:00:00');
 
+
 function updateCountdown() {
     const now = new Date();
     const totalSeconds = Math.floor((targetDate - now) / 1000);
@@ -48,9 +49,10 @@ function updateCountdown() {
 
     // Trigger flip animation only when values change
     const animateFlip = (element, newValue) => {
-        const numberDiv = element.querySelector('div');
-        const oldValue = numberDiv.textContent;
+        const oldValue = element.textContent;
         if (oldValue !== newValue) {
+            // Wrapping the number inside a div to apply the animation
+            const numberDiv = element.querySelector('div');
             numberDiv.textContent = newValue;
             numberDiv.classList.remove('flip');
             void numberDiv.offsetWidth;  // Trigger reflow for animation
@@ -74,10 +76,9 @@ function updateCountdown() {
     document.getElementById('remaining-progress').style.width = `${progressPercentage}%`;
     document.getElementById('progress-percentage').textContent = `${progressPercentage.toFixed(2)}% completed`;
 }
-setInterval(updateCountdown, 1000);  // Update countdown every 1 second
 
 
-
+setInterval(updateCountdown, 1000);
 
 function updateProgressBar() {
     const now = new Date();

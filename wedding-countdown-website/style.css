@@ -187,54 +187,19 @@ p {
     transform: scale(1.1);
 }
 
-/* .time-box span {
+.time-box span {
     font-size: 2.5rem;
     font-weight: bold;
     display: inline-block;
     animation: flip 1s ease-in-out;
-} */
-
-/* Add these keyframes for the flip animation */
-@keyframes flip {
-    0% {
-        transform: rotateX(0deg);
-        opacity: 0;
-    }
-
-    50% {
-        transform: rotateX(90deg);
-        opacity: 1;
-    }
-
-    100% {
-        transform: rotateX(180deg);
-        opacity: 1;
-    }
 }
 
-/* Time-box spans and numbers */
-#timer .time-box span {
-    font-size: 2.5rem;
-    font-weight: bold;
-    display: inline-block;
-    position: relative;
-    transform-style: preserve-3d;
-    /* Enable 3D space for flip */
-    backface-visibility: hidden;
-    /* Hide back face */
-}
 
-/* Inner div for each digit */
-#timer .time-box span div {
-    display: inline-block;
-    transition: transform 0.6s ease-in-out;
+#timer .time-box div {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: black
 }
-
-/* Define flip effect */
-.flip {
-    animation: flip 0.6s ease-in-out;
-}
-
 
 
 .time-unit {
@@ -579,12 +544,10 @@ p {
         transform: rotateX(0deg);
         opacity: 0;
     }
-
     50% {
         transform: rotateX(90deg);
         opacity: 1;
     }
-
     100% {
         transform: rotateX(180deg);
         opacity: 1;
